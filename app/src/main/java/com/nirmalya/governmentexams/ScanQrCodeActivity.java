@@ -1,68 +1,82 @@
 package com.nirmalya.governmentexams;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.nirmalya.governmentexams.databinding.ActivityScanQrCodeBinding;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Collections;
 
+import androidx.databinding.DataBindingUtil;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScanQrCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler  {
-    private static final String TAG = "Scan Result";
-    private ZXingScannerView scannerView;
+    private static final String TAG = ScanQrCodeActivity.class.getSimpleName();
+    private ActivityScanQrCodeBinding binding;
+    private Context context;
+    private boolean isFlashlightOn = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_qr_code);
-        scannerView = findViewById(R.id.scannerView);
-        scannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        setContentView(scannerView);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_scan_qr_code);
+
+        context = this;
+
+        initView();
     }
-    @Override
-        public void onResume() {
-            super.onResume();
-        scannerView.setResultHandler((ZXingScannerView.ResultHandler) this); // Register ourselves as a handler for scan results.
-        scannerView.startCamera();          // Start camera on resume
-        }
 
-        @Override
-        public void onPause() {
-            super.onPause();
-            scannerView.stopCamera();           // Stop camera on pause
-        }
+    private void initView() {
 
-    @Override
-    public void handleResult(Result result) {
-        Log.e(TAG, result.getText());
-        Log.e(TAG, result.getBarcodeFormat().toString());
+        binding.imgFlashLight.setOnClickListener(v -> {
+            if (isFlashlightOn) {
+                binding.imgFlashLight.setImageResource(R.drawable.ic_lightning_deactivated);
+                binding.scannerView.setFlash(false);
+            } else {
+                binding.imgFlashLight.setImageResource(R.drawable.ic_lightning_activated);
+                binding.scannerView.setFlash(true);
+            }
 
-        Toast.makeText(this,result.getText(),Toast.LENGTH_LONG).show();
-        finish();
+            isFlashlightOn = !isFlashlightOn;
+        });
+
+        binding.imgBack.setOnClickListener(v -> finish());
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (scannerView != null) {
-            scannerView.setResultHandler(this);
-            scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
-            scannerView.setAutoFocus(true);
-            scannerView.setAspectTolerance(0.5f);
-            scannerView.startCamera();
-            scannerView.setFlash(false);
+        if (binding.scannerView != null) {
+            binding.scannerView.setResultHandler(this);
+            binding.scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
+            binding.scannerView.setAutoFocus(true);
+            binding.scannerView.setAspectTolerance(0.5f);
+            binding.scannerView.startCamera();
+            binding.scannerView.setFlash(false);
         }
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        final String scanResult = rawResult.getText();
+        Toast.makeText(getApplicationContext(), scanResult, Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        scannerView.setFlash(false);
-        scannerView.stopCamera();
+        binding.scannerView.setFlash(false);
+        binding.scannerView.stopCamera();
     }
 }

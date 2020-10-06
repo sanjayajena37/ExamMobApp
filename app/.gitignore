@@ -1,1 +1,21 @@
 /build
+
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/
+/.idea/
+/app/app.iml
+/general-user-mobile.iml
+
+/.idea/inspectionProfiles/
+/app/src/androidTest/java/com/lovcash/
+/app/src/test/java/com/lovcash/
+/.idea/vcs.xml
+/.idea/runConfigurations.xml
+/.idea/.name
+/.idea/codeStyles/Project.xml
+/.idea/codeStyles/
+
+/app/release/output-metadata.json

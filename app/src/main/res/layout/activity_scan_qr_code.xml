@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/dashback"
-        android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,8 +31,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardTop"
-                tools:ignore="UnusedAttribute"
-                tools:text="Scann your QR code" />
+                tools:ignore="HardcodedText,UnusedAttribute"
+                android:text="Scann your QR code" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardTop"
@@ -77,7 +71,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/txtTitle"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@id/txtTitle"
-                        app:srcCompat="@drawable/ic_left_arrowwhite"
+                        app:srcCompat="@drawable/ic_lightning_deactivated"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <TextView
@@ -97,8 +91,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imgBack"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="RtlHardcoded"
-                        tools:text="Scan" />
+                        tools:ignore="HardcodedText,RtlHardcoded"
+                        android:text="Scan" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,4 +112,4 @@
 
     </ScrollView>
 
-</LinearLayout>
+</layout>
