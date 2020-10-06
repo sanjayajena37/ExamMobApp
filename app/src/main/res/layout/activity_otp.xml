@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="20dp"
+            android:textSize="@dimen/_18sdp"
             android:textStyle="bold"
             android:text=" VERIFY MOBILE NUMBER"
             android:textColor="@color/gradiantblue"
@@ -47,11 +47,11 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
-            android:lineSpacingExtra="1sp"
-            android:padding="17dp"
+            android:lineSpacingExtra="@dimen/_1ssp"
+            android:padding="@dimen/_15sdp"
             android:text="OTP has been sent to you  on your mobile number. please enter it below"
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -61,32 +61,32 @@
         <EditText
             android:id="@+id/otpedittext"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/shape_white"
             android:textColor="@color/black"
             android:hint=" Enter OTP "
             android:maxLength="4"
             android:textColorHint="@color/deepgrya"
             android:inputType="number"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"/>
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"/>
     <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/shape_button"
             android:elevation="@dimen/cardview_default_elevation"
-            android:textSize="15dp"
+            android:textSize="@dimen/_15sdp"
             android:text="Submit"
             android:textColor="@color/white" />
 
@@ -105,13 +105,12 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Didn't Receive the OTP?"
-                android:layout_marginStart="20sp"
                 android:textColor="@color/black"
                 />
             <TextView

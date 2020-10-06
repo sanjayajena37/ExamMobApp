@@ -37,9 +37,9 @@
         <ImageView
             android:id="@+id/atithyalogo"
             android:layout_gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/odishalogo"
 
             />
@@ -47,15 +47,15 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
-            android:lineSpacingExtra="1sp"
-            android:padding="17dp"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_10sdp"
             android:text="Please enter your mobile number."
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="16sp"
+
 
             />
 
@@ -63,12 +63,12 @@
             android:id="@+id/edtMobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginStart="@dimen/_23sdp"
+            android:layout_marginLeft="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/deepgrya"
             android:gravity="center_horizontal"
             android:hint="e.g 9776384460"
@@ -78,20 +78,20 @@
             android:saveEnabled="false"
             android:textColor="@android:color/black"
             android:textColorHint="@color/deepgrya"
-            android:textSize="25sp" />
+            android:textSize="@dimen/_25sdp" />
         <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/otp_button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/shape_button"
             android:elevation="@dimen/cardview_default_elevation"
-            android:textSize="15dp"
+            android:textSize="@dimen/_15sdp"
             android:text=" Send OTP "
             android:textColor="@color/white" />
 
@@ -110,13 +110,12 @@
             android:layout_height="wrap_content"
 
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Have an account?"
-                android:layout_marginStart="20sp"
                 android:textColor="@color/black"
                 />
 
