@@ -1,4 +1,5 @@
-package com.nirmalya.governmentexams;
+
+package com.nirmalya.governmentexams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nirmalya.governmentexams.ForgetPasswordActivity;
+import com.nirmalya.governmentexams.R;
 
 public class LoginActivity extends AppCompatActivity {
     TextView textTitle, txtsubTitle,password_text;
@@ -69,3 +73,4 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
+

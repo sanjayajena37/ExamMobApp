@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nirmalya.governmentexams.activity.LoginActivity;
+
 public class SetNewpinactivity extends AppCompatActivity {
     Button update_button;
     @Override
@@ -17,7 +19,7 @@ public class SetNewpinactivity extends AppCompatActivity {
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(SetNewpinactivity.this,LoginActivity.class);
+                Intent intent=new Intent(SetNewpinactivity.this, LoginActivity.class);
                 startActivity(intent);
 
             }

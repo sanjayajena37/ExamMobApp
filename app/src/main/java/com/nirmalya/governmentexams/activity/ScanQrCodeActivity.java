@@ -1,8 +1,7 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -10,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.nirmalya.governmentexams.R;
 import com.nirmalya.governmentexams.databinding.ActivityScanQrCodeBinding;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Collections;
 

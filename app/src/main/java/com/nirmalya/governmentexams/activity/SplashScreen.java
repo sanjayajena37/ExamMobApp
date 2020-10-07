@@ -1,8 +1,10 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.nirmalya.governmentexams.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

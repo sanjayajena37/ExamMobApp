@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nirmalya.governmentexams.activity.OtpActivity;
+
 public class ForgetPasswordActivity extends AppCompatActivity {
     Button next_button;
 
@@ -19,7 +21,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ForgetPasswordActivity.this,OtpActivity.class);
+                Intent intent=new Intent(ForgetPasswordActivity.this, OtpActivity.class);
                 startActivity(intent);
 
             }
