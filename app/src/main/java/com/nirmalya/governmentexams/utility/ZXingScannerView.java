@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.utility;
 
 import android.content.Context;
 import android.content.res.Configuration;

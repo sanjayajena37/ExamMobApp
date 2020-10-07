@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nirmalya.governmentexams.ForgetPasswordActivity;
 import com.nirmalya.governmentexams.R;
 
 public class LoginActivity extends AppCompatActivity {

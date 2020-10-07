@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,8 +15,10 @@ import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.zxing.Result;
+import com.nirmalya.governmentexams.R;
+import com.nirmalya.governmentexams.utility.ZXingScannerView;
 
-public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private static final int WRITE_EXST = 1;
     private static final int REQUEST_PERMISSION = 123;

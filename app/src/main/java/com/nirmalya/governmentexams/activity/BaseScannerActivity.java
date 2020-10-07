@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 
 import android.view.MenuItem;

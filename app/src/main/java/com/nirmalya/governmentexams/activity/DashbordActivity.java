@@ -206,7 +206,7 @@ public class DashbordActivity extends AppCompatActivity {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
-                        Intent intent = new Intent(DashbordActivity.this, ScanQrCodeActivity.class);
+                        Intent intent = new Intent(DashbordActivity.this, Home_Scanner.class);
                         startActivity(intent);
                     }
 

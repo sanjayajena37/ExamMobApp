@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nirmalya.governmentexams.activity.LoginActivity;
+import com.nirmalya.governmentexams.R;
 
 public class SetNewpinactivity extends AppCompatActivity {
     Button update_button;

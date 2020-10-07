@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams;
+package com.nirmalya.governmentexams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nirmalya.governmentexams.activity.OtpActivity;
+import com.nirmalya.governmentexams.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
     Button next_button;
