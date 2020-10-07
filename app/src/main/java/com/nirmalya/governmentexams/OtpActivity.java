@@ -15,13 +15,10 @@ public class OtpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-        save_button = findViewById(R.id.save_button);
-
         leftarrowimg = findViewById(R.id.leftarrowimg);
+        save_button = findViewById(R.id.save_button);
         /* toolbar = (Toolbar) findViewById(R.id.toolbar);
-
          setSupportActionBar(toolbar);*/
-
         leftarrowimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,11 +28,13 @@ public class OtpActivity extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(OtpActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(OtpActivity.this, RegistrationActivity.class);
                 startActivity(intent);
-                /*finishAffinity();*/
 
             }
+                /*finishAffinity();*/
+
+
         });
     }
 

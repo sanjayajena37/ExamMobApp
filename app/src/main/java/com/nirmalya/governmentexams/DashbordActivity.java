@@ -16,8 +16,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import static java.security.AccessController.getContext;
-
 public class DashbordActivity extends AppCompatActivity {
     LinearLayout scannLayout;
     @Override
@@ -40,7 +38,7 @@ public class DashbordActivity extends AppCompatActivity {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
-                        Intent intent=new Intent(DashbordActivity.this, ScanQrCodeActivity.class);
+                        Intent intent = new Intent(DashbordActivity.this, Home_Scanner.class);
                         startActivity(intent);
                     }
 

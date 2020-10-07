@@ -43,10 +43,14 @@
         <activity android:name=".OtpActivity" />
         <activity android:name=".NumberVerifActivity" />
         <activity android:name=".DashbordActivity" />
-        <activity android:name=".ScanQrCodeActivity"
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".SetNewpinactivity" />
+        <activity android:name=".Home_Scanner" />
+        <activity
+            android:name=".ScanQrCodeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

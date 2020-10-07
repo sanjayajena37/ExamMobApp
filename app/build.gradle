@@ -90,5 +90,9 @@ dependencies {
     implementation 'com.karumi:dexter:5.0.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'me.dm7.barcodescanner:core:1.9'
+    implementation 'com.android.support:multidex:1.0.0'
+
 
 }
