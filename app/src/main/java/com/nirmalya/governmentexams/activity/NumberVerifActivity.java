@@ -25,7 +25,7 @@ public class NumberVerifActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(NumberVerifActivity.this, OtpActivity.class);
-                //intent.putExtra("Number_otp", value1);
+                intent.putExtra("priviousScreen", "NumberVerifActivity");
                 startActivity(intent);
 
             }

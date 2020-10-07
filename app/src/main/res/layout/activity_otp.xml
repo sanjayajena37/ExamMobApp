@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 
     android:background="@drawable/loginbackground">
@@ -12,8 +12,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="5dp"
         android:src="@drawable/ic_left_arrow"
-
-        />
+        tools:ignore="ContentDescription" />
 
     <!--<TextView
     android:id="@+id/resendotp"
@@ -42,7 +41,7 @@
             android:textStyle="bold"
             android:text=" VERIFY MOBILE NUMBER"
             android:textColor="@color/gradiantblue"
-            />
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -57,7 +56,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
 
-            />
+            tools:ignore="HardcodedText" />
         <EditText
             android:id="@+id/otpedittext"
             android:layout_width="match_parent"
@@ -73,7 +72,8 @@
             android:textColorHint="@color/deepgrya"
             android:inputType="number"
             android:paddingStart="@dimen/_15sdp"
-            android:paddingEnd="@dimen/_15sdp"/>
+            android:paddingEnd="@dimen/_15sdp"
+            tools:ignore="Autofill,HardcodedText" />
     <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
@@ -88,7 +88,8 @@
             android:elevation="@dimen/cardview_default_elevation"
             android:textSize="@dimen/_15sdp"
             android:text="Submit"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText,PrivateResource" />
 
     <!--<TextView
         android:id="@+id/resendotp"
@@ -112,13 +113,15 @@
                 android:layout_height="wrap_content"
                 android:text="Didn't Receive the OTP?"
                 android:textColor="@color/black"
-                />
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Resend OTP"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textColor="@color/gradiantblue"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
     </LinearLayout>
 

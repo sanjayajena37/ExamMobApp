@@ -70,32 +70,6 @@
             </LinearLayout>
 
             <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:text="New user?"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/regdTextview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sign up"
-                    android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/forgotpasswrdlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,6 +88,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Recover"
+                    android:textColor="@color/gradiantblue"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:text="New user?"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/regdTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="Sign up"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold" />
             </LinearLayout>

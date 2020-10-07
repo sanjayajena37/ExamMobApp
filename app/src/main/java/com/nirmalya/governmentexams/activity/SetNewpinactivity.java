@@ -15,14 +15,11 @@ public class SetNewpinactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setnewpin);
-        update_button = findViewById(R.id.next_button);
-        update_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(SetNewpinactivity.this, LoginActivity.class);
-                startActivity(intent);
+        update_button = findViewById(R.id.update_button);
+        update_button.setOnClickListener(view -> {
+            Intent intent=new Intent(SetNewpinactivity.this, LoginActivity.class);
+            startActivity(intent);
 
-            }
         });
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import com.nirmalya.governmentexams.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
     Button next_button;
+    ImageView leftarrowimg;
 
     @Override
 
@@ -18,13 +20,14 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetpassword);
         next_button = findViewById(R.id.next_button);
-        next_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ForgetPasswordActivity.this, OtpActivity.class);
-                startActivity(intent);
+        leftarrowimg = findViewById(R.id.leftarrowimg);
+        next_button.setOnClickListener(view -> {
+            Intent intent=new Intent(ForgetPasswordActivity.this, OtpActivity.class);
+            intent.putExtra("priviousScreen", "ForgetPasswordActivity");
+            startActivity(intent);
 
-            }
         });
+
+        leftarrowimg.setOnClickListener(v -> finish());
     }
 }

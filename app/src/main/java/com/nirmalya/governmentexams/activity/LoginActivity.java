@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         regdTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(LoginActivity.this, NumberVerifActivity.class);
                 startActivity(intent);
 
             }
