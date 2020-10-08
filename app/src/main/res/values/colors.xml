@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorAccent">#2C2E9B</color>
-    <color name="colorPrimaryDark">#78CF1D</color>
+    <color name="colorPrimary">@color/gradiantblue</color>
+    <color name="colorPrimaryDark">@color/gradiantpurpel</color>
+    <color name="colorAccent">@color/white</color>
+    <color name="colorPrimaryBG">#121241</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="deepgrya">#25000000</color>
@@ -13,4 +14,16 @@
     <color name="gradiantblue">#451af8</color>
     <color name="gradiantpurpel">#8a2ae3</color>
     <color name="dashback">#EBECF0</color>
+
+    <color name="orangeGradientStart">#f1801d</color>
+    <color name="orangeGradientEnd">#e45248</color>
+
+    <color name="grey2">#818497</color>
+    <color name="grey3">#8a000000</color>
+
+    <!--Menu-->
+    <color name="menu_line_color">#4dffffff</color>
+    <color name="menu_light_blue_grey">#cfd3f0</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

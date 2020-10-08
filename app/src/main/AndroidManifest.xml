@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.nirmalya.governmentexams">
+    package="com.nirmalya.irms">
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -18,7 +18,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name="com.nirmalya.governmentexams.network.ApiController"
+        android:name="com.nirmalya.irms.Osssc"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -31,7 +31,7 @@
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
-        <activity android:name=".activity.SplashScreen">
+        <activity android:name="com.nirmalya.irms.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,20 +40,27 @@
         </activity>
 
 
-        <activity android:name=".activity.ForgetPasswordActivity" />
-        <activity android:name=".activity.SetNewpinactivity" />
-        <activity android:name=".activity.Home_Scanner"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+        <activity android:name="com.nirmalya.irms.activity.ForgetPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.SetNewpinactivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.Home_Scanner"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegistrationActivity" />
-        <activity android:name=".activity.OtpActivity" />
-        <activity android:name=".activity.NumberVerifActivity" />
-        <activity android:name=".activity.DashbordActivity" />
-        <activity android:name=".activity.ScanQrCodeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+        <activity android:name="com.nirmalya.irms.activity.MainActivity" />
+        <activity android:name="com.nirmalya.irms.activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.RegistrationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.OtpActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.NumberVerifActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.DashbordActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.ScanQrCodeActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden" />
     </application>
