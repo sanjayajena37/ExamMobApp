@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams.activity;
+package com.nirmalya.irms.activity;
 
 import android.os.Bundle;
 
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nirmalya.governmentexams.R;
-import com.nirmalya.governmentexams.adapter.CandidatelisAdapter;
-import com.nirmalya.governmentexams.adapter.CandidateListModel;
+import com.nirmalya.irms.R;
+import com.nirmalya.irms.model.CandidateListModel;
+import com.nirmalya.irms.adapter.CandidatelisAdapter;
 
 import java.util.ArrayList;
 

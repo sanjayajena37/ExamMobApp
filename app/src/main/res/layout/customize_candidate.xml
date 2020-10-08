@@ -97,7 +97,7 @@
                         android:text="Entry Status"
                         android:layout_marginStart="5dp"
                         android:textAlignment="center"
-                        android:textColor="#ffffff" />
+                        android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/hallStatustext"
                         android:layout_width="80dp"

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +58,11 @@ public class DashbordActivity extends AppCompatActivity {
         studentLists = new ArrayList<StudentModel>();
         context = this;
         binding.scanner.setOnClickListener(view -> requestCameraPermission());
+
+        binding.totalCandidateCard.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
+            startActivity(intent);
+        });
 
         callStudentListAPI();
     }

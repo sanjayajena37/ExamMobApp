@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams.adapter;
+package com.nirmalya.irms.model;
 
 public class CandidateListModel {
 

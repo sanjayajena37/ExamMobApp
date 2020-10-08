@@ -1,4 +1,4 @@
-package com.nirmalya.governmentexams.adapter;
+package com.nirmalya.irms.adapter;
 
 import android.content.Context;
 
@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nirmalya.irms.R;
+import com.nirmalya.irms.model.CandidateListModel;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.nirmalya.governmentexams.R;
 
 import java.util.List;
 
@@ -73,13 +75,6 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
         holder.entryStatustext.setText(lists.get(listPosition).getEntryStatus());
         holder.hallStatustext.setText(lists.get(listPosition).getHallStatus());
         holder.barcodetext.setText(lists.get(listPosition).getBarcode());
-
-
-        if (listPosition == lists.size() - 1) {
-            holder.viewLine.setVisibility(View.GONE);
-        }
-
-        holder.roomServicesPending.setOnClickListener(onClickListener(listPosition));
     }
 
 
