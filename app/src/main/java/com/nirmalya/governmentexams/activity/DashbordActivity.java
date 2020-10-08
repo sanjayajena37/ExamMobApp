@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashbordActivity extends AppCompatActivity {
-    LinearLayout scannLayout;
+    LinearLayout scannLayout,senddataLayout;
     //Array List
     private ArrayList<StudentModel> studentLists;
     private Context context;
@@ -57,6 +57,7 @@ public class DashbordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashbord);
         scannLayout = findViewById(R.id.scannLayout);
+        senddataLayout = findViewById(R.id.senddataLayout);
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
         context = this;
@@ -64,6 +65,14 @@ public class DashbordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 requestCameraPermission();
+
+            }
+        });
+        senddataLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
+                startActivity(intent);
 
             }
         });

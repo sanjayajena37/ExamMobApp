@@ -44,6 +44,8 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         contentFrame.addView(mScannerView);
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();

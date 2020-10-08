@@ -51,6 +51,8 @@
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".activity.OtpActivity" />
         <activity android:name=".activity.NumberVerifActivity" />
+        <activity android:name=".activity.ChangePinActivity" />
+        <activity android:name=".activity.CandidateListActivity" />
         <activity android:name=".activity.DashbordActivity" />
         <activity android:name=".activity.ScanQrCodeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
