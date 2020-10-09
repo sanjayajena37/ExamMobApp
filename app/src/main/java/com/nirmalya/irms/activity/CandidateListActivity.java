@@ -39,9 +39,5 @@ public class CandidateListActivity extends AppCompatActivity {
 
 
         }
-    /*private void loadCompletedRoomServicesData() {
 
-
-
-    }*/
 }

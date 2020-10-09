@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/shape_white_page"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <HorizontalScrollView
@@ -119,5 +119,10 @@
 
             </LinearLayout>
         </HorizontalScrollView>
+        <View
+            android:id="@+id/viewline"
+            android:background="#aaa"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
     </LinearLayout>
 </LinearLayout>
