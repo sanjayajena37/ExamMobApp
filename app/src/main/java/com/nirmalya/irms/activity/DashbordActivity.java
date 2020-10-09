@@ -56,9 +56,10 @@ public class DashbordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashbord);
+
         toolbar = findViewById(R.id.toolbarDashboard);
-        setSupportActionBar(toolbar);
         navigationimg = findViewById(R.id.navigationimg);
+
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
         context = this;
@@ -68,12 +69,9 @@ public class DashbordActivity extends AppCompatActivity {
             Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
             startActivity(intent);
         });
-        navigationimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
-                startActivity(intent);
-            }
+        navigationimg.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
+            startActivity(intent);
         });
         callStudentListAPI();
     }
