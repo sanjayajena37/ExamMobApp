@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:background="@drawable/loginbackground">
+
     <ImageView
         android:id="@+id/leftarrowimg"
         android:layout_width="16dp"
@@ -14,19 +15,6 @@
         android:src="@drawable/ic_left_arrow"
         tools:ignore="ContentDescription" />
 
-    <!--<TextView
-    android:id="@+id/resendotp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-    android:text="sjfkncdsfbhdgjvfngvjfngvjfnvbfnbjfgnbjgbjgnbfvnvnnvndkkkdkdkhjhjjjjjjjjjjjj"
-        android:lines="2"
-    android:textColor="@color/black"
-     />-->
-    <!-- <include layout="@layout/costem_toolbar" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,9 +27,10 @@
             android:layout_gravity="center"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold"
-            android:text=" VERIFY MOBILE NUMBER"
+            android:text="VERIFY OTP"
             android:textColor="@color/gradiantblue"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -51,12 +40,12 @@
             android:letterSpacing="0.02"
             android:lineSpacingExtra="@dimen/_1ssp"
             android:padding="@dimen/_15sdp"
-            android:text="OTP has been sent to you  on your mobile number. please enter it below"
+            android:text="OTP has been sent to you on your mobile number. please enter it below"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="16sp"
-
             tools:ignore="HardcodedText" />
+
         <EditText
             android:id="@+id/otpedittext"
             android:layout_width="match_parent"
@@ -74,7 +63,6 @@
             android:paddingStart="@dimen/_15sdp"
             android:paddingEnd="@dimen/_15sdp"
             tools:ignore="Autofill,HardcodedText" />
-    <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/save_button"
@@ -91,29 +79,21 @@
             android:textColor="@color/white"
             tools:ignore="HardcodedText,PrivateResource" />
 
-    <!--<TextView
-        android:id="@+id/resendotp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Resend Otp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />-->
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center"
             android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Didn't Receive the OTP?"
                 android:textColor="@color/black"
                 tools:ignore="HardcodedText" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,7 +102,9 @@
                 android:textColor="@color/gradiantblue"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
+
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

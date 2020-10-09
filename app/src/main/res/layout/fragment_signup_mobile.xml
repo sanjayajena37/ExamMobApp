@@ -2,33 +2,41 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/loginbackground">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/loginbackground">
+        android:gravity="center"
+        tools:ignore="UselessParent">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/atithyalogo"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/odishalogo"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            tools:ignore="UselessParent">
-
-            <Button
-                android:id="@+id/otpBtn"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/shape_button"
-                android:elevation="@dimen/cardview_default_elevation"
-                android:textSize="@dimen/_15sdp"
-                android:text=" Send OTP "
-                android:textColor="@color/white"
-                tools:ignore="HardcodedText,PrivateResource" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="Please enter your mobile number."
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/edtMobile"
@@ -50,55 +58,48 @@
             android:textSize="@dimen/_25sdp"
             tools:ignore="Autofill,HardcodedText" />
 
-            <ImageView
-                android:id="@+id/atithyalogo"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/_110sdp"
-                android:layout_height="@dimen/_110sdp"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/odishalogo"
-                android:contentDescription="@string/app_name" />
+        <Button
+            android:id="@+id/otpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/shape_button"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:textSize="@dimen/_15sdp"
+            android:text=" Send OTP "
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText,PrivateResource" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Have an account?"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/logintext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text=" Login"
-                    android:textColor="@color/gradiantblue"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Have an account?"
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center_horizontal"
-                android:letterSpacing="0.02"
-                android:lineSpacingExtra="@dimen/_1sdp"
-                android:padding="@dimen/_10sdp"
-                android:text="Please enter your mobile number."
-                android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:id="@+id/logintext"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" Login"
+                android:textColor="@color/gradiantblue"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+</LinearLayout>
 
 </layout>
