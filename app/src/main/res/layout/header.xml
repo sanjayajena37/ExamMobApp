@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chooseBackground"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgCashIn"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:src="@drawable/odishalogo"
+            android:layout_gravity="center" />
+
+
+
+        <TextView
+            android:id="@+id/centerCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Center1"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textSize="@dimen/_15ssp"
+
+            />
+
+        <TextView
+            android:id="@+id/scannerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scanner Name"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textSize="@dimen/_15ssp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            tools:ignore="HardcodedText"
+            />
+
+        <TextView
+            android:id="@+id/scannerMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9876543210"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textSize="@dimen/_15ssp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            tools:ignore="HardcodedText"
+            />
+
+
+</LinearLayout>
+
+
+
+</LinearLayout>

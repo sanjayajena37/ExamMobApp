@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />-->
+    <item
+        android:id="@+id/myaccount"
+        android:icon="@drawable/ic_top_up_icon"
+        android:title="Candidate List" />
+    <item
+        android:id="@+id/idcard"
+        android:icon="@drawable/ic_pin_code_icon"
+        android:title="Change Pin" />
+
+    <item
+        android:id="@+id/roles"
+        android:icon="@drawable/logout_"
+        android:title="Logout" />
+
+
+</menu>
