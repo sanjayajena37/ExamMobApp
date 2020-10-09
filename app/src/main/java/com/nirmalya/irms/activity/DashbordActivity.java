@@ -9,9 +9,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 import com.android.volley.Request;
@@ -46,14 +48,17 @@ public class DashbordActivity extends AppCompatActivity {
     private ArrayList<StudentModel> studentLists;
     private Context context;
     private ActivityDashbordBinding binding;
-
-
+    private ImageView navigationimg;
+    private Toolbar toolbar;
     List<StudentModel> lists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashbord);
+        toolbar = findViewById(R.id.toolbarDashboard);
+        setSupportActionBar(toolbar);
+        navigationimg = findViewById(R.id.navigationimg);
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
         context = this;
@@ -63,7 +68,13 @@ public class DashbordActivity extends AppCompatActivity {
             Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
             startActivity(intent);
         });
-
+        navigationimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
+                startActivity(intent);
+            }
+        });
         callStudentListAPI();
     }
 

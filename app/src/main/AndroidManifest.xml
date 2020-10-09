@@ -59,6 +59,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.nirmalya.irms.activity.DashbordActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.nirmalya.irms.activity.NavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.nirmalya.irms.activity.ScanQrCodeActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
