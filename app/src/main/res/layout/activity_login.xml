@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
 
-    >
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/loginbackground"
         android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_70sdp"
-            android:text="SIGN IN"
-            android:textColor="@color/gradiantblue"
-            android:textSize="@dimen/_16sdp"
-            android:textStyle="bold" />
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,20 +19,15 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <!--<include layout="@layout/custom_toolbar_staff" />-->
-
-
             <ImageView
                 android:id="@+id/atithyalogo"
                 android:layout_width="@dimen/_110sdp"
                 android:layout_height="@dimen/_110sdp"
                 android:layout_gravity="center"
-
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/odishalogo"
+                android:contentDescription="@string/app_name" />
 
-                />
-            <!--android:src="@drawable/logoatithyalast1"-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,13 +40,14 @@
                     android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@null"
-                    android:hint="Enter 4 Digit Login  PIN"
+                    android:hint="Enter 6 Digit Login  PIN"
                     android:inputType="number"
-                    android:maxLength="4"
+                    android:maxLength="6"
                     android:textAlignment="center"
                     android:textColorHint="@color/black"
-                    android:theme="@style/AppTheme1" />
-                <!--android:letterSpacing="4.0"-->
+                    android:theme="@style/AppTheme1"
+                    tools:ignore="Autofill,HardcodedText,TextFields" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
@@ -82,18 +69,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgot your password?"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Recover"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
             </LinearLayout>
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -107,7 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:text="New user?"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/regdTextview"
@@ -116,12 +106,23 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:text="Sign up"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:text="SIGN IN"
+            android:textColor="@color/gradiantblue"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
+    </LinearLayout>
 
 </RelativeLayout>
