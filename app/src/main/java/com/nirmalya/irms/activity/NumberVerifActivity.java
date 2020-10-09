@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 
+import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.databinding.FragmentSignupMobileBinding;
 import com.nirmalya.irms.utility.MessageUtils;
@@ -55,6 +56,7 @@ public class NumberVerifActivity extends AppCompatActivity {
     public void validateData() {
         if (!Utils.isNullOrEmpty(binding.edtMobile.getText().toString().trim()) &&
                 binding.edtMobile.getText().toString().trim().length() == 10) {
+            Osssc.getPrefs().setScannerMobile(binding.edtMobile.getText().toString().trim());
             Intent intent = new Intent(NumberVerifActivity.this, OtpActivity.class);
             intent.putExtra("priviousScreen", "NumberVerifActivity");
             startActivity(intent);

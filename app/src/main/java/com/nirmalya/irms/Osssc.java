@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.nirmalya.irms.network.Preferences;
+import com.nirmalya.irms.prefs.Preferences;
 import com.nirmalya.irms.utility.AppSignatureHashHelper;
 import com.nirmalya.irms.utility.Utils;
 
