@@ -3,6 +3,7 @@
 
 package com.nirmalya.irms.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,19 +11,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.nirmalya.irms.R;
+import com.nirmalya.irms.databinding.ActivityOtpBinding;
+import com.nirmalya.irms.utility.MessageUtils;
+import com.nirmalya.irms.utility.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class OtpActivity extends AppCompatActivity {
-    ImageView leftarrowimg;
-    Button save_button;
+
+    private ActivityOtpBinding binding;
     private Bundle extras;
     private String previousScreen;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
+
+        context = this;
 
         if (getIntent() != null) {
             extras = getIntent().getExtras();
@@ -31,35 +39,26 @@ public class OtpActivity extends AppCompatActivity {
             }
         }
 
-        save_button = findViewById(R.id.save_button);
+        binding.leftarrowimg.setOnClickListener(v -> onBackPressed());
 
-        leftarrowimg = findViewById(R.id.leftarrowimg);
-        /* toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-         setSupportActionBar(toolbar);*/
-
-        leftarrowimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        save_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
-                    Intent intent=new Intent(OtpActivity.this, RegistrationActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent=new Intent(OtpActivity.this, SetNewpinactivity.class);
-                    startActivity(intent);
-                }
-
-                /*finishAffinity();*/
-
-            }
-        });
+        binding.saveButton.setOnClickListener(v -> validateData());
     }
 
+    public void validateData() {
+        if (!Utils.isNullOrEmpty(binding.edtOTP.getText().toString().trim()) &&
+                binding.edtOTP.getText().toString().trim().length() == 6) {
+            if(previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
+                Intent intent=new Intent(OtpActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent=new Intent(OtpActivity.this, SetNewpinactivity.class);
+                startActivity(intent);
+                finish();
+            }
+        } else {
+            MessageUtils.showFailureMessage(context, "Please enter 6 digit OTP");
+        }
+    }
 }
 
