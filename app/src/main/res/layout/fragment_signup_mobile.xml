@@ -1,73 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    android:background="@drawable/loginbackground">
-    <!--<ImageView
-        android:id="@+id/leftarrowimg"
-        android:layout_width="16dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="5dp"
-        android:src="@drawable/ic_left_arrow"
-
-        />-->
-
-    <!--<TextView
-    android:id="@+id/resendotp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-    android:text="sjfkncdsfbhdgjvfngvjfngvjfnvbfnbjfgnbjgbjgnbfvnvnnvndkkkdkdkhjhjjjjjjjjjjjj"
-        android:lines="2"
-    android:textColor="@color/black"
-     />-->
-    <!-- <include layout="@layout/costem_toolbar" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        >
-        <ImageView
-            android:id="@+id/atithyalogo"
-            android:layout_gravity="center"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_110sdp"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/odishalogo"
+        android:background="@drawable/loginbackground">
 
-            />
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.02"
-            android:lineSpacingExtra="@dimen/_1sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="Please enter your mobile number."
-            android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:ignore="UselessParent">
 
-
-            />
+            <Button
+                android:id="@+id/otpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/shape_button"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textSize="@dimen/_15sdp"
+                android:text=" Send OTP "
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText,PrivateResource" />
 
         <EditText
             android:id="@+id/edtMobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_23sdp"
-            android:layout_marginLeft="@dimen/_23sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_32sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/deepgrya"
             android:gravity="center_horizontal"
@@ -78,55 +47,58 @@
             android:saveEnabled="false"
             android:textColor="@android:color/black"
             android:textColorHint="@color/deepgrya"
-            android:textSize="@dimen/_25sdp" />
-        <!--</android.support.design.widget.TextInputLayout>-->
+            android:textSize="@dimen/_25sdp"
+            tools:ignore="Autofill,HardcodedText" />
 
-        <Button
-            android:id="@+id/otp_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/shape_button"
-            android:elevation="@dimen/cardview_default_elevation"
-            android:textSize="@dimen/_15sdp"
-            android:text=" Send OTP "
-            android:textColor="@color/white" />
+            <ImageView
+                android:id="@+id/atithyalogo"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/odishalogo"
+                android:contentDescription="@string/app_name" />
 
-        <!--<TextView
-            android:id="@+id/resendotp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Resend Otp"
-            android:textColor="@color/black"
-            android:textStyle="bold" />-->
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Have an account?"
-                android:textColor="@color/black"
-                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Have an account?"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/logintext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=" Login"
+                    android:textColor="@color/gradiantblue"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/logintext"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=" Login"
-                android:textColor="@color/gradiantblue"
-                android:textStyle="bold" />
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="@dimen/_1sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="Please enter your mobile number."
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
+
         </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</layout>

@@ -1,5 +1,6 @@
 package com.nirmalya.irms.utility;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.nirmalya.irms.R;
@@ -79,5 +82,18 @@ public class Utils {
 
     public static boolean isNullOrEmpty(String value) {
         return value == null || value.isEmpty() || value.equals("null");
+    }
+
+    public static void hideKeyboard(Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = ((Activity) context).getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(context);
+        }
+
+        view.clearFocus();
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
