@@ -21,7 +21,8 @@
             android:textColor="@color/gradiantblue"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,12 +32,41 @@
 
             <ImageView
                 android:id="@+id/atithyalogo"
-                android:layout_width="@dimen/_110sdp"
-                android:layout_height="@dimen/_110sdp"
                 android:layout_gravity="center"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginTop="@dimen/_40sdp"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/odishalogo"
                 android:contentDescription="@string/app_name" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="@dimen/_1sdp"
+                android:text="OSSSC"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="@dimen/_1sdp"
+                android:text="SIGN IN"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forgot your password?"
+                    android:text="Forgot your PIN?"
                     android:textColor="@color/black"
                     tools:ignore="HardcodedText" />
 

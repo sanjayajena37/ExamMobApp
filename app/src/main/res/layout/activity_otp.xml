@@ -57,7 +57,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/shape_white"
             android:textColor="@color/black"
-            android:hint=" Enter OTP "
+            android:hint=" please enter OTP to Verify"
             android:maxLength="6"
             android:textColorHint="@color/deepgrya"
             android:inputType="number"
@@ -105,6 +105,27 @@
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
+        <ImageView
+            android:id="@+id/pageloaderimage"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/sign_up_progress_2"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:id="@+id/step1textv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="SIGN UP STEP-2"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

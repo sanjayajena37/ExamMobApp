@@ -39,7 +39,13 @@ public class OtpActivity extends AppCompatActivity {
                 previousScreen = extras.getString("priviousScreen");
             }
         }
-
+        if(previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
+            binding.pageloaderimage.setVisibility(View.VISIBLE);
+            binding.step1textv.setVisibility(View.VISIBLE);
+        }else {
+            binding.pageloaderimage.setVisibility(View.GONE);
+            binding.step1textv.setVisibility(View.GONE);
+        }
         binding.leftarrowimg.setOnClickListener(v -> onBackPressed());
 
         binding.saveButton.setOnClickListener(v -> validateData());
@@ -50,6 +56,7 @@ public class OtpActivity extends AppCompatActivity {
         if (!Utils.isNullOrEmpty(binding.edtOTP.getText().toString().trim()) &&
                 binding.edtOTP.getText().toString().trim().length() == 6) {
             if(previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
+
                 Intent intent=new Intent(OtpActivity.this, RegistrationActivity.class);
                 startActivity(intent);
                 finish();

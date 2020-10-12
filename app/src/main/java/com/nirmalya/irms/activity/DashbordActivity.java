@@ -8,18 +8,28 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -42,7 +52,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashbordActivity extends AppCompatActivity {
+public class DashbordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Array List
     private ArrayList<StudentModel> studentLists;
@@ -50,6 +60,9 @@ public class DashbordActivity extends AppCompatActivity {
     private ActivityDashbordBinding binding;
     private ImageView navigationimg;
     private Toolbar toolbar;
+    private DrawerLayout drawer_layout;
+    private NavigationView navigationView;
+    ActionBarDrawerToggle mtoogle;
     List<StudentModel> lists;
 
     @Override
@@ -59,7 +72,21 @@ public class DashbordActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbarDashboard);
         navigationimg = findViewById(R.id.navigationimg);
+        drawer_layout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
+        drawer_layout = findViewById(R.id.drawer_layout);
+        mtoogle = new ActionBarDrawerToggle(this, drawer_layout, R.string.Open, R.string.Close);
+        mtoogle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationimg.setOnClickListener(view -> {
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START);
+            } else {
+                drawer_layout.openDrawer(GravityCompat.START);
+
+            }
+        });
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
         context = this;
@@ -69,13 +96,33 @@ public class DashbordActivity extends AppCompatActivity {
             Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
             startActivity(intent);
         });
-        navigationimg.setOnClickListener(v -> {
+        /*navigationimg.setOnClickListener(v -> {
             Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
             startActivity(intent);
-        });
+        });*/
+
         callStudentListAPI();
     }
-
+    /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
+     = findViewById(R.id.nav_view);
+    mAppBarConfiguration = new AppBarConfiguration.Builder(
+    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_tools, R.id.nav_share,
+    R.id.nav_send).setDrawerLayout(drawer).build();
+    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+      NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+      NavigationUI.setupWithNavController(navigationView, navController);
+}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
+    }
+}*/
     /*
      * GET the data from for booking list
      * @method GET
@@ -157,6 +204,29 @@ public class DashbordActivity extends AppCompatActivity {
         // Adding request to request queue
         //RequestQueue requestQueue;
         Osssc.getInstance().addToRequestQueue(strReq);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+
+
+            case R.id.myaccount:
+                Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
+                startActivity(intent);
+                drawer_layout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.changepin:
+
+                Intent intent1 = new Intent(DashbordActivity.this, ChangePinActivity.class);
+                startActivity(intent1);
+                drawer_layout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.logout:
+
+                break;
+        }
+        return true;
     }
 
     private class InsertDatabase extends AsyncTask<String, String, String> {

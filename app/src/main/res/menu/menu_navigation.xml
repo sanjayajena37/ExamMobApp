@@ -9,12 +9,13 @@
         android:icon="@drawable/ic_top_up_icon"
         android:title="Candidate List" />
     <item
-        android:id="@+id/idcard"
+        android:id="@+id/changepin"
         android:icon="@drawable/ic_pin_code_icon"
-        android:title="Change Pin" />
+        android:title="Change Pin"
+        />
 
     <item
-        android:id="@+id/roles"
+        android:id="@+id/logout"
         android:icon="@drawable/logout_"
         android:title="Logout" />
 

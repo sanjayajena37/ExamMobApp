@@ -18,8 +18,8 @@
         <ImageView
             android:id="@+id/atithyalogo"
             android:layout_gravity="center"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_50sdp"
             android:padding="@dimen/_5sdp"
             android:src="@drawable/odishalogo"
@@ -28,16 +28,16 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
+
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:lineSpacingExtra="@dimen/_1sdp"
-            android:padding="@dimen/_5sdp"
+
             android:text="OSSSC"
             android:textStyle="bold"
             android:textSize="@dimen/_15sdp"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/_15sdp"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/textView"
@@ -60,7 +60,7 @@
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:lineSpacingExtra="@dimen/_1sdp"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
             android:text="Please enter your Mobile Number."
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_23sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/deepgrya"
@@ -125,6 +125,27 @@
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/sign_up_progress_1"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="SIGN UP STEP-1"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

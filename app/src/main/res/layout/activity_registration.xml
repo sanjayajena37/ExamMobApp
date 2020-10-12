@@ -25,16 +25,46 @@
         android:text="SIGN UP"
         android:layout_marginTop="@dimen/_40sdp"
         android:textColor="@color/gradiantblue"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/atithyalogo"
         android:layout_gravity="center"
-        android:layout_width="@dimen/_110sdp"
-        android:layout_height="@dimen/_110sdp"
-        android:padding="@dimen/_10sdp"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:padding="@dimen/_5sdp"
         android:src="@drawable/odishalogo"
         android:contentDescription="@string/app_name" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="@dimen/_1sdp"
+        android:text="OSSSC"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="@dimen/_1sdp"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,7 +100,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
             android:background="@drawable/shape_white"
-            android:hint="Enter Pin"
+            android:hint="Enter 6 digit PIN "
             android:elevation="@dimen/cardview_default_elevation"
             android:maxLength="6"
             android:textColorHint="@color/deepgrya"
@@ -91,7 +121,7 @@
         android:maxLength="6"
         android:elevation="@dimen/cardview_default_elevation"
         android:textColorHint="@color/deepgrya"
-        android:hint="Confirm pin"
+        android:hint="Please enter to Confirm your PIN "
         android:inputType="numberPassword"
         android:paddingStart="@dimen/_15sdp"
         android:paddingEnd="@dimen/_15sdp"
@@ -112,6 +142,27 @@
         android:textColor="@color/white"
         tools:ignore="HardcodedText,PrivateResource" />
 
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/sign_up_progress_3"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="SIGN UP STEP-3"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 </LinearLayout>
