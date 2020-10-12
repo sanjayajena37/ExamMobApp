@@ -1,5 +1,6 @@
 package com.nirmalya.irms.utility;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,8 +8,11 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -95,5 +99,32 @@ public class Utils {
 
         view.clearFocus();
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @SuppressLint({"MissingPermission", "HardwareIds"})
+    public static String getDeviceIMEI(Context context) {
+
+        String deviceId = null;
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            } else {
+                TelephonyManager telephonyManager = (TelephonyManager) context
+                        .getSystemService(Context.TELEPHONY_SERVICE);
+
+                deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+                /*if (telephonyManager != null && telephonyManager.getDeviceId() != null) {
+                    deviceId = telephonyManager.getDeviceId();
+                } else {
+                    deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+                }*/
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return deviceId;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
+import com.nirmalya.irms.utility.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (password_text.getText().toString().trim().length() >= 6) {
+                    String deviceId = Utils.getDeviceIMEI(getApplicationContext());
                     Intent intent = new Intent(LoginActivity.this, DashbordActivity.class);
                     password_text.setText("");
                     startActivity(intent);
