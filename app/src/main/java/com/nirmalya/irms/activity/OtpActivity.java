@@ -3,6 +3,7 @@
 
 package com.nirmalya.irms.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import com.nirmalya.irms.databinding.ActivityOtpBinding;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -26,6 +29,7 @@ public class OtpActivity extends AppCompatActivity {
     private String previousScreen;
     private Context context;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class OtpActivity extends AppCompatActivity {
                 previousScreen = extras.getString("priviousScreen");
             }
         }
-        if(previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
+        if(Objects.requireNonNull(previousScreen).equalsIgnoreCase("NumberVerifActivity")) {
             binding.pageloaderimage.setVisibility(View.VISIBLE);
             binding.step1textv.setVisibility(View.VISIBLE);
         }else {
@@ -49,7 +53,7 @@ public class OtpActivity extends AppCompatActivity {
         binding.leftarrowimg.setOnClickListener(v -> onBackPressed());
 
         binding.saveButton.setOnClickListener(v -> validateData());
-        binding.mobilenotextView.setText("OTP has been sent to you on your Mobile Number."+Osssc.getPrefs().getScannerMobile());
+        binding.mobilenotextView.setText("OTP has been sent to you on your Mobile Number "+Osssc.getPrefs().getScannerMobile());
     }
 
     public void validateData() {

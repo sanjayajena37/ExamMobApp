@@ -41,7 +41,7 @@
             android:letterSpacing="0.02"
             android:lineSpacingExtra="@dimen/_1ssp"
             android:padding="@dimen/_15sdp"
-            android:text="OTP has been sent to you on your Mobile Number. "
+            android:text="OTP has been sent to you on your Mobile Number "
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="16sp"

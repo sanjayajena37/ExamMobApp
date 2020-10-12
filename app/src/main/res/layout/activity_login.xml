@@ -80,7 +80,7 @@
                     android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@null"
-                    android:hint="Enter 6 Digit Login  PIN"
+                    android:hint="Enter 6 Digit Sign In PIN"
                     android:inputType="number"
                     android:maxLength="6"
                     android:textAlignment="center"
