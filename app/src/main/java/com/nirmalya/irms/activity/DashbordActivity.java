@@ -101,6 +101,16 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             startActivity(intent);
         });*/
 
+        });
+
+        binding.rbScanHall.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setItemsVisibility(View.VISIBLE);
+            } else {
+                setItemsVisibility(View.GONE);
+            }
+        });
+
         callStudentListAPI();
     }
     /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -123,6 +133,12 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 }*/
+
+    private void setItemsVisibility(int isVisible) {
+        binding.txtAttendanceType.setVisibility(isVisible);
+        binding.chooseAttendanceLayout.setVisibility(isVisible);
+    }
+
     /*
      * GET the data from for booking list
      * @method GET

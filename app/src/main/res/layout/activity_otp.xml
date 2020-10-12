@@ -96,6 +96,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/btnResendOTP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Resend OTP"

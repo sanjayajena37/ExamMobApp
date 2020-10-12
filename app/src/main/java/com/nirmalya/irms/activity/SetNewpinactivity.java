@@ -1,5 +1,6 @@
 package com.nirmalya.irms.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.databinding.ActivitySetnewpinBinding;
+import com.nirmalya.irms.model.request.SetPinRequest;
+import com.nirmalya.irms.repository.APIRepo;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 
@@ -16,6 +20,7 @@ public class SetNewpinactivity extends AppCompatActivity {
 
     private ActivitySetnewpinBinding binding;
     private Context context;
+    private APIRepo repo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,7 @@ public class SetNewpinactivity extends AppCompatActivity {
     private void init() {
 
         context = this;
+        repo = new APIRepo();
 
         binding.btnSubmit.setOnClickListener(view -> validateData());
     }
@@ -41,9 +47,28 @@ public class SetNewpinactivity extends AppCompatActivity {
                 .equals(binding.edtPin.getText().toString())) {
             MessageUtils.showFailureMessage(context, "Pin & confirm pin do not match");
         } else {
+            //goNext();
             Intent intent = new Intent(SetNewpinactivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    private void goNext() {
+        final ProgressDialog pd = Utils.createProgressDialog(context);
+        pd.show();
+
+        repo.setUpPin(new SetPinRequest(Osssc.getPrefs().getScannerMobile(),
+                Utils.getDeviceIMEI(context), binding.edtConPin.getText().toString()))
+                .observe(this, commonResponse -> {
+                    if (commonResponse != null && commonResponse.getSuccess()) {
+                        MessageUtils.showSuccessMessage(context, commonResponse.getMessage());
+                        Intent intent = new Intent(SetNewpinactivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    pd.dismiss();
+                });
     }
 }

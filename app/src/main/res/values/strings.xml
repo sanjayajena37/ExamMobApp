@@ -5,6 +5,10 @@
 
     <string name="txt_msg_no_internet_available">No Internet Available!!</string>
     <string name="txt_msg_please_try_again">Please Try Again!!</string>
+
+    <string name="str_phone_permission_denied_msg">Permission Denied! Enable Phone permission from your App settings.</string>
+    <string name="str_camera_permission_denied_msg">Permission Denied! Enable camera permission from your App settings.</string>
+    <string name="str_location_permission_denied_msg">Permission Denied! Enable Location permission from your App settings.</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
 </resources>
