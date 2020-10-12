@@ -96,12 +96,6 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
             startActivity(intent);
         });
-        /*navigationimg.setOnClickListener(v -> {
-            Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
-            startActivity(intent);
-        });*/
-
-        });
 
         binding.rbScanHall.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -113,26 +107,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
 
         callStudentListAPI();
     }
-    /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
-     = findViewById(R.id.nav_view);
-    mAppBarConfiguration = new AppBarConfiguration.Builder(
-    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_tools, R.id.nav_share,
-    R.id.nav_send).setDrawerLayout(drawer).build();
-    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-      NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-      NavigationUI.setupWithNavController(navigationView, navController);
-}
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
-    }
-}*/
+
 
     private void setItemsVisibility(int isVisible) {
         binding.txtAttendanceType.setVisibility(isVisible);
