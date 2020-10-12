@@ -73,7 +73,21 @@ public class DashbordActivity extends AppCompatActivity {
             Intent intent = new Intent(DashbordActivity.this, NavigationActivity.class);
             startActivity(intent);
         });
+
+        binding.rbScanHall.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setItemsVisibility(View.VISIBLE);
+            } else {
+                setItemsVisibility(View.GONE);
+            }
+        });
+
         callStudentListAPI();
+    }
+
+    private void setItemsVisibility(int isVisible) {
+        binding.txtAttendanceType.setVisibility(isVisible);
+        binding.chooseAttendanceLayout.setVisibility(isVisible);
     }
 
     /*
