@@ -1,8 +1,11 @@
 package com.nirmalya.irms.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +18,21 @@ import java.util.ArrayList;
 public class CandidateListActivity extends AppCompatActivity {
     private ArrayList<CandidateListModel> candidateListModels;
     private CandidatelisAdapter candidatelisAdapter;
+    private Toolbar toolbar;
+    private ImageView imgArrow;
     RecyclerView recycler_view;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_candidatelist);
+            toolbar = findViewById(R.id.toolbar);
+            imgArrow = findViewById(R.id.imgArrow);
+            imgArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
             recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
 
             candidateListModels = new ArrayList<>();

@@ -23,7 +23,6 @@
                 android:id="@+id/imgArrow"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:visibility="gone"
                 android:src="@drawable/ic_left_arrowwhite" />
 
             <LinearLayout
@@ -37,11 +36,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Dashboard "
+                    android:text="Candidate List "
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:id="@+id/reload"
+                android:contentDescription="@string/app_name"
+                android:padding="8dp"
+                android:visibility="visible"
+                android:src="@drawable/ic_reload"/>
+        </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 </LinearLayout>
