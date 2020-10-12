@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.databinding.ActivityOtpBinding;
 import com.nirmalya.irms.utility.MessageUtils;
@@ -42,6 +43,7 @@ public class OtpActivity extends AppCompatActivity {
         binding.leftarrowimg.setOnClickListener(v -> onBackPressed());
 
         binding.saveButton.setOnClickListener(v -> validateData());
+        binding.mobilenotextView.setText("OTP has been sent to you on your Mobile Number."+Osssc.getPrefs().getScannerMobile());
     }
 
     public void validateData() {

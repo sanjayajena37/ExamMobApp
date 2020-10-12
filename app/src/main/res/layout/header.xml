@@ -4,7 +4,7 @@
     android:id="@+id/chooseBackground"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/colorAccent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,7 +16,8 @@
             android:id="@+id/imgCashIn"
             android:layout_width="@dimen/_64sdp"
             android:layout_height="@dimen/_60sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:src="@drawable/odishalogo"
             android:layout_gravity="center" />
 
