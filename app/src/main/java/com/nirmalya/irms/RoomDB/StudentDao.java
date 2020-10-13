@@ -28,6 +28,9 @@ public interface StudentDao {
     @Query("DELETE FROM students WHERE id = :id")
     void deleteResource(long id);
 
+    @Query("SELECT * FROM students WHERE stBarcode = :barcode")
+    StudentModel selectData(String barcode);
+
     @Query("SELECT COUNT(*) FROM students")
     long getCount();
 

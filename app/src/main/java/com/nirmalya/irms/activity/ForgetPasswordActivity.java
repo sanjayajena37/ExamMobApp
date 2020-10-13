@@ -45,10 +45,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         if (!Utils.isNullOrEmpty(binding.edtMobile.getText().toString().trim()) &&
                 binding.edtMobile.getText().toString().trim().length() == 10) {
             Osssc.getPrefs().setScannerMobile(binding.edtMobile.getText().toString().trim());
-            //gotoNext();
-            Intent intent = new Intent(ForgetPasswordActivity.this, OtpActivity.class);
-            intent.putExtra("priviousScreen", "ForgetPasswordActivity");
-            startActivity(intent);
+            gotoNext();
         } else {
             MessageUtils.showFailureMessage(context, "Please enter valid 10 digit mobile number");
         }

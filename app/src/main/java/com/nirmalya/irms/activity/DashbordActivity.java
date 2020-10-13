@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -108,17 +109,18 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         callStudentListAPI();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
 
     private void setItemsVisibility(int isVisible) {
         binding.txtAttendanceType.setVisibility(isVisible);
         binding.chooseAttendanceLayout.setVisibility(isVisible);
     }
 
-    /*
-     * GET the data from for booking list
-     * @method GET
-     * @return Service Array and object
-     */
 
    void callData(){
         //= new ArrayList<StudentModel>();
@@ -156,7 +158,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         // fetch Response as JSONObject
                         JSONObject jObj = new JSONObject(response);
 
-                        final JSONArray student_array = jObj.getJSONArray("studentList");
+                        final JSONArray student_array = jObj.getJSONArray("candidateList");
 
                         if (student_array.length() == 0) {
 
@@ -166,10 +168,6 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             pd.dismiss();
                             Toast.makeText(context, "Exam given student list gets successfully",
                                     Toast.LENGTH_SHORT).show();
-                                /*myBookingServiceListAdapter = new MyBookingServiceListAdapter(bookingListArrayList, CustomerMyBookingActivity.this);
-                                myBookingServiceListAdapter.notifyDataSetChanged();
-                                orderListRecycler.setAdapter(myBookingServiceListAdapter);
-                                myBookingServiceListAdapter.notifyDataSetChanged();*/
                         }
 
                     } catch (JSONException e) {
@@ -238,16 +236,15 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 JSONObject content = null;
                 try {
                     content = jsonArray.getJSONObject(i);
-                    Integer studentID = content.getInt("studentID");
-                    String studentMobileNo = content.getString("studentMobileNo");
+                    Integer candidateID = content.getInt("candidateID");
+                    String examStartTime = content.getString("examStartTime");
+                    String examEndTime = content.getString("examEndTime");
+                    String barcode = content.getString("barcode");
                     String examShift = content.getString("examShift");
-                    String studentName = content.getString("studentName");
-                    String studentImage = content.getString("studentImage");
-                    String examDate = content.getString("examDate");
-                    String examTime = content.getString("examTime");
-                    String examCenter = content.getString("examCenter");
-                    String studentRollNo = content.getString("studentRollNo");
-                    mDb.studentDao().insertResource(new StudentModel(studentName, studentImage, examDate, examTime, examCenter, studentRollNo, false));
+                    String rollNoumber = content.getString("rollNoumber");
+                    String entryStatus = content.getString("entryStatus");
+                    String hallStatus = content.getString("hallStatus");
+                    mDb.studentDao().insertResource(new StudentModel(examStartTime, examEndTime, rollNoumber, barcode, examShift, entryStatus, hallStatus));
                     Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();

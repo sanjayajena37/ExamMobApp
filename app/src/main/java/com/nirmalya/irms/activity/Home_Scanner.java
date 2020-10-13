@@ -1,10 +1,14 @@
 package com.nirmalya.irms.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -13,17 +17,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
+import androidx.room.Database;
 
 import com.google.zxing.Result;
 import com.nirmalya.irms.R;
+import com.nirmalya.irms.RoomDB.AppDatabase;
+import com.nirmalya.irms.RoomDB.StudentModel;
+import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.ZXingScannerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private static final int WRITE_EXST = 1;
     private static final int REQUEST_PERMISSION = 123;
     int CAMERA;
-    String position,formt;
+    String position, formt;
     ImageView imgFlashLight, imgBack;
     private boolean isFlashlightOn = false;
 
@@ -33,9 +45,9 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         setContentView(R.layout.activity_home);
 //        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
-        if( ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA},5);
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 5);
             }
         }
 
@@ -52,7 +64,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                 imgFlashLight.setImageResource(R.drawable.ic_lightning_deactivated);
                 mScannerView.setFlash(false);
             } else {
-               imgFlashLight.setImageResource(R.drawable.ic_lightning_activated);
+                imgFlashLight.setImageResource(R.drawable.ic_lightning_activated);
                 mScannerView.setFlash(true);
             }
 
@@ -61,7 +73,6 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
         imgBack.setOnClickListener(v -> finish());
     }
-
 
 
     @Override
@@ -79,19 +90,51 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result rawResult) {
-        Toast.makeText(this, "Contents = " + rawResult.getText() +", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_LONG).show();
-        position=rawResult.getText();
-        formt=rawResult.getBarcodeFormat().toString();
-        Intent intent=new Intent();
-        intent.putExtra("Contents",position);
-        intent.putExtra("Format",formt);
-        setResult(RESULT_OK,intent);
-        finish();
-
+        //Toast.makeText(this, "Contents = " + rawResult.getText() +", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_LONG).show();
+        //position=rawResult.getText();
+        String barcode = rawResult.toString();
+        formt = rawResult.getBarcodeFormat().toString();
+        new UpdateDatabase(barcode).execute();
     }
 
     @Override
     public void handleResult(MediaBrowserServiceCompat.Result rawResult) {
+    }
 
+
+    private class UpdateDatabase extends AsyncTask<String, String, String> {
+
+        String barcode;
+        AppDatabase db;
+
+        public UpdateDatabase(String barcode) {
+            this.barcode = barcode;
+            db = AppDatabase.getInstance(getApplicationContext());
+        }
+
+        @SuppressLint("WrongConstant")
+        @Override
+        protected String doInBackground(String... strings) {
+            StudentModel selectModel = db.studentDao().selectData(barcode);
+            if (selectModel != null) {
+                selectModel.setEntryStatus("P");
+                db.studentDao().updateResource(selectModel);
+                MessageUtils.showSuccessMessage(getApplicationContext(), "Scan Successful");
+                return "Scan Successful";
+            } else {
+                MessageUtils.showFailureMessage(getApplicationContext(), "Invalid Barcode");
+                return "Invalid Barcode";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Intent intent = new Intent();
+            //intent.putExtra("Contents",position);
+            intent.putExtra("Format", formt);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 }

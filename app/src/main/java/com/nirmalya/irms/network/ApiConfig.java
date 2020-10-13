@@ -17,5 +17,6 @@ public class ApiConfig {
 
     public static String BASE_URL = SRVR_URL + "";
 
-    public static String STUDENT_LIST_URL = "http://www.json-generator.com/api/json/get/bVLiuVTyJK?indent=2";
+    //public static String STUDENT_LIST_URL = "http://www.json-generator.com/api/json/get/bVLiuVTyJK?indent=2";
+    public static String STUDENT_LIST_URL = "http://www.json-generator.com/api/json/get/coZXaOnBGq?indent=2";
 }

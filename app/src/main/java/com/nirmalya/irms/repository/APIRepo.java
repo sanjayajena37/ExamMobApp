@@ -19,6 +19,8 @@ import com.nirmalya.irms.utility.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
@@ -41,6 +43,11 @@ public class APIRepo {
         return ApiManager.getInstance(context).createService();
     }
 
+    // ApiInterface with Login Header
+    private ApiInterface getApiInterface(HashMap<String, String> header) {
+        return ApiManager.getInstance(context).createService(header);
+    }
+
     public LiveData<CommonResponse> sendOTP(SignupSendMobileRequest signupSendMobileRequest) {
         final MutableLiveData<CommonResponse> liveDataSendOTPResponse = new MutableLiveData<>();
         getApiInterface()
@@ -55,12 +62,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Mobile Number not exists in our records. Please contact administrator");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataSendOTPResponse.setValue(null);
                         }
@@ -92,12 +99,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Invalid Otp.");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataValidateOTPResponse.setValue(null);
                         }
@@ -128,12 +135,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Mobile Number not exists in our records. Please contact administrator");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataReSendOTPResponse.setValue(null);
                         }
@@ -162,12 +169,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Mobile Number not exists in our records. Please contact administrator");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataSetUpPinResponse.setValue(null);
                         }
@@ -196,12 +203,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Mobile Number not exists in our records. Please contact administrator");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataSendOTPResponse.setValue(null);
                         }
@@ -230,12 +237,12 @@ public class APIRepo {
                             if (!responseBody.getSuccess())
                                 MessageUtils.showFailureMessage(context, responseBody.getMessage());
                         } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Wrong Pin");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
                             } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
                             }
                             liveDataSignInResponse.setValue(null);
                         }
@@ -248,40 +255,5 @@ public class APIRepo {
                 });
 
         return liveDataSignInResponse;
-    }
-
-    // Get StudentList Api Network call
-    public LiveData<StudentResponse> getStudentData() {
-        final MutableLiveData<StudentResponse> liveStudentData = new MutableLiveData<>();
-
-        getApiInterface().getStudentList()
-                .enqueue(new Callback<StudentResponse>() {
-                    @Override
-                    public void onResponse(@NotNull Call<StudentResponse> call, @NotNull Response<StudentResponse> response) {
-                        StudentResponse responseBody = response.body();
-                        if (responseBody != null) {
-                            liveStudentData.setValue(responseBody);
-                            Toast.makeText(context, "Exam given student list gets successfully",
-                                    Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            if (response.code() != 502) {
-                                Toast.makeText(context, "Some error occurred!",
-                                        Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(context, "Bad get way",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            liveStudentData.setValue(null);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call<StudentResponse> call, @NotNull Throwable t) {
-                        liveStudentData.setValue(null);
-                    }
-                });
-
-        return liveStudentData;
     }
 }

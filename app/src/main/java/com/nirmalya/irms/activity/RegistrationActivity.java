@@ -53,10 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 .equals(binding.edtPin.getText().toString())) {
             MessageUtils.showFailureMessage(context, "Pin & confirm pin do not match");
         } else {
-            //goNext();
-            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finishAffinity();
+            goNext();
         }
     }
 

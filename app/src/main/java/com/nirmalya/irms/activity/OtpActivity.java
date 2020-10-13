@@ -58,23 +58,15 @@ public class OtpActivity extends AppCompatActivity {
 
         binding.saveButton.setOnClickListener(v -> validateData());
 
-        //binding.btnResendOTP.setOnClickListener(v -> resendOTP());
+        binding.btnResendOTP.setOnClickListener(v -> resendOTP());
+
         binding.mobilenotextView.setText("OTP has been sent to you on your Mobile Number "+Osssc.getPrefs().getScannerMobile());
     }
 
     public void validateData() {
         if (!Utils.isNullOrEmpty(binding.edtOTP.getText().toString().trim()) &&
-                binding.edtOTP.getText().toString().trim().length() == 6) {
-            //gotoNext();
-            if (previousScreen.equalsIgnoreCase("NumberVerifActivity")) {
-                Intent intent = new Intent(OtpActivity.this, RegistrationActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Intent intent = new Intent(OtpActivity.this, SetNewpinactivity.class);
-                startActivity(intent);
-                finish();
-            }
+                binding.edtOTP.getText().toString().trim().length() == 4) {
+            gotoNext();
         } else {
             MessageUtils.showFailureMessage(context, "Please enter 6 digit OTP");
         }

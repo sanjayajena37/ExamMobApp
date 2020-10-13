@@ -15,26 +15,23 @@ import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    String SUB_URL = "api/json/";
+    String SUB_URL = "api/UserLogin/";
 
-    @GET(SUB_URL + "get/bVLiuVTyJK?indent=2")
-    Call<StudentResponse> getStudentList();
-
-    @POST(SUB_URL + "api/UserLogin/SignUp")
+    @POST(SUB_URL + "SignUp")
     Call<CommonResponse> postSendOTP(@Body SignupSendMobileRequest signupSendMobileRequest);
 
-    @POST(SUB_URL + "api/UserLogin/OTPVerification")
+    @POST(SUB_URL + "OTPVerification")
     Call<CommonResponse> validateOTP(@Body ValidateOTPRequest validateOTPRequest);
 
-    @POST(SUB_URL + "api/UserLogin/ResentOTP")
+    @POST(SUB_URL + "ResentOTP")
     Call<CommonResponse> reSendOTP(@Body SignupSendMobileRequest signupSendMobileRequest);
 
-    @POST(SUB_URL + "api/UserLogin/SetUpPin")
+    @POST(SUB_URL + "SetUpPin")
     Call<CommonResponse> setUpPin(@Body SetPinRequest setPinRequest);
 
-    @POST(SUB_URL + "api/UserLogin/ForgotPin")
+    @POST(SUB_URL + "ForgotPin")
     Call<CommonResponse> forgotPin(@Body SignupSendMobileRequest signupSendMobileRequest);
 
-    @POST(SUB_URL + "api/UserLogin/SignIn")
+    @POST(SUB_URL + "SignIn")
     Call<SignInResponse> login(@Body SignInRequest signInRequest);
 }

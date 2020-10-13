@@ -12,23 +12,23 @@ public class StudentModel {
     @NonNull
     long id;
 
-    String stName;
-    String stImage;
-    String stExamDt;
-    String stExamTime;
-    String stExamCenter;
+    String stExamStartTime;
+    String stExamEndTime;
     String stRollNo;
-    boolean isPresent;
+    String stBarcode;
+    String examShift;
+    String entryStatus;
+    String hallStatus;
 
-    public StudentModel(String stName, String stImage, String stExamDt, String stExamTime, String stExamCenter, String stRollNo, boolean isPresent) {
+    public StudentModel(String stExamStartTime, String stExamEndTime, String stRollNo, String stBarcode, String examShift, String entryStatus, String hallStatus) {
         this.id = id;
-        this.stName = stName;
-        this.stImage = stImage;
-        this.stExamDt = stExamDt;
-        this.stExamTime = stExamTime;
-        this.stExamCenter = stExamCenter;
+        this.stExamStartTime = stExamStartTime;
+        this.stExamEndTime = stExamEndTime;
         this.stRollNo = stRollNo;
-        this.isPresent = isPresent;
+        this.stBarcode = stBarcode;
+        this.examShift = examShift;
+        this.entryStatus = entryStatus;
+        this.hallStatus = hallStatus;
     }
 
     public long getId() {
@@ -39,52 +39,20 @@ public class StudentModel {
         this.id = id;
     }
 
-    public String getStName() {
-        return stName;
+    public String getStExamStartTime() {
+        return stExamStartTime;
     }
 
-    public void setStName(String stName) {
-        this.stName = stName;
+    public void setStExamStartTime(String stExamStartTime) {
+        this.stExamStartTime = stExamStartTime;
     }
 
-    public String getStImage() {
-        return stImage;
+    public String getStExamEndTime() {
+        return stExamEndTime;
     }
 
-    public void setStImage(String stImage) {
-        this.stImage = stImage;
-    }
-
-    public String getStExamDt() {
-        return stExamDt;
-    }
-
-    public void setStExamDt(String stExamDt) {
-        this.stExamDt = stExamDt;
-    }
-
-    public String getStExamTime() {
-        return stExamTime;
-    }
-
-    public void setStExamTime(String stExamTime) {
-        this.stExamTime = stExamTime;
-    }
-
-    public String getStExamCenter() {
-        return stExamCenter;
-    }
-
-    public void setStExamCenter(String stExamCenter) {
-        this.stExamCenter = stExamCenter;
-    }
-
-    public boolean isPresent() {
-        return isPresent;
-    }
-
-    public void setPresent(boolean present) {
-        isPresent = present;
+    public void setStExamEndTime(String stExamEndTime) {
+        this.stExamEndTime = stExamEndTime;
     }
 
     public String getStRollNo() {
@@ -95,17 +63,49 @@ public class StudentModel {
         this.stRollNo = stRollNo;
     }
 
+    public String getStBarcode() {
+        return stBarcode;
+    }
+
+    public void setStBarcode(String stBarcode) {
+        this.stBarcode = stBarcode;
+    }
+
+    public String getExamShift() {
+        return examShift;
+    }
+
+    public void setExamShift(String examShift) {
+        this.examShift = examShift;
+    }
+
+    public String getEntryStatus() {
+        return entryStatus;
+    }
+
+    public void setEntryStatus(String entryStatus) {
+        this.entryStatus = entryStatus;
+    }
+
+    public String getHallStatus() {
+        return hallStatus;
+    }
+
+    public void setHallStatus(String hallStatus) {
+        this.hallStatus = hallStatus;
+    }
+
     @Override
     public String toString() {
         return "StudentModel{" +
                 "id=" + id +
-                ", stName='" + stName + '\'' +
-                ", stImage='" + stImage + '\'' +
-                ", stExamDt='" + stExamDt + '\'' +
-                ", stExamTime='" + stExamTime + '\'' +
-                ", stExamCenter='" + stExamCenter + '\'' +
+                ", stExamStartTime='" + stExamStartTime + '\'' +
+                ", stExamEndTime='" + stExamEndTime + '\'' +
                 ", stRollNo='" + stRollNo + '\'' +
-                ", isPresent=" + isPresent +
+                ", stBarcode='" + stBarcode + '\'' +
+                ", examShift=" + examShift +
+                ", entryStatus=" + entryStatus +
+                ", hallStatus=" + hallStatus +
                 '}';
     }
 }

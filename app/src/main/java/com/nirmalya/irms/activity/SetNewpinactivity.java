@@ -47,10 +47,7 @@ public class SetNewpinactivity extends AppCompatActivity {
                 .equals(binding.edtPin.getText().toString())) {
             MessageUtils.showFailureMessage(context, "Pin & confirm pin do not match");
         } else {
-            //goNext();
-            Intent intent = new Intent(SetNewpinactivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            goNext();
         }
     }
 
@@ -67,7 +64,6 @@ public class SetNewpinactivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-
                     pd.dismiss();
                 });
     }

@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.util.Base64;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -22,6 +23,7 @@ import com.nirmalya.irms.R;
 import com.nirmalya.irms.activity.DashbordActivity;
 import com.nirmalya.irms.activity.NumberVerifActivity;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Utils {
@@ -126,5 +128,12 @@ public class Utils {
         }
 
         return deviceId;
+    }
+
+    public static HashMap<String, String> getTokenHeaderMap(String token) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constant.KEY_AUTHORIZATION, token);
+        return params;
     }
 }

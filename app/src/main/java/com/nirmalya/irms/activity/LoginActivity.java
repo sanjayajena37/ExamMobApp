@@ -63,12 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (password_text.getText().toString().trim().length() >= 6) {
-                    //goNext();
-                    Intent intent = new Intent(LoginActivity.this, DashbordActivity.class);
-                    password_text.setText("");
-                    startActivity(intent);
-                    Osssc.getPrefs().setIsLoggedIn(false);
-                    finish();
+                    goNext();
                 }
             }
         });
@@ -85,12 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                         MessageUtils.showSuccessMessage(context, signInResponse.getMessage());
                         Osssc.getPrefs().setScannerData(signInResponse.getScannerData());
                         Intent intent = new Intent(LoginActivity.this, DashbordActivity.class);
-                        password_text.setText("");
                         startActivity(intent);
                         Osssc.getPrefs().setIsLoggedIn(true);
                         finish();
                     }
-
                     pd.dismiss();
                 });
     }
