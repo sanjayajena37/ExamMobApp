@@ -132,19 +132,19 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-   void callData(){
+    void callData() {
         //= new ArrayList<StudentModel>();
-        AppDatabase mdb=AppDatabase.getInstance(getApplicationContext());
-       AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
-           @Override
-           public void run() {
-               lists=mdb.studentDao().allResorces();
-               for(int i=0;i<lists.size();i++){
-                   StudentModel model=lists.get(i);
-                   System.out.println(model.toString());
-               }
-           }
-       });
+        AppDatabase mdb = AppDatabase.getInstance(getApplicationContext());
+        AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                lists = mdb.studentDao().allResorces();
+                for (int i = 0; i < lists.size(); i++) {
+                    StudentModel model = lists.get(i);
+                    System.out.println(model.toString());
+                }
+            }
+        });
     }
 
     private void callStudentListAPI() {
@@ -216,16 +216,22 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.changepin:
-
                 Intent intent1 = new Intent(DashbordActivity.this, ChangePinActivity.class);
                 startActivity(intent1);
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.logout:
-
+                gotoLogout();
                 break;
         }
         return true;
+    }
+
+    private void gotoLogout() {
+        Osssc.getPrefs().clearPreference();
+        Intent intent = new Intent(DashbordActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private class InsertDatabase extends AsyncTask<String, String, String> {

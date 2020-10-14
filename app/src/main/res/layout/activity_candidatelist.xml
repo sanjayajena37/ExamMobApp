@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,8 +19,6 @@
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,23 +28,23 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
                     android:text="Dist Code"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/distCodeTxt"
@@ -56,8 +53,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="F0001" />
-
+                    android:text="F0001"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -67,26 +64,27 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:visibility="gone">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
                     android:text="Dist Name"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/totalOrderTxt"
@@ -95,9 +93,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-
-                    android:text="Cuttack" />
-
+                    android:text="Cuttack"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -110,23 +107,23 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
-                    android:text="Center Name"
+                    android:text="Center Code"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/customerNameTxt"
@@ -135,8 +132,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="DAB Public School" />
-
+                    android:text="000"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -149,23 +146,23 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
                     android:text="Scanner Name"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/custNumTxt"
@@ -174,11 +171,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-
-                    android:text="lisaranee Nath" />
-
+                    android:text="XXXXXX"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -188,23 +185,23 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
-                    android:text="Scanner Mob.No."
+                    android:text="Scanner Mobile No."
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/custNumTxt1"
@@ -213,10 +210,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="8908401363" />
-
+                    android:text="8908401363"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,34 +224,36 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Exam Date/Time"
+                    android:text="Exam Date Time"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
-                    android:id="@+id/dateTxt1"
+                    android:id="@+id/strExamDateTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="18-10-20,8:00AM to 1:00AM" />
-
+                    android:text="18-10-20,8:00AM to 1:00AM"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -263,22 +263,23 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text=" Exam Shift"
+                    android:text="Exam Shift"
                     android:textColor="@color/gradiantblue"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/shiftTextview"
@@ -287,11 +288,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="1st shift" />
-
+                    android:text="1st shift"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -304,9 +304,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:scrollbars="none">
+                    android:scrollbars="none"
+                    tools:ignore="UselessParent">
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
@@ -322,78 +324,99 @@
                                 android:layout_height="wrap_content"
                                 android:text="Serial No."
                                 android:textAlignment="center"
-                                android:textColor="#ffffff"/>
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Roll No."
-
                                 android:textAlignment="center"
-                                android:textColor="#ffffff" />
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Barcode"
                                 android:textAlignment="center"
-                                android:textColor="#ffffff" />
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Exam Date"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:visibility="gone"/>
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Entry Attendance"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                />
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Entry Time"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                               />
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Hall Attendance"
                                 android:textAlignment="center"
-                                android:textColor="#ffffff" />
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Hall Time"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                />
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Exam Shift"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:visibility="gone"/>
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText" />
+
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Candidate MobileNo"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
-                                android:visibility="gone"/>
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText" />
+
                         </LinearLayout>
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
 
                     </LinearLayout>
+
                 </HorizontalScrollView>
+
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>
