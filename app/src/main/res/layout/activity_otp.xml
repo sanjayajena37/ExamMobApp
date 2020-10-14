@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/loginbackground">
+
+    <ImageView
+        android:id="@+id/leftarrowimg"
+        android:layout_width="16dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_left_arrow"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+       <!-- <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            android:text="VERIFY OTP"
+            android:textColor="@color/gradiantblue"
+            tools:ignore="HardcodedText" />-->
+        <ImageView
+            android:id="@+id/atithyalogo"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/odishalogo"
+            android:contentDescription="@string/app_name" />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:text="OSSSC"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:text="IRMS"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/mobilenotextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1ssp"
+            android:padding="@dimen/_15sdp"
+            android:text="OTP has been sent to you on your Mobile Number "
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/edtOTP"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/shape_white"
+            android:textColor="@color/black"
+            android:hint=" Please enter OTP to Verify"
+            android:maxLength="6"
+            android:textColorHint="@color/deepgrya"
+            android:inputType="number"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            tools:ignore="Autofill,HardcodedText" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/shape_button"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:textSize="@dimen/_15sdp"
+            android:text="Submit"
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText,PrivateResource" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't Receive the OTP?"
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/btnResendOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend OTP"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@color/gradiantblue"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/pageloaderimage"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/sign_up_progress_2"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:id="@+id/step1textv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="@dimen/_1sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="SIGN UP STEP-2"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>

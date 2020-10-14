@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashback"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbarDashboard"
+        layout="@layout/toolbar_dashboard" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryBG">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtExamDate"
+            style="@style/BigTextViewLabel"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="Exam Date"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/examDate"
+            style="@style/BigTextViewLabel"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="18-10-20"
+            tools:ignore="HardcodedText"
+            android:layout_below="@+id/txtExamDate"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_below="@+id/examDate">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/totalCandidateCard"
+                style="@style/DocumentCardStyle"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/scanInGateCard"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgCandidate"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:src="@drawable/ic_candidates"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/txtTotalCandidate"
+                        style="@style/DocumentTextStyle"
+                        android:text="Total \nCandidate"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgCandidate"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/txtTotalCandidateNo"
+                        style="@style/DocumentTextStyle"
+                        android:text="100"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="@dimen/_15ssp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtTotalCandidate"
+                        tools:ignore="HardcodedText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/scanInGateCard"
+                style="@style/DocumentCardStyle"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/totalCandidateCard"
+                app:layout_constraintRight_toLeftOf="@+id/scanInHallCard"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgGateScan"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:src="@drawable/ic_security_gate"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/txtTotalGateScan"
+                        style="@style/DocumentTextStyle"
+                        android:text="Scanned In \nEntry Gate"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgGateScan"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/txtTotalGateScanNo"
+                        style="@style/DocumentTextStyle"
+                        android:text="70"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="@dimen/_15ssp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtTotalGateScan"
+                        tools:ignore="HardcodedText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/scanInHallCard"
+                style="@style/DocumentCardStyle"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/scanInGateCard"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgHallScan"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:src="@drawable/ic_barcode_scanner"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/txtTotalHallScan"
+                        style="@style/DocumentTextStyle"
+                        android:text="Scanned In \nExam Hall"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgHallScan"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/txtTotalHallScanNo"
+                        style="@style/DocumentTextStyle"
+                        android:text="30"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="@dimen/_15ssp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtTotalHallScan"
+                        tools:ignore="HardcodedText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtScanType"
+            style="@style/DashboardLabel"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Select Type"
+            android:textAllCaps="true"
+            android:layout_below="@+id/layout"
+            tools:ignore="HardcodedText" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chooseScanLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_below="@+id/txtScanType">
+
+            <RadioGroup
+                android:id="@+id/rgScanMethod"
+                style="@style/RadioGroupStyle"
+                android:gravity="center_vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/rbScanGate"
+                    style="@style/RadioButtonStyle"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingTop="@dimen/_11sdp"
+                    android:paddingBottom="@dimen/_11sdp"
+                    android:text="Entry Gate"
+                    app:buttonTint="@color/colorPrimary"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+                <View
+                    android:layout_width="@dimen/_0sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <RadioButton
+                    android:id="@+id/rbScanHall"
+                    style="@style/RadioButtonStyle"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:paddingTop="@dimen/_11sdp"
+                    android:paddingBottom="@dimen/_11sdp"
+                    android:text="Exam Hall"
+                    app:buttonTint="@color/colorPrimary"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtAttendanceType"
+            style="@style/DashboardLabel"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Select Attendance Type"
+            android:visibility="gone"
+            android:textAllCaps="true"
+            android:layout_below="@+id/chooseScanLayout"
+            tools:ignore="HardcodedText" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chooseAttendanceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_below="@+id/txtAttendanceType">
+
+            <RadioGroup
+                android:id="@+id/radChooseAttendanceType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/radPresent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:buttonTint="@color/white"
+                    android:checked="true"
+                    android:text="Present"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText,UnusedAttribute" />
+
+                <RadioButton
+                    android:id="@+id/radAbsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:buttonTint="@color/white"
+                    android:text="Absent"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText,UnusedAttribute" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/scanner"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/chooseAttendanceLayout"
+            android:src="@drawable/ic_scaner"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:id="@+id/sendScanData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_28sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:background="@drawable/rounded_btn_white_enabled"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="KeyboardInaccessibleWidget"
+            android:layout_below="@+id/scanner">
+
+            <ImageView
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_website_login_icon"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_12sdp"
+                android:letterSpacing="0.03"
+                android:text="Send Scan Data"
+                android:textAllCaps="false"
+                android:textColor="@color/blackFaded"
+                android:textSize="17sp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="start|left"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu_navigation" />
+</androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

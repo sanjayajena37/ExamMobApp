@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/candidateIDtext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Candidate ID"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/rollNoumbertext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Roll Noumber"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/barcodetext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="barcode"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/entryStatustext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Entry Status"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/examStartTimetext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="ExamStart Time"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/hallStatustext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Hall Status"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/examEndTimetext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="ExamEnd Time"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/examDatetext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Exam Date"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/examShifttext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Exam Shift"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/candidateMobileNotext"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Candidate MobileNo"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:visibility="gone"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <View
+            android:id="@+id/viewline"
+            android:background="#aaa"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+</LinearLayout>
