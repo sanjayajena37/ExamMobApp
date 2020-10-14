@@ -23,7 +23,7 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
     Context context;
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        private TextView candidateIDtext,examStartTimetext,rollNoumbertext,examDatetext,examEndTimetext,examShifttext,
+        private TextView candidateIDtext,entryScanTime,rollNoumbertext,examDatetext,hallScanTime,examShifttext,
                 candidateMobileNotext,entryStatustext,hallStatustext ,barcodetext  ;
 
         private View viewLine;
@@ -34,11 +34,10 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
 
             super(view);
             candidateIDtext = (TextView) view.findViewById(R.id.candidateIDtext);
-
             rollNoumbertext = (TextView) view.findViewById(R.id.rollNoumbertext);
             examDatetext = (TextView) view.findViewById(R.id.examDatetext);
-            examStartTimetext = (TextView) view.findViewById(R.id.examStartTimetext);
-            examEndTimetext = (TextView) view.findViewById(R.id.examEndTimetext);
+            entryScanTime = (TextView) view.findViewById(R.id.entryScanTime);
+            hallScanTime = (TextView) view.findViewById(R.id.hallScanTime);
             examShifttext = (TextView) view.findViewById(R.id.examShifttext);
             candidateMobileNotext = (TextView) view.findViewById(R.id.candidateMobileNotext);
             entryStatustext = (TextView) view.findViewById(R.id.entryStatustext);
@@ -65,16 +64,13 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
     @Override
     public void onBindViewHolder(final MyHolder holder, final int listPosition) {
 
-        holder.candidateIDtext.setText(lists.get(listPosition).getCandidateID());
+        holder.candidateIDtext.setText(String.valueOf(lists.get(listPosition).getSerialNo()));
         holder.rollNoumbertext.setText(lists.get(listPosition).getRollNoumber());
-        holder.examDatetext.setText(lists.get(listPosition).getExamDate());
-        holder.examStartTimetext.setText(lists.get(listPosition).getExamStartTime());
-        holder.examEndTimetext.setText(lists.get(listPosition).getExamEndTime());
-        holder.examShifttext.setText(lists.get(listPosition).getExamShift());
-        holder.candidateMobileNotext.setText(lists.get(listPosition).getCandidateMobileNo());
-        holder.entryStatustext.setText(lists.get(listPosition).getEntryStatus());
-        holder.hallStatustext.setText(lists.get(listPosition).getHallStatus());
         holder.barcodetext.setText(lists.get(listPosition).getBarcode());
+        holder.entryStatustext.setText(lists.get(listPosition).getEntryStatus());
+        holder.entryScanTime.setText(lists.get(listPosition).getEntryScanTime());
+        holder.hallStatustext.setText(lists.get(listPosition).getHallStatus());
+        holder.hallScanTime.setText(lists.get(listPosition).getHallScanTime());
     }
 
 

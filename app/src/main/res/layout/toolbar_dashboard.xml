@@ -47,7 +47,7 @@
             android:id="@+id/reload"
             android:contentDescription="@string/app_name"
             android:padding="8dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:src="@drawable/ic_reload"/>
 
         <ImageView

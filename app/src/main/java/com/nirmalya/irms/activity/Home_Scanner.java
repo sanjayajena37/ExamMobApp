@@ -20,10 +20,12 @@ import androidx.media.MediaBrowserServiceCompat;
 import androidx.room.Database;
 
 import com.google.zxing.Result;
+import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.RoomDB.AppDatabase;
 import com.nirmalya.irms.RoomDB.StudentModel;
 import com.nirmalya.irms.utility.MessageUtils;
+import com.nirmalya.irms.utility.Utils;
 import com.nirmalya.irms.utility.ZXingScannerView;
 
 import org.json.JSONArray;
@@ -38,12 +40,15 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
     String position, formt;
     ImageView imgFlashLight, imgBack;
     private boolean isFlashlightOn = false;
+    private Context context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 //        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
+
+        context = this;
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -117,12 +122,35 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         protected String doInBackground(String... strings) {
             StudentModel selectModel = db.studentDao().selectData(barcode);
             if (selectModel != null) {
-                selectModel.setEntryStatus("P");
+                String time = Utils.getCurrentTime();
+                if (Osssc.getPrefs().getSelectEntryStatus()) {
+                    int gateCount;
+                    if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+                        gateCount = 1;
+                    } else {
+                        gateCount = Integer.parseInt(Osssc.getPrefs().getGateScanCount()) + 1;
+                    }
+                    Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
+                    selectModel.setEntryStatus("P");
+                    selectModel.setEntryScanTime(time);
+                } else {
+                    int hallCount;
+                    if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+                        hallCount = 1;
+                    } else {
+                        hallCount = Integer.parseInt(Osssc.getPrefs().getHallScanCount()) + 1;
+                    }
+                    Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+                    if (Osssc.getPrefs().getSelectHallAttendance()) {
+                        selectModel.setHallStatus("P");
+                    } else {
+                        selectModel.setHallStatus("A");
+                    }
+                    selectModel.setHallScanTime(time);
+                }
                 db.studentDao().updateResource(selectModel);
-                MessageUtils.showSuccessMessage(getApplicationContext(), "Scan Successful");
                 return "Scan Successful";
             } else {
-                MessageUtils.showFailureMessage(getApplicationContext(), "Invalid Barcode");
                 return "Invalid Barcode";
             }
         }
@@ -130,6 +158,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
             Intent intent = new Intent();
             //intent.putExtra("Contents",position);
             intent.putExtra("Format", formt);

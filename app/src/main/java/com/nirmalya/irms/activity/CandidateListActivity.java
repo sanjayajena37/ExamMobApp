@@ -1,56 +1,106 @@
 package com.nirmalya.irms.activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
+import com.nirmalya.irms.databinding.ActivityCandidatelistBinding;
 import com.nirmalya.irms.model.CandidateListModel;
 import com.nirmalya.irms.adapter.CandidatelisAdapter;
+import com.nirmalya.irms.model.request.SignInRequest;
+import com.nirmalya.irms.repository.APIRepo;
+import com.nirmalya.irms.utility.MessageUtils;
+import com.nirmalya.irms.utility.Utils;
 
 import java.util.ArrayList;
 
 public class CandidateListActivity extends AppCompatActivity {
+
+    private ActivityCandidatelistBinding binding;
     private ArrayList<CandidateListModel> candidateListModels;
     private CandidatelisAdapter candidatelisAdapter;
     private Toolbar toolbar;
-    private ImageView imgArrow;
-    RecyclerView recycler_view;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_candidatelist);
-            toolbar = findViewById(R.id.toolbar);
-            imgArrow = findViewById(R.id.imgArrow);
-            imgArrow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            });
-            recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+    private ImageView imgArrow, reload;
+    private Context context;
+    private APIRepo repo;
 
-            candidateListModels = new ArrayList<>();
-            candidateListModels.add(new CandidateListModel("1", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("2", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("3", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("4", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("5", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("6", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
-            candidateListModels.add(new CandidateListModel("7", "12345668", "18-10-20", "8:00 AM", "1:00 AM","CEB College, BBSR","1st shift","9765432108","A","p","1234567892"));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_candidatelist);
 
+        context = this;
+        repo = new APIRepo();
 
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-            recycler_view.setLayoutManager(mLayoutManager);
-            candidatelisAdapter = new CandidatelisAdapter( candidateListModels, CandidateListActivity.this);
-            recycler_view.setAdapter(candidatelisAdapter);
+        reload = findViewById(R.id.reload);
+        imgArrow = findViewById(R.id.imgArrow);
+        imgArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callCandidateList();
+            }
+        });
 
-        }
+        setData();
 
+        candidateListModels = new ArrayList<>();
+
+        callCandidateList();
+
+    }
+
+    private void setData() {
+        binding.distCodeTxt.setText(Osssc.getPrefs().getScannerData().getDistCode());
+        binding.centerCode.setText(Osssc.getPrefs().getScannerData().getCenterCode());
+        binding.custNumTxt.setText(Osssc.getPrefs().getScannerData().getScannerName());
+        binding.custMobileNo.setText(Osssc.getPrefs().getScannerData().getScannerMobileNo());
+    }
+
+    private void callCandidateList() {
+        final ProgressDialog pd = Utils.createProgressDialog(context);
+        pd.show();
+
+        repo.getCandidateList(context)
+                .observe(this, candidateResponse -> {
+                    if (candidateResponse != null && candidateResponse.getSuccess()) {
+                        MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
+                        binding.strExamDateTime.setText(candidateResponse.getExamDate());
+                        binding.strExamShift.setText(candidateResponse.getExamShift());
+                        int j = 1;
+                        candidateListModels.clear();
+                        for(int i = 0; i < candidateResponse.getCandidateList().size(); i++) {
+
+                            candidateListModels.add(new CandidateListModel(j,
+                                    candidateResponse.getCandidateList().get(i).getRollNumber(),
+                                    candidateResponse.getCandidateList().get(i).getBarCode(),
+                                    "", "", "", ""));
+                            j++;
+                        }
+
+                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        binding.recyclerView.setLayoutManager(mLayoutManager);
+                        candidatelisAdapter = new CandidatelisAdapter(candidateListModels, CandidateListActivity.this);
+                        binding.recyclerView.setAdapter(candidatelisAdapter);
+                    }
+                    pd.dismiss();
+                });
+    }
 }

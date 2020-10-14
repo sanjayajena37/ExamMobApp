@@ -44,47 +44,47 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Roll Noumber"
-
                         android:textAlignment="center"
                         android:textColor="@color/black"/>
+
                     <TextView
                         android:id="@+id/barcodetext"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="barcode"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         />
+
                     <TextView
                         android:id="@+id/entryStatustext"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Entry Status"
-
                         android:textAlignment="center"
                         android:textColor="@color/black" />
+
                     <TextView
-                        android:id="@+id/examStartTimetext"
+                        android:id="@+id/entryScanTime"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-
                         android:text="ExamStart Time"
                         android:textAlignment="center"
                         android:textColor="@color/black"/>
+
                     <TextView
                         android:id="@+id/hallStatustext"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Hall Status"
-
                         android:textAlignment="center"
                         android:textColor="@color/black" />
                     <TextView
-                        android:id="@+id/examEndTimetext"
+                        android:id="@+id/hallScanTime"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="ExamEnd Time"
-
                         android:textAlignment="center"
                         android:textColor="@color/black" />
                     <TextView
@@ -92,7 +92,6 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Exam Date"
-
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
@@ -102,7 +101,6 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Exam Shift"
-
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
@@ -111,17 +109,16 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Candidate MobileNo"
-
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
 
-
-
                 </LinearLayout>
 
             </LinearLayout>
+
         </HorizontalScrollView>
+
         <View
             android:id="@+id/viewline"
             android:background="#aaa"

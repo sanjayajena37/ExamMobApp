@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
 
-    <include layout="@layout/costem_toolbar" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/costem_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -126,7 +130,7 @@
                     tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
-                    android:id="@+id/customerNameTxt"
+                    android:id="@+id/centerCode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -204,7 +208,7 @@
                     tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
-                    android:id="@+id/custNumTxt1"
+                    android:id="@+id/custMobileNo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -282,7 +286,7 @@
                     tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
-                    android:id="@+id/shiftTextview"
+                    android:id="@+id/strExamShift"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -339,6 +343,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:text="Barcode"
+                                android:layout_marginStart="@dimen/_4sdp"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
                                 tools:ignore="HardcodedText" />
@@ -405,7 +410,7 @@
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_view"
+                            android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
 
@@ -420,3 +425,5 @@
     </ScrollView>
 
 </LinearLayout>
+
+</layout>

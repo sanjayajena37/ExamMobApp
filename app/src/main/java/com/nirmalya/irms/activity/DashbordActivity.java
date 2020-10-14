@@ -23,6 +23,7 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,6 +42,7 @@ import com.nirmalya.irms.RoomDB.AppExecutors;
 import com.nirmalya.irms.RoomDB.StudentModel;
 import com.nirmalya.irms.databinding.ActivityDashbordBinding;
 import com.nirmalya.irms.network.ApiConfig;
+import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 
 import org.json.JSONArray;
@@ -48,7 +50,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DashbordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,6 +66,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     private NavigationView navigationView;
     ActionBarDrawerToggle mtoogle;
     List<StudentModel> lists;
+    private int totalLength = 0;
+    private boolean isEntryStatus = true, isHallStatus = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -101,7 +107,42 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
         context = this;
-        binding.scanner.setOnClickListener(view -> requestCameraPermission());
+
+        if(Osssc.getPrefs().getSelectEntryStatus()) {
+            binding.rbScanGate.setChecked(true);
+            setItemsVisibility(View.GONE);
+        } else {
+            binding.rbScanHall.setChecked(true);
+            setItemsVisibility(View.VISIBLE);
+        }
+
+        if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+            binding.txtTotalGateScanNo.setText("00");
+        } else {
+            binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
+        }
+
+        if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+            binding.txtTotalHallScanNo.setText("00");
+        } else {
+            binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
+        }
+
+        binding.scanner.setOnClickListener(view -> {
+            if (binding.rbScanGate.isChecked()) {
+                Osssc.getPrefs().setSelectEntryStatus(true);
+                requestCameraPermission();
+            } else {
+                Osssc.getPrefs().setSelectEntryStatus(false);
+                if(binding.radPresent.isChecked()) {
+                    Osssc.getPrefs().setSelectHallAttendance(true);
+                    requestCameraPermission();
+                } else {
+                    Osssc.getPrefs().setSelectHallAttendance(false);
+                    requestCameraPermission();
+                }
+            }
+        });
 
         binding.totalCandidateCard.setOnClickListener(v -> {
             Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
@@ -116,14 +157,33 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-        callStudentListAPI();
+        if(totalLength == 0) {
+            callStudentListAPI();
+        }
+
+        binding.sendScanData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callSendScanData();
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+            binding.txtTotalGateScanNo.setText("00");
+        } else {
+            binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
+        }
 
+        if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+            binding.txtTotalHallScanNo.setText("00");
+        } else {
+            binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
+        }
     }
 
     private void setItemsVisibility(int isVisible) {
@@ -168,16 +228,34 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         // fetch Response as JSONObject
                         JSONObject jObj = new JSONObject(response);
 
-                        final JSONArray student_array = jObj.getJSONArray("candidateList");
+                        boolean success = jObj.getBoolean("Success");
+                        int code = jObj.getInt("Code");
+                        String message = jObj.getString("Message");
 
-                        if (student_array.length() == 0) {
+                        if (success) {
+                            String totalCandidate = jObj.getString("TotalCandidate");
+                            String examDate = jObj.getString("Exam_Date");
+                            String examShift = jObj.getString("Exam_Shift");
+
+                            Osssc.getPrefs().setExamDateTime(examDate);
+                            Osssc.getPrefs().setExamShift(examShift);
+
+                            binding.txtTotalCandidateNo.setText(totalCandidate);
+                            binding.examDate.setText(examDate);
+
+                            final JSONArray student_array = jObj.getJSONArray("CandidateList");
+
+                            if (student_array.length() != 0) {
+                                totalLength = student_array.length();
+                                new InsertDatabase(student_array).execute();
+                                Toast.makeText(context, message,
+                                        Toast.LENGTH_SHORT).show();
+                                pd.dismiss();
+                            }
 
                         } else {
-
-                            new InsertDatabase(student_array).execute();
+                            MessageUtils.showFailureMessage(context, message);
                             pd.dismiss();
-                            Toast.makeText(context, "Exam given student list gets successfully",
-                                    Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
@@ -196,7 +274,15 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 Toast.makeText(getApplicationContext(), "Volley Error", Toast.LENGTH_SHORT).show();
             }
         }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
 
+                headers.put("Authorization", "Bearer " + Osssc.getPrefs().getScannerData().getAssessToken());
+                return headers;
+            }
         };
         //cache disabled
         strReq.setShouldCache(false);
@@ -236,7 +322,6 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
 
     private class InsertDatabase extends AsyncTask<String, String, String> {
 
-
         JSONArray jsonArray;
 
         public InsertDatabase(JSONArray jsonArray) {
@@ -252,15 +337,9 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 JSONObject content = null;
                 try {
                     content = jsonArray.getJSONObject(i);
-                    Integer candidateID = content.getInt("candidateID");
-                    String examStartTime = content.getString("examStartTime");
-                    String examEndTime = content.getString("examEndTime");
-                    String barcode = content.getString("barcode");
-                    String examShift = content.getString("examShift");
-                    String rollNoumber = content.getString("rollNoumber");
-                    String entryStatus = content.getString("entryStatus");
-                    String hallStatus = content.getString("hallStatus");
-                    mDb.studentDao().insertResource(new StudentModel(examStartTime, examEndTime, rollNoumber, barcode, examShift, entryStatus, hallStatus));
+                    String rollNoumber = content.getString("RollNumber");
+                    String barcode = content.getString("BarCode");
+                    mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, "", "", "", ""));
                     Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -286,7 +365,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         Intent intent = new Intent(DashbordActivity.this, Home_Scanner.class);
-                        startActivity(intent);
+                        startActivityForResult(intent, 200);
                     }
 
                     @Override
@@ -303,6 +382,10 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         token.continuePermissionRequest();
                     }
                 }).check();
+    }
+
+    private void callSendScanData() {
+
     }
 
 }

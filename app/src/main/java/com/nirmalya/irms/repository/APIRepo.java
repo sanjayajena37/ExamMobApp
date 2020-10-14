@@ -9,6 +9,7 @@ import com.nirmalya.irms.model.request.SetPinRequest;
 import com.nirmalya.irms.model.request.SignInRequest;
 import com.nirmalya.irms.model.request.SignupSendMobileRequest;
 import com.nirmalya.irms.model.request.ValidateOTPRequest;
+import com.nirmalya.irms.model.response.CandidateResponse;
 import com.nirmalya.irms.model.response.CommonResponse;
 import com.nirmalya.irms.model.response.SignInResponse;
 import com.nirmalya.irms.model.response.StudentResponse;
@@ -255,5 +256,43 @@ public class APIRepo {
                 });
 
         return liveDataSignInResponse;
+    }
+
+    // Get Candidate List Api Network call
+    public LiveData<CandidateResponse> getCandidateList(final Context context) {
+
+        final MutableLiveData<CandidateResponse> liveDataCandidateList = new MutableLiveData<>();
+
+        getApiInterface(Utils.getTokenHeaderMap(Osssc.getPrefs().getScannerData().getAssessToken()))
+                .getCandidateList()
+                .enqueue(new Callback<CandidateResponse>() {
+                    @Override
+                    public void onResponse(@NotNull Call<CandidateResponse> call, @NotNull Response<CandidateResponse> response) {
+                        CandidateResponse responseBody = response.body();
+                        if (responseBody != null) {
+                            liveDataCandidateList.setValue(responseBody);
+
+                            if (!responseBody.getSuccess()) {
+                                MessageUtils.showFailureMessage(context, responseBody.getMessage());
+                            }
+                        } else {
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Data not found");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
+                            } else {
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
+                            }
+                            liveDataCandidateList.setValue(null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<CandidateResponse> call, @NotNull Throwable t) {
+                        liveDataCandidateList.setValue(null);
+                    }
+                });
+
+        return liveDataCandidateList;
     }
 }

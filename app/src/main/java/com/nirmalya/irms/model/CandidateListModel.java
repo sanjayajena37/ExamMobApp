@@ -2,28 +2,25 @@ package com.nirmalya.irms.model;
 
 public class CandidateListModel {
 
-    String candidateID,rollNoumber,examDate,examStartTime,examEndTime,examCenter,examShift,candidateMobileNo,entryStatus,hallStatus,barcode;
+    Integer serialNo;
+    String rollNoumber, barcode, entryStatus, entryScanTime, hallStatus, hallScanTime;
 
-    public CandidateListModel(String candidateID, String rollNoumber, String examDate, String examStartTime, String examEndTime, String examCenter, String examShift, String candidateMobileNo, String entryStatus, String hallStatus, String barcode) {
-        this.candidateID = candidateID;
+    public CandidateListModel(Integer serialNo, String rollNoumber, String barcode, String entryStatus, String entryScanTime, String hallStatus, String hallScanTime) {
+        this.serialNo = serialNo;
         this.rollNoumber = rollNoumber;
-        this.examDate = examDate;
-        this.examStartTime = examStartTime;
-        this.examEndTime = examEndTime;
-        this.examCenter = examCenter;
-        this.examShift = examShift;
-        this.candidateMobileNo = candidateMobileNo;
-        this.entryStatus = entryStatus;
-        this.hallStatus = hallStatus;
         this.barcode = barcode;
+        this.entryStatus = entryStatus;
+        this.entryScanTime = entryScanTime;
+        this.hallStatus = hallStatus;
+        this.hallScanTime = hallScanTime;
     }
 
-    public String getCandidateID() {
-        return candidateID;
+    public Integer getSerialNo() {
+        return serialNo;
     }
 
-    public void setCandidateID(String candidateID) {
-        this.candidateID = candidateID;
+    public void setSerialNo(Integer serialNo) {
+        this.serialNo = serialNo;
     }
 
     public String getRollNoumber() {
@@ -34,52 +31,12 @@ public class CandidateListModel {
         this.rollNoumber = rollNoumber;
     }
 
-    public String getExamDate() {
-        return examDate;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setExamDate(String examDate) {
-        this.examDate = examDate;
-    }
-
-    public String getExamStartTime() {
-        return examStartTime;
-    }
-
-    public void setExamStartTime(String examStartTime) {
-        this.examStartTime = examStartTime;
-    }
-
-    public String getExamEndTime() {
-        return examEndTime;
-    }
-
-    public void setExamEndTime(String examEndTime) {
-        this.examEndTime = examEndTime;
-    }
-
-    public String getExamCenter() {
-        return examCenter;
-    }
-
-    public void setExamCenter(String examCenter) {
-        this.examCenter = examCenter;
-    }
-
-    public String getExamShift() {
-        return examShift;
-    }
-
-    public void setExamShift(String examShift) {
-        this.examShift = examShift;
-    }
-
-    public String getCandidateMobileNo() {
-        return candidateMobileNo;
-    }
-
-    public void setCandidateMobileNo(String candidateMobileNo) {
-        this.candidateMobileNo = candidateMobileNo;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getEntryStatus() {
@@ -90,6 +47,14 @@ public class CandidateListModel {
         this.entryStatus = entryStatus;
     }
 
+    public String getEntryScanTime() {
+        return entryScanTime;
+    }
+
+    public void setEntryScanTime(String entryScanTime) {
+        this.entryScanTime = entryScanTime;
+    }
+
     public String getHallStatus() {
         return hallStatus;
     }
@@ -98,11 +63,11 @@ public class CandidateListModel {
         this.hallStatus = hallStatus;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public String getHallScanTime() {
+        return hallScanTime;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setHallScanTime(String hallScanTime) {
+        this.hallScanTime = hallScanTime;
     }
 }

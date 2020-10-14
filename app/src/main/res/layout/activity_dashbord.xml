@@ -48,7 +48,7 @@
             android:layout_marginEnd="@dimen/_25sdp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="18-10-20"
+            android:text="00-00-00"
             tools:ignore="HardcodedText"
             android:layout_below="@+id/txtExamDate"/>
 
@@ -101,7 +101,7 @@
                     <TextView
                         android:id="@+id/txtTotalCandidateNo"
                         style="@style/DocumentTextStyle"
-                        android:text="100"
+                        android:text="00"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginBottom="@dimen/_5sdp"
@@ -155,7 +155,7 @@
                     <TextView
                         android:id="@+id/txtTotalGateScanNo"
                         style="@style/DocumentTextStyle"
-                        android:text="70"
+                        android:text="00"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginBottom="@dimen/_5sdp"
@@ -208,7 +208,7 @@
                     <TextView
                         android:id="@+id/txtTotalHallScanNo"
                         style="@style/DocumentTextStyle"
-                        android:text="30"
+                        android:text="00"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginBottom="@dimen/_5sdp"

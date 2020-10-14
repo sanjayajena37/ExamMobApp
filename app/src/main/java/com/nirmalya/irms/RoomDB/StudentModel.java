@@ -12,23 +12,35 @@ public class StudentModel {
     @NonNull
     long id;
 
-    String stExamStartTime;
-    String stExamEndTime;
     String stRollNo;
     String stBarcode;
-    String examShift;
     String entryStatus;
+    String entryScanTime;
     String hallStatus;
+    String hallScanTime;
 
-    public StudentModel(String stExamStartTime, String stExamEndTime, String stRollNo, String stBarcode, String examShift, String entryStatus, String hallStatus) {
+    public StudentModel(String stRollNo, String stBarcode, String entryStatus, String entryScanTime, String hallStatus, String hallScanTime) {
         this.id = id;
-        this.stExamStartTime = stExamStartTime;
-        this.stExamEndTime = stExamEndTime;
         this.stRollNo = stRollNo;
         this.stBarcode = stBarcode;
-        this.examShift = examShift;
         this.entryStatus = entryStatus;
+        this.entryScanTime = entryScanTime;
         this.hallStatus = hallStatus;
+        this.hallScanTime = hallScanTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "StudentModel{" +
+                "id=" + id +
+                ", stRollNo='" + stRollNo + '\'' +
+                ", stBarcode='" + stBarcode + '\'' +
+                ", entryStatus=" + entryStatus +
+                ", entryScanTime=" + entryScanTime +
+                ", hallStatus=" + hallStatus +
+                ", hallScanTime=" + hallScanTime +
+                '}';
     }
 
     public long getId() {
@@ -37,22 +49,6 @@ public class StudentModel {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getStExamStartTime() {
-        return stExamStartTime;
-    }
-
-    public void setStExamStartTime(String stExamStartTime) {
-        this.stExamStartTime = stExamStartTime;
-    }
-
-    public String getStExamEndTime() {
-        return stExamEndTime;
-    }
-
-    public void setStExamEndTime(String stExamEndTime) {
-        this.stExamEndTime = stExamEndTime;
     }
 
     public String getStRollNo() {
@@ -71,20 +67,20 @@ public class StudentModel {
         this.stBarcode = stBarcode;
     }
 
-    public String getExamShift() {
-        return examShift;
-    }
-
-    public void setExamShift(String examShift) {
-        this.examShift = examShift;
-    }
-
     public String getEntryStatus() {
         return entryStatus;
     }
 
     public void setEntryStatus(String entryStatus) {
         this.entryStatus = entryStatus;
+    }
+
+    public String getEntryScanTime() {
+        return entryScanTime;
+    }
+
+    public void setEntryScanTime(String entryScanTime) {
+        this.entryScanTime = entryScanTime;
     }
 
     public String getHallStatus() {
@@ -95,17 +91,11 @@ public class StudentModel {
         this.hallStatus = hallStatus;
     }
 
-    @Override
-    public String toString() {
-        return "StudentModel{" +
-                "id=" + id +
-                ", stExamStartTime='" + stExamStartTime + '\'' +
-                ", stExamEndTime='" + stExamEndTime + '\'' +
-                ", stRollNo='" + stRollNo + '\'' +
-                ", stBarcode='" + stBarcode + '\'' +
-                ", examShift=" + examShift +
-                ", entryStatus=" + entryStatus +
-                ", hallStatus=" + hallStatus +
-                '}';
+    public String getHallScanTime() {
+        return hallScanTime;
+    }
+
+    public void setHallScanTime(String hallScanTime) {
+        this.hallScanTime = hallScanTime;
     }
 }
