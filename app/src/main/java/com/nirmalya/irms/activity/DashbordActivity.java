@@ -449,12 +449,15 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         AppExecutors.getsInstance().mainThread().execute(new Runnable() {
             @Override
             public void run() {
+                final ProgressDialog pd = Utils.createProgressDialog(DashbordActivity.this);
+                pd.show();
                 repo.sendScanData(scanDataRequest)
                         .observe(DashbordActivity.this, commonResponse -> {
                             if (commonResponse != null && commonResponse.getSuccess()) {
                                 MessageUtils.showSuccessMessage(context, commonResponse.getMessage());
                                 deleteDb();
                             }
+                            pd.dismiss();
                         });
             }
         });
