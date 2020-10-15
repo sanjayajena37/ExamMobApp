@@ -5,8 +5,8 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />-->
     <item
-        android:id="@+id/myaccount"
-        android:icon="@drawable/ic_top_up_icon"
+        android:id="@+id/candidatelist"
+        android:icon="@drawable/ic_candidates"
         android:title="Candidate List" />
     <item
         android:id="@+id/changepin"
@@ -14,10 +14,14 @@
         android:title="Change Pin"
         android:visible="false"
         />
+    <item
+        android:id="@+id/scannedlist"
+        android:icon="@drawable/ic_scanned"
+        android:title="Scanned List" />
 
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/logout_"
+        android:icon="@drawable/ic_logout"
         android:title="Logout" />
 
 

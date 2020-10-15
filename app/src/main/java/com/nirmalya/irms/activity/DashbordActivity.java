@@ -308,7 +308,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         switch (menuItem.getItemId()) {
 
 
-            case R.id.myaccount:
+            case R.id.candidatelist:
                 Intent intent = new Intent(DashbordActivity.this, CandidateListActivity.class);
                 startActivity(intent);
                 drawer_layout.closeDrawer(GravityCompat.START);
@@ -316,6 +316,11 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             case R.id.changepin:
                 Intent intent1 = new Intent(DashbordActivity.this, ChangePinActivity.class);
                 startActivity(intent1);
+                drawer_layout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.scannedlist:
+                Intent intent2 = new Intent(DashbordActivity.this, ScannedListActivity.class);
+                startActivity(intent2);
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.logout:
