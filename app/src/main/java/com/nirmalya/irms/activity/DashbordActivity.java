@@ -22,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -348,7 +349,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
 
             count = mDb.studentDao().getCount();
 
-            if(count == 0) {
+            if (count == 0) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject content = null;
                     try {
@@ -438,14 +439,19 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void callSendScanData(ScanDataRequest scanDataRequest) {
+        AppExecutors.getsInstance().mainThread().execute(new Runnable() {
+            @Override
+            public void run() {
+                repo.sendScanData(scanDataRequest)
+                        .observe(DashbordActivity.this, commonResponse -> {
+                            if (commonResponse != null && commonResponse.getSuccess()) {
+                                MessageUtils.showSuccessMessage(context, commonResponse.getMessage());
+                                deleteDb();
+                            }
+                        });
+            }
+        });
 
-        repo.sendScanData(scanDataRequest)
-                .observe(this, commonResponse -> {
-                    if (commonResponse != null && commonResponse.getSuccess()) {
-                        MessageUtils.showSuccessMessage(context, commonResponse.getMessage());
-                        deleteDb();
-                    }
-                });
 
     }
 
