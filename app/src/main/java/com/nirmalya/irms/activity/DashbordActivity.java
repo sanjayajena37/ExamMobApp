@@ -458,8 +458,6 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         });
             }
         });
-
-
     }
 
     void deleteDb() {
