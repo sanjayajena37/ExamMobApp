@@ -61,6 +61,7 @@ public class ScannedListActivity extends AppCompatActivity {
             candidateListModels = new ArrayList<>();
 
             setData();
+            callCandidateList();
 
         }
 
@@ -99,6 +100,7 @@ public class ScannedListActivity extends AppCompatActivity {
 
                         int j = 1;
                         candidateListModels.clear();
+                        assert candidateAttendanceResponse != null;
                         for(int i = 0; i < candidateAttendanceResponse.getCandidateList().size(); i++) {
                             candidateListModels.add(new CandidateListModel(j,
                                     candidateAttendanceResponse.getCandidateList().get(i).getRollNumber(),
