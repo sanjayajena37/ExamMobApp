@@ -71,6 +71,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.CandidateListActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.ScannedListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
