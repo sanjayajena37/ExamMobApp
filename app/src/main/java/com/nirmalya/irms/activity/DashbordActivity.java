@@ -415,9 +415,11 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             public void run() {
                 count = mDb.studentDao().getCount();
                 if (count > 0) {
-                    updateList = mDb.studentDao().allResorces();
+                    updateList = mDb.studentDao().filterResources();
                     //updateList.forEach();
                     for (StudentModel num : updateList) {
+                        //Log.v("LOG CAT",num.theString()+"\n");
+                        System.out.println("DATA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+num.theString());
                         CandidateRequestData candidateRequestData = new CandidateRequestData(num.getStRollNo(),
                                 num.getStBarcode(), num.getEntryScanTime(),
                                 num.getHallScanTime(), num.getEntryStatus(), num.getHallStatus(),

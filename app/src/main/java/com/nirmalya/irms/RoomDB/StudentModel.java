@@ -98,4 +98,17 @@ public class StudentModel {
     public void setHallScanTime(String hallScanTime) {
         this.hallScanTime = hallScanTime;
     }
+
+
+    public String theString() {
+        return "StudentModel{" +
+                "id=" + id +
+                ", stRollNo='" + stRollNo + '\'' +
+                ", stBarcode='" + stBarcode + '\'' +
+                ", entryStatus='" + entryStatus + '\'' +
+                ", entryScanTime='" + entryScanTime + '\'' +
+                ", hallStatus='" + hallStatus + '\'' +
+                ", hallScanTime='" + hallScanTime + '\'' +
+                '}';
+    }
 }
