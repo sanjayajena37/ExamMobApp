@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -72,13 +73,11 @@
                 android:weightSum="2">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-
                     android:text="Center Code"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold" />
@@ -91,7 +90,7 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/customerNameTxt"
+                    android:id="@+id/centerCode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -129,7 +128,7 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/dateTxt1"
+                    android:id="@+id/strExamDateTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -145,10 +144,10 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:visibility="gone">
 
                 <TextView
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -272,7 +271,7 @@
                                 android:visibility="gone"/>
                         </LinearLayout>
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_view"
+                            android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
 
@@ -282,3 +281,4 @@
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+</layout>

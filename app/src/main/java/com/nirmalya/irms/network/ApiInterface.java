@@ -5,6 +5,7 @@ import com.nirmalya.irms.model.request.SetPinRequest;
 import com.nirmalya.irms.model.request.SignInRequest;
 import com.nirmalya.irms.model.request.SignupSendMobileRequest;
 import com.nirmalya.irms.model.request.ValidateOTPRequest;
+import com.nirmalya.irms.model.response.CandidateAttendanceResponse;
 import com.nirmalya.irms.model.response.CandidateResponse;
 import com.nirmalya.irms.model.response.CommonResponse;
 import com.nirmalya.irms.model.response.SignInResponse;
@@ -44,4 +45,7 @@ public interface ApiInterface {
 
     @POST(SUB_DATA_URL + "SubmitCandidates")
     Call<CommonResponse> sendScanData(@Body ScanDataRequest scanDataRequest);
+
+    @GET(SUB_DATA_URL + "GetCandidateAttendance")
+    Call<CandidateAttendanceResponse> getCandidateAttendanceList();
 }

@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nirmalya.irms.model.response.CandidateAttendanceList;
 import com.nirmalya.irms.model.response.ScannerData;
 import com.nirmalya.irms.utility.Constant;
+
+import java.util.List;
 
 public class Preferences {
 
@@ -19,6 +22,7 @@ public class Preferences {
     private static final String KEY_ATTENDANCE = "hall_attendance";
     private static final String KEY_HALL_COUNT = "hall_scan_count";
     private static final String KEY_GATE_COUNT = "gate_scan_count";
+    private static final String KEY_CANDIDATE_ATTENDANCE = "candidate_attendance";
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -122,6 +126,25 @@ public class Preferences {
     public void setGateScanCount(String count) {
         editor = preferences.edit();
         editor.putString(KEY_GATE_COUNT, count);
+        editor.apply();
+    }
+
+    public ScannerData getCandidateAttendanceData() {
+        String userScannerDataJsonAsString = preferences.getString(KEY_CANDIDATE_ATTENDANCE, Constant.STRING_EMPTY);
+        return !userScannerDataJsonAsString.equalsIgnoreCase(Constant.STRING_EMPTY) ?
+                (ScannerData) new Gson().fromJson(userScannerDataJsonAsString, new TypeToken<ScannerData>() {
+                }.getType()) : new ScannerData();
+    }
+
+   /* public void setCandidateAttendanceData(CandidateAttendanceList candidateAttendanceList) {
+        editor = preferences.edit();
+        editor.putString(KEY_CANDIDATE_ATTENDANCE, new Gson().toJson(candidateAttendanceList));
+        editor.apply();
+    }*/
+
+    public void setAttendanceListData(List<CandidateAttendanceList> candidateAttendanceList) {
+        editor = preferences.edit();
+        editor.putString(KEY_CANDIDATE_ATTENDANCE, new Gson().toJson(candidateAttendanceList));
         editor.apply();
     }
 }
