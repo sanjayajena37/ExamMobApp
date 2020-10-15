@@ -130,9 +130,13 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                     } else {
                         gateCount = Integer.parseInt(Osssc.getPrefs().getGateScanCount()) + 1;
                     }
-                    Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
-                    selectModel.setEntryStatus("P");
-                    selectModel.setEntryScanTime(time);
+                    if(selectModel.getEntryStatus().equalsIgnoreCase("P")) {
+                        return "Barcode Already Scan";
+                    } else {
+                        Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
+                        selectModel.setEntryStatus("P");
+                        selectModel.setEntryScanTime(time);
+                    }
                 } else {
                     int hallCount;
                     if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
@@ -140,13 +144,19 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                     } else {
                         hallCount = Integer.parseInt(Osssc.getPrefs().getHallScanCount()) + 1;
                     }
-                    Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
-                    if (Osssc.getPrefs().getSelectHallAttendance()) {
-                        selectModel.setHallStatus("P");
+
+                    if(selectModel.getHallStatus().equalsIgnoreCase("P") ||
+                            selectModel.getHallStatus().equalsIgnoreCase("A")) {
+                        return "Barcode Already Scan";
                     } else {
-                        selectModel.setHallStatus("A");
+                        Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+                        if (Osssc.getPrefs().getSelectHallAttendance()) {
+                            selectModel.setHallStatus("P");
+                        } else {
+                            selectModel.setHallStatus("A");
+                        }
+                        selectModel.setHallScanTime(time);
                     }
-                    selectModel.setHallScanTime(time);
                 }
                 db.studentDao().updateResource(selectModel);
                 return "Scan Successful";

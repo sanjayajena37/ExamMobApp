@@ -65,7 +65,7 @@ public class OtpActivity extends AppCompatActivity {
 
     public void validateData() {
         if (!Utils.isNullOrEmpty(binding.edtOTP.getText().toString().trim()) &&
-                binding.edtOTP.getText().toString().trim().length() == 4) {
+                binding.edtOTP.getText().toString().trim().length() == 6) {
             gotoNext();
         } else {
             MessageUtils.showFailureMessage(context, "Please enter 6 digit OTP");

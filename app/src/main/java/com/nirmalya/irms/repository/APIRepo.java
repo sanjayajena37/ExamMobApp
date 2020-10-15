@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.nirmalya.irms.Osssc;
+import com.nirmalya.irms.model.request.ScanDataRequest;
 import com.nirmalya.irms.model.request.SetPinRequest;
 import com.nirmalya.irms.model.request.SignInRequest;
 import com.nirmalya.irms.model.request.SignupSendMobileRequest;
@@ -294,5 +295,42 @@ public class APIRepo {
                 });
 
         return liveDataCandidateList;
+    }
+
+    // Post Scan Data API
+    public LiveData<CommonResponse> sendScanData(ScanDataRequest scanDataRequest) {
+        final MutableLiveData<CommonResponse> liveDataSendScanData = new MutableLiveData<>();
+
+        getApiInterface(Utils.getTokenHeaderMap(Osssc.getPrefs().getScannerData().getAssessToken()))
+                .sendScanData(scanDataRequest)
+                .enqueue(new Callback<CommonResponse>() {
+                    @Override
+                    public void onResponse(@NotNull Call<CommonResponse> call, @NotNull Response<CommonResponse> response) {
+                        CommonResponse responseBody = response.body();
+                        if (responseBody != null) {
+                            liveDataSendScanData.setValue(responseBody);
+
+                            if (!responseBody.getSuccess()) {
+                                MessageUtils.showFailureMessage(context, responseBody.getMessage());
+                            }
+                        } else {
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Fail to Send Data to Server");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
+                            } else {
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
+                            }
+                            liveDataSendScanData.setValue(null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<CommonResponse> call, @NotNull Throwable t) {
+                        liveDataSendScanData.setValue(null);
+                    }
+                });
+
+        return liveDataSendScanData;
     }
 }

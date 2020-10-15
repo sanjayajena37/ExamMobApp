@@ -41,7 +41,10 @@ import com.nirmalya.irms.RoomDB.AppDatabase;
 import com.nirmalya.irms.RoomDB.AppExecutors;
 import com.nirmalya.irms.RoomDB.StudentModel;
 import com.nirmalya.irms.databinding.ActivityDashbordBinding;
+import com.nirmalya.irms.model.request.CandidateRequestData;
+import com.nirmalya.irms.model.request.ScanDataRequest;
 import com.nirmalya.irms.network.ApiConfig;
+import com.nirmalya.irms.repository.APIRepo;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 
@@ -57,7 +60,7 @@ import java.util.Map;
 public class DashbordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Array List
-    private ArrayList<StudentModel> studentLists;
+    private List<StudentModel> studentLists;
     private Context context;
     private ActivityDashbordBinding binding;
     private ImageView navigationimg;
@@ -68,6 +71,11 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     List<StudentModel> lists;
     private int totalLength = 0;
     private boolean isEntryStatus = true, isHallStatus = false;
+    AppDatabase mDb;
+    long count = 0;
+    List<StudentModel> updateList = new ArrayList<>();
+    private APIRepo repo;
+    private ProgressDialog dialog;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -75,6 +83,11 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashbord);
 
+        context = getApplicationContext();
+        repo = new APIRepo();
+        dialog = new ProgressDialog(getApplicationContext());
+
+        mDb = AppDatabase.getInstance(getApplicationContext());
         toolbar = findViewById(R.id.toolbarDashboard);
         navigationimg = findViewById(R.id.navigationimg);
         drawer_layout = findViewById(R.id.drawer_layout);
@@ -106,9 +119,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
 
         //ArrayList
         studentLists = new ArrayList<StudentModel>();
-        context = this;
 
-        if(Osssc.getPrefs().getSelectEntryStatus()) {
+        if (Osssc.getPrefs().getSelectEntryStatus()) {
             binding.rbScanGate.setChecked(true);
             setItemsVisibility(View.GONE);
         } else {
@@ -116,13 +128,13 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             setItemsVisibility(View.VISIBLE);
         }
 
-        if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+        if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
             binding.txtTotalGateScanNo.setText("00");
         } else {
             binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
         }
 
-        if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+        if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
             binding.txtTotalHallScanNo.setText("00");
         } else {
             binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
@@ -134,7 +146,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 requestCameraPermission();
             } else {
                 Osssc.getPrefs().setSelectEntryStatus(false);
-                if(binding.radPresent.isChecked()) {
+                if (binding.radPresent.isChecked()) {
                     Osssc.getPrefs().setSelectHallAttendance(true);
                     requestCameraPermission();
                 } else {
@@ -157,14 +169,14 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-        if(totalLength == 0) {
+        if (totalLength == 0) {
             callStudentListAPI();
         }
 
         binding.sendScanData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callSendScanData();
+                checkLocalData();
             }
         });
     }
@@ -173,13 +185,13 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+        if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
             binding.txtTotalGateScanNo.setText("00");
         } else {
             binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
         }
 
-        if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+        if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
             binding.txtTotalHallScanNo.setText("00");
         } else {
             binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
@@ -307,7 +319,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.logout:
-                gotoLogout();
+                checkLocalData();
+                //gotoLogout();
                 break;
         }
         return true;
@@ -332,21 +345,25 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         @Override
         protected String doInBackground(String... strings) {
             //List<StudentModel> ii = new ArrayList<>();
-            AppDatabase mDb = AppDatabase.getInstance(getApplicationContext());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject content = null;
-                try {
-                    content = jsonArray.getJSONObject(i);
-                    String rollNoumber = content.getString("RollNumber");
-                    String barcode = content.getString("BarCode");
-                    mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, "", "", "", ""));
-                    Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
+            count = mDb.studentDao().getCount();
+
+            if(count == 0) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject content = null;
+                    try {
+                        content = jsonArray.getJSONObject(i);
+                        String rollNoumber = content.getString("RollNumber");
+                        String barcode = content.getString("BarCode");
+                        mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, "", "", "", ""));
+                        Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                Log.d("Student List", mDb.toString());
             }
-            Log.d("Student List", mDb.toString());
             return "Success";
         }
 
@@ -384,8 +401,62 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 }).check();
     }
 
-    private void callSendScanData() {
+    private void checkLocalData() {
 
+        List<CandidateRequestData> lists = new ArrayList<>();
+        AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                count = mDb.studentDao().getCount();
+                if (count > 0) {
+                    updateList = mDb.studentDao().allResorces();
+                    //updateList.forEach();
+                    for (StudentModel num : updateList) {
+                        CandidateRequestData candidateRequestData = new CandidateRequestData(num.getStRollNo(),
+                                num.getStBarcode(), num.getEntryScanTime(),
+                                num.getHallScanTime(), num.getEntryStatus(), num.getHallStatus(),
+                                Osssc.getPrefs().getScannerData().getScannerId());
+                        lists.add(candidateRequestData);
+                    }
+                    String type = "";
+                    if (Osssc.getPrefs().getSelectEntryStatus()) {
+                        type = "Gate";
+                    } else {
+                        type = "Hall";
+                    }
+
+                    ScanDataRequest scanDataRequest = new ScanDataRequest(type, lists);
+
+                    if (!Utils.isNullOrEmpty(Osssc.getPrefs().getGateScanCount())) {
+                        callSendScanData(scanDataRequest);
+                    } else if (!Utils.isNullOrEmpty(Osssc.getPrefs().getHallScanCount())) {
+                        callSendScanData(scanDataRequest);
+                    }
+                }
+            }
+        });
+    }
+
+    private void callSendScanData(ScanDataRequest scanDataRequest) {
+
+        repo.sendScanData(scanDataRequest)
+                .observe(this, commonResponse -> {
+                    if (commonResponse != null && commonResponse.getSuccess()) {
+                        MessageUtils.showSuccessMessage(context, commonResponse.getMessage());
+                        deleteDb();
+                    }
+                });
+
+    }
+
+    void deleteDb() {
+        AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.studentDao().deleteAll();
+                gotoLogout();
+            }
+        });
     }
 
 }

@@ -14,19 +14,8 @@ public class ScanDataRequest {
     @Expose
     private List<CandidateRequestData> candidates = null;
 
-    public String getScanType() {
-        return scanType;
-    }
-
-    public void setScanType(String scanType) {
+    public ScanDataRequest(String scanType, List<CandidateRequestData> candidates) {
         this.scanType = scanType;
-    }
-
-    public List<CandidateRequestData> getCandidates() {
-        return candidates;
-    }
-
-    public void setCandidates(List<CandidateRequestData> candidates) {
         this.candidates = candidates;
     }
 }
