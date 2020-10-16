@@ -233,7 +233,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Exam Date Time"
+                    android:text="Exam Date &amp; Time"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
@@ -272,7 +272,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Exam Shift"
+                    android:text="Exam Seating"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />

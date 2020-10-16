@@ -157,14 +157,16 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
                         if(selectModel.getEntryStatus().equalsIgnoreCase("P")) {
                             Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+                            selectModel.setHallScanTime(time);
                             if (Osssc.getPrefs().getSelectHallAttendance()) {
                                 selectModel.setHallStatus("P");
                             } else {
                                 selectModel.setHallStatus("A");
+                                db.studentDao().updateResource(selectModel);
+                                return "Attendance status of the candidate marked as present in entry gate. Please verify..";
                             }
-                            selectModel.setHallScanTime(time);
                         } else {
-                            return "This Candidate Absent in Entry Gate";
+                            return "This candidate attendance marked as absent in entry gate. Please verify..";
                         }
                     }
                 }

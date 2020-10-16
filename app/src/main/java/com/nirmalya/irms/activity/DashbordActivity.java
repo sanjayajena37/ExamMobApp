@@ -77,6 +77,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
     List<StudentModel> updateList = new ArrayList<>();
     private APIRepo repo;
     private ProgressDialog dialog;
+    private TextView centerCode;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -108,8 +109,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         });
 
         View headerview = navigationView.getHeaderView(0);
-        TextView centerCode = headerview.findViewById(R.id.centerCode);
-        centerCode.setText("Center Code : " + Osssc.getPrefs().getScannerData().getCenterCode());
+        centerCode = headerview.findViewById(R.id.centerCode);
 
         TextView scannerName = headerview.findViewById(R.id.scannerName);
         scannerName.setText(Osssc.getPrefs().getScannerData().getScannerName());
@@ -386,6 +386,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String districtName = jObj.getString("DistrictName");
 
                             Osssc.getPrefs().setExamCenter(centreName);
+                            centerCode.setText(centreName);
 
                             binding.txtTotalCandidateNo.setText(totalCandidate);
 
