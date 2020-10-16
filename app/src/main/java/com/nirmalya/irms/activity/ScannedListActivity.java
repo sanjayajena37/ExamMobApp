@@ -51,7 +51,12 @@ public class ScannedListActivity extends AppCompatActivity {
 
         ImageView imgArrow = findViewById(R.id.imgArrow);
         TextView txtTitle = findViewById(R.id.txtTitle);
-        txtTitle.setText("Scanned List");
+
+        if(DataShowType.equalsIgnoreCase("gateScannedList")) {
+            txtTitle.setText("Gate Scanned List");
+        } else {
+            txtTitle.setText("Hall Scanned List");
+        }
         imgArrow.setOnClickListener(v -> onBackPressed());
 
         ImageView reload = findViewById(R.id.reload);
