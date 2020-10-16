@@ -163,7 +163,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                             } else {
                                 selectModel.setHallStatus("A");
                                 db.studentDao().updateResource(selectModel);
-                                return "Attendance status of the candidate marked as present in entry gate. Please verify..";
+                                return "Attendance status of the candidate marked as present in entry gate. Please verify.\nBut candidate exam hall attendance set as absent.";
                             }
                         } else {
                             return "This candidate attendance marked as absent in entry gate. Please verify..";
