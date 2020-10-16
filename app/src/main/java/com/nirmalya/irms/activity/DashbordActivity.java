@@ -256,7 +256,9 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             binding.txtTotalCandidateNo.setText(totalCandidate);
                             binding.examDate.setText(examDate);
 
-                            final JSONArray student_array = jObj.getJSONArray("CandidateList");
+                            callCandidateList();
+
+                            /*final JSONArray student_array = jObj.getJSONArray("CandidateList");
 
                             if (student_array.length() != 0) {
                                 totalLength = student_array.length();
@@ -264,7 +266,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                                 Toast.makeText(context, message,
                                         Toast.LENGTH_SHORT).show();
                                 pd.dismiss();
-                            }
+                            }*/
+                            pd.dismiss();
 
                         } else {
                             MessageUtils.showFailureMessage(context, message);
@@ -339,6 +342,89 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         finish();
     }
 
+    private void callCandidateList() {
+        final ProgressDialog pd = Utils.createProgressDialog(this);
+        pd.show();
+
+        // StringRequest for making Request
+        StringRequest strReq = new StringRequest(Request.Method.GET,
+                ApiConfig.CANDIDATE_LIST_URL, new Response.Listener<String>() {
+
+            /*
+             * Response getting from server
+             */
+            @Override
+            public void onResponse(String response) {
+
+                if (!response.isEmpty()) {
+
+                    try {
+                        // fetch Response as JSONObject
+                        JSONObject jObj = new JSONObject(response);
+
+                        boolean success = jObj.getBoolean("Success");
+                        int code = jObj.getInt("Code");
+                        String message = jObj.getString("Message");
+
+                        if (success) {
+                            String totalCandidate = jObj.getString("TotalCandidate");
+                            String totalCandidateGateList = jObj.getString("TotalCandidateGateList");
+                            String totalCandidateHallList = jObj.getString("TotalCandidateHallList");
+                            String centreName = jObj.getString("CentreName");
+                            String districtName = jObj.getString("DistrictName");
+
+                            Osssc.getPrefs().setExamCenter(centreName);
+
+                            binding.txtTotalCandidateNo.setText(totalCandidate);
+
+                            final JSONArray student_array = jObj.getJSONArray("CandidateList");
+
+                            if (student_array.length() != 0) {
+                                totalLength = student_array.length();
+                                new InsertDatabase(student_array).execute();
+                                Toast.makeText(context, message,
+                                        Toast.LENGTH_SHORT).show();
+                                pd.dismiss();
+                            }
+
+                        } else {
+                            MessageUtils.showFailureMessage(context, message);
+                            pd.dismiss();
+                        }
+
+                    } catch (JSONException e) {
+                        // JSON error
+                        e.printStackTrace();
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), "Connection Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            // Server related error
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pd.dismiss();
+                Toast.makeText(getApplicationContext(), "Volley Error", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
+
+                headers.put("Authorization", "Bearer " + Osssc.getPrefs().getScannerData().getAssessToken());
+                return headers;
+            }
+        };
+        //cache disabled
+        strReq.setShouldCache(false);
+        // Adding request to request queue
+        //RequestQueue requestQueue;
+        Osssc.getInstance().addToRequestQueue(strReq);
+    }
+
     private class InsertDatabase extends AsyncTask<String, String, String> {
 
         JSONArray jsonArray;
@@ -361,7 +447,11 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         content = jsonArray.getJSONObject(i);
                         String rollNoumber = content.getString("RollNumber");
                         String barcode = content.getString("BarCode");
-                        mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, "", "", "", ""));
+                        String entryScanTime = content.getString("EntryScanTime");
+                        String hallScanTime = content.getString("HallScanTime");
+                        String entryStatus = content.getString("EntryStatus");
+                        String hallStatus = content.getString("HallStatus");
+                        mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, entryStatus, entryScanTime, hallStatus, hallScanTime));
                         Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();

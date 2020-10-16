@@ -100,4 +100,18 @@ public class CandidateAttendanceList {
     public void setScannerId(Integer scannerId) {
         this.scannerId = scannerId;
     }
+
+    @Override
+    public String toString() {
+        return "CandidateAttendanceList{" +
+                "candidateID=" + candidateID +
+                ", rollNumber='" + rollNumber + '\'' +
+                ", entryScanTime='" + entryScanTime + '\'' +
+                ", hallScanTime='" + hallScanTime + '\'' +
+                ", entryStatus='" + entryStatus + '\'' +
+                ", hallStatus='" + hallStatus + '\'' +
+                ", barCode='" + barCode + '\'' +
+                ", scannerId=" + scannerId +
+                '}';
+    }
 }

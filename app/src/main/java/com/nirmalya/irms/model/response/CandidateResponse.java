@@ -19,6 +19,14 @@ public class CandidateResponse {
     @Expose
     private String examShift;
 
+    @SerializedName("CentreName")
+    @Expose
+    private String centreName;
+
+    @SerializedName("DistrictName")
+    @Expose
+    private String districtName;
+
     @SerializedName("CandidateList")
     @Expose
     private List<CandidateList> candidateList = null;
@@ -101,5 +109,21 @@ public class CandidateResponse {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public String getCentreName() {
+        return centreName;
+    }
+
+    public void setCentreName(String centreName) {
+        this.centreName = centreName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
     }
 }

@@ -11,9 +11,33 @@ public class CandidateAttendanceResponse {
     @Expose
     private Integer totalCandidate;
 
+    @SerializedName("TotalCandidateGateList")
+    @Expose
+    private Integer totalCandidateGateList;
+
+    @SerializedName("TotalCandidateHallList")
+    @Expose
+    private Integer totalCandidateHallList;
+
+    @SerializedName("CentreName")
+    @Expose
+    private String centreName;
+
+    @SerializedName("DistrictName")
+    @Expose
+    private String districtName;
+
     @SerializedName("CandidateList")
     @Expose
     private List<CandidateAttendanceList> candidateList = null;
+
+    @SerializedName("TotalCandidateEntryScanList")
+    @Expose
+    private List<CandidateAttendanceList> candidateEntryList = null;
+
+    @SerializedName("TotalCandidateAttendanceHall")
+    @Expose
+    private List<CandidateAttendanceList> candidateHallList = null;
 
     @SerializedName("Success")
     @Expose
@@ -77,5 +101,53 @@ public class CandidateAttendanceResponse {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public Integer getTotalCandidateGateList() {
+        return totalCandidateGateList;
+    }
+
+    public void setTotalCandidateGateList(Integer totalCandidateGateList) {
+        this.totalCandidateGateList = totalCandidateGateList;
+    }
+
+    public Integer getTotalCandidateHallList() {
+        return totalCandidateHallList;
+    }
+
+    public void setTotalCandidateHallList(Integer totalCandidateHallList) {
+        this.totalCandidateHallList = totalCandidateHallList;
+    }
+
+    public String getCentreName() {
+        return centreName;
+    }
+
+    public void setCentreName(String centreName) {
+        this.centreName = centreName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public List<CandidateAttendanceList> getCandidateEntryList() {
+        return candidateEntryList;
+    }
+
+    public void setCandidateEntryList(List<CandidateAttendanceList> candidateEntryList) {
+        this.candidateEntryList = candidateEntryList;
+    }
+
+    public List<CandidateAttendanceList> getCandidateHallList() {
+        return candidateHallList;
+    }
+
+    public void setCandidateHallList(List<CandidateAttendanceList> candidateHallList) {
+        this.candidateHallList = candidateHallList;
     }
 }

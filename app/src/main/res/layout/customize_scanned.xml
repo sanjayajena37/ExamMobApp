@@ -51,6 +51,8 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="barcode"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         />

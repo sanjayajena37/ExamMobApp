@@ -37,7 +37,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Dist Code"
+                    android:text="Dist Name"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
@@ -116,7 +116,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Center Code"
+                    android:text="Center Name"
                     android:textColor="@color/gradiantblue"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />

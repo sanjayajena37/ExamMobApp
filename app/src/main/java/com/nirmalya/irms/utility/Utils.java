@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.activity.DashbordActivity;
+import com.nirmalya.irms.activity.LoginActivity;
 import com.nirmalya.irms.activity.NumberVerifActivity;
 
 import java.text.SimpleDateFormat;
@@ -79,7 +80,7 @@ public class Utils {
 
     public static void startRootActivity(Context context) {
         try {
-            Intent intent = new Intent(context, NumberVerifActivity.class);
+            Intent intent = new Intent(context, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         } catch (Exception e) {

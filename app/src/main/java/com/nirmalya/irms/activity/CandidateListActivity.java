@@ -68,8 +68,6 @@ public class CandidateListActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        binding.distCodeTxt.setText(Osssc.getPrefs().getScannerData().getDistCode());
-        binding.centerCode.setText(Osssc.getPrefs().getScannerData().getCenterCode());
         binding.custNumTxt.setText(Osssc.getPrefs().getScannerData().getScannerName());
         binding.custMobileNo.setText(Osssc.getPrefs().getScannerData().getScannerMobileNo());
     }
@@ -84,6 +82,8 @@ public class CandidateListActivity extends AppCompatActivity {
                         MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
                         binding.strExamDateTime.setText(candidateResponse.getExamDate());
                         binding.strExamShift.setText(candidateResponse.getExamShift());
+                        binding.distCodeTxt.setText(candidateResponse.getDistrictName());
+                        binding.centerCode.setText(candidateResponse.getCentreName());
                         int j = 1;
                         candidateListModels.clear();
                         for(int i = 0; i < candidateResponse.getCandidateList().size(); i++) {

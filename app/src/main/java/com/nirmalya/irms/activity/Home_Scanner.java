@@ -24,6 +24,7 @@ import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.RoomDB.AppDatabase;
 import com.nirmalya.irms.RoomDB.StudentModel;
+import com.nirmalya.irms.model.response.CandidateAttendanceList;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 import com.nirmalya.irms.utility.ZXingScannerView;
@@ -31,6 +32,9 @@ import com.nirmalya.irms.utility.ZXingScannerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -139,6 +143,14 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                     }
                 } else {
                     int hallCount;
+
+                    List<CandidateAttendanceList> lists = new ArrayList<>();
+
+                     lists = Osssc.getPrefs().getAttendanceListData();
+                     for(CandidateAttendanceList num:lists){
+                         System.out.println("STUDENT ATTENDANCE>>>>>>>>>>>>>>>>>>>>>>>"+num.toString());
+                     }
+
                     if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
                         hallCount = 1;
                     } else {

@@ -51,12 +51,7 @@ public class ScannedListActivity extends AppCompatActivity {
             imgArrow = findViewById(R.id.imgArrow);
             txtTitle = findViewById(R.id.txtTitle);
             txtTitle.setText("Scanned List");
-            imgArrow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            });
+            imgArrow.setOnClickListener(v -> onBackPressed());
 
             candidateListModels = new ArrayList<>();
 
@@ -66,8 +61,7 @@ public class ScannedListActivity extends AppCompatActivity {
         }
 
     private void setData() {
-        binding.distCodeTxt.setText(Osssc.getPrefs().getScannerData().getDistCode());
-        binding.centerCode.setText(Osssc.getPrefs().getScannerData().getCenterCode());
+        binding.strExamDateTime.setText(Osssc.getPrefs().getExamDateTime());
     }
 
     private void callCandidateList() {
@@ -79,40 +73,21 @@ public class ScannedListActivity extends AppCompatActivity {
                    lists = new ArrayList<>();
                     if (candidateAttendanceResponse != null && candidateAttendanceResponse.getSuccess()) {
                         MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
+                        binding.distCodeTxt.setText(candidateAttendanceResponse.getDistrictName());
+                        binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
                         int j = 1;
                         candidateListModels.clear();
-                        for(int i = 0; i < candidateAttendanceResponse.getCandidateList().size(); i++) {
+                        for(int i = 0; i < candidateAttendanceResponse.getCandidateEntryList().size(); i++) {
                             candidateListModels.add(new CandidateListModel(j,
-                                    candidateAttendanceResponse.getCandidateList().get(i).getRollNumber(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getBarCode(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryStatus(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryScanTime(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getHallStatus(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getHallScanTime()));
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getRollNumber(),
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getBarCode(),
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getEntryStatus(),
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getEntryScanTime(),
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getHallStatus(),
+                                    candidateAttendanceResponse.getCandidateEntryList().get(i).getHallScanTime()));
                             j++;
                         }
 
-                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                        binding.recyclerView.setLayoutManager(mLayoutManager);
-                        scannedlisAdapter = new ScannedlisAdapter ( candidateListModels, ScannedListActivity.this);
-                        binding.recyclerView.setAdapter(scannedlisAdapter);
-                    } else {
-
-                        int j = 1;
-                        candidateListModels.clear();
-                        assert candidateAttendanceResponse != null;
-                        for(int i = 0; i < candidateAttendanceResponse.getCandidateList().size(); i++) {
-                            candidateListModels.add(new CandidateListModel(j,
-                                    candidateAttendanceResponse.getCandidateList().get(i).getRollNumber(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getBarCode(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryStatus(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryScanTime(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getHallStatus(),
-                                    candidateAttendanceResponse.getCandidateList().get(i).getHallScanTime()));
-                            j++;
-                            lists.add(candidateAttendanceResponse.getCandidateList().get(i));
-                        }
-                        Osssc.getPrefs().setAttendanceListData(lists);
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         binding.recyclerView.setLayoutManager(mLayoutManager);
                         scannedlisAdapter = new ScannedlisAdapter ( candidateListModels, ScannedListActivity.this);

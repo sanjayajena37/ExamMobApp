@@ -9,6 +9,7 @@ import com.nirmalya.irms.model.response.CandidateAttendanceList;
 import com.nirmalya.irms.model.response.ScannerData;
 import com.nirmalya.irms.utility.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Preferences {
@@ -17,6 +18,7 @@ public class Preferences {
     private static final String KEY_SCANNER_MOBILE = "scanner_mobile";
     private static final String KEY_SCANNER_DATA_JSON = "scanner_request_json";
     private static final String KEY_EXAM_DATE_TIME = "exam_date_time";
+    private static final String KEY_EXAM_CENTER = "exam_center";
     private static final String KEY_EXAM_SHIFT = "exam_shift";
     private static final String KEY_ENTRY_STATUS = "entry_status";
     private static final String KEY_ATTENDANCE = "hall_attendance";
@@ -89,6 +91,16 @@ public class Preferences {
         editor.apply();
     }
 
+    public String getExamCenter() {
+        return preferences.getString(KEY_EXAM_CENTER, Constant.STRING_EMPTY);
+    }
+
+    public void setExamCenter(String examCenter) {
+        editor = preferences.edit();
+        editor.putString(KEY_EXAM_CENTER, examCenter);
+        editor.apply();
+    }
+
     public boolean getSelectEntryStatus() {
         return preferences.getBoolean(KEY_ENTRY_STATUS, true);
     }
@@ -129,18 +141,20 @@ public class Preferences {
         editor.apply();
     }
 
-    public ScannerData getCandidateAttendanceData() {
-        String userScannerDataJsonAsString = preferences.getString(KEY_CANDIDATE_ATTENDANCE, Constant.STRING_EMPTY);
-        return !userScannerDataJsonAsString.equalsIgnoreCase(Constant.STRING_EMPTY) ?
-                (ScannerData) new Gson().fromJson(userScannerDataJsonAsString, new TypeToken<ScannerData>() {
-                }.getType()) : new ScannerData();
-    }
-
    /* public void setCandidateAttendanceData(CandidateAttendanceList candidateAttendanceList) {
         editor = preferences.edit();
         editor.putString(KEY_CANDIDATE_ATTENDANCE, new Gson().toJson(candidateAttendanceList));
         editor.apply();
     }*/
+
+    public List<CandidateAttendanceList> getAttendanceListData() {
+        String userScannerDataJsonAsString = preferences.getString(KEY_CANDIDATE_ATTENDANCE, Constant.STRING_EMPTY);
+        List<CandidateAttendanceList> blank=new ArrayList<>();
+        return !userScannerDataJsonAsString.equalsIgnoreCase(Constant.STRING_EMPTY) ?
+                (List<CandidateAttendanceList>) new Gson().fromJson(userScannerDataJsonAsString, new TypeToken<CandidateAttendanceList>() {
+                }.getType()) : blank;
+
+    }
 
     public void setAttendanceListData(List<CandidateAttendanceList> candidateAttendanceList) {
         editor = preferences.edit();

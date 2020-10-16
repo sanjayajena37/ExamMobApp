@@ -19,4 +19,5 @@ public class ApiConfig {
 
     //public static String STUDENT_LIST_URL = "http://www.json-generator.com/api/json/get/bVLiuVTyJK?indent=2";
     public static String STUDENT_LIST_URL = BASE_URL + "GetCandidates";
+    public static String CANDIDATE_LIST_URL = BASE_URL + "GetCandidateAttendance";
 }
