@@ -81,9 +81,15 @@ public class ScannedListActivity extends AppCompatActivity {
                 .observe(this, candidateAttendanceResponse -> {
                     lists = new ArrayList<>();
                     if (candidateAttendanceResponse != null && candidateAttendanceResponse.getSuccess()) {
-                        MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
                         binding.distCodeTxt.setText(candidateAttendanceResponse.getDistrictName());
                         binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
+
+                        if(candidateAttendanceResponse.getTotalCandidateGateList() == 0 ||
+                        candidateAttendanceResponse.getTotalCandidateHallList() == 0) {
+                            MessageUtils.showFailureMessage(context, "No Scan Data Found");
+                        } else {
+                            MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
+                        }
 
                         if (DataShowType.equalsIgnoreCase("gateScannedList")) {
                             lists.addAll(candidateAttendanceResponse.getCandidateEntryList());
