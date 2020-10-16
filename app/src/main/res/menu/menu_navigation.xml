@@ -15,9 +15,14 @@
         android:visible="false"
         />
     <item
-        android:id="@+id/scannedlist"
+        android:id="@+id/gateScannedList"
         android:icon="@drawable/ic_scanned"
-        android:title="Scanned List" />
+        android:title="Gate Scanned List" />
+
+    <item
+        android:id="@+id/hallScannedList"
+        android:icon="@drawable/ic_scanned"
+        android:title="Hall Scanned List" />
 
     <item
         android:id="@+id/logout"

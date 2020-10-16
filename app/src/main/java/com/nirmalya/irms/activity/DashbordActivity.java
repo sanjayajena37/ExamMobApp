@@ -322,14 +322,26 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 startActivity(intent1);
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
-            case R.id.scannedlist:
+            case R.id.gateScannedList:
                 Intent intent2 = new Intent(DashbordActivity.this, ScannedListActivity.class);
+                intent2.putExtra("screen", "gateScannedList");
                 startActivity(intent2);
                 drawer_layout.closeDrawer(GravityCompat.START);
                 break;
+            case R.id.hallScannedList:
+                Intent intent3 = new Intent(DashbordActivity.this, ScannedListActivity.class);
+                intent3.putExtra("screen", "hallScannedList");
+                startActivity(intent3);
+                drawer_layout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.logout:
-                checkLocalData();
-                //gotoLogout();
+
+                if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("") ||
+                        Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+                    deleteDb();
+                } else {
+                    checkLocalData();
+                }
                 break;
         }
         return true;
@@ -508,8 +520,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                     updateList = mDb.studentDao().filterResources();
                     //updateList.forEach();
                     for (StudentModel num : updateList) {
-                        //Log.v("LOG CAT",num.theString()+"\n");
-                        System.out.println("DATA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+num.theString());
+                        //System.out.println("DATA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+num.theString());
                         CandidateRequestData candidateRequestData = new CandidateRequestData(num.getStRollNo(),
                                 num.getStBarcode(), num.getEntryScanTime(),
                                 num.getHallScanTime(), num.getEntryStatus(), num.getHallStatus(),

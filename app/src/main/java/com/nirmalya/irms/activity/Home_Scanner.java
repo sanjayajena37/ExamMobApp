@@ -144,13 +144,6 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                 } else {
                     int hallCount;
 
-                    List<CandidateAttendanceList> lists = new ArrayList<>();
-
-                     lists = Osssc.getPrefs().getAttendanceListData();
-                     for(CandidateAttendanceList num:lists){
-                         System.out.println("STUDENT ATTENDANCE>>>>>>>>>>>>>>>>>>>>>>>"+num.toString());
-                     }
-
                     if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
                         hallCount = 1;
                     } else {
@@ -161,13 +154,18 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                             selectModel.getHallStatus().equalsIgnoreCase("A")) {
                         return "Barcode Already Scan";
                     } else {
-                        Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
-                        if (Osssc.getPrefs().getSelectHallAttendance()) {
-                            selectModel.setHallStatus("P");
+
+                        if(selectModel.getEntryStatus().equalsIgnoreCase("P")) {
+                            Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+                            if (Osssc.getPrefs().getSelectHallAttendance()) {
+                                selectModel.setHallStatus("P");
+                            } else {
+                                selectModel.setHallStatus("A");
+                            }
+                            selectModel.setHallScanTime(time);
                         } else {
-                            selectModel.setHallStatus("A");
+                            return "This Candidate Absent in Entry Gate";
                         }
-                        selectModel.setHallScanTime(time);
                     }
                 }
                 db.studentDao().updateResource(selectModel);

@@ -18,8 +18,6 @@ public interface StudentDao {
     @Query("SELECT * FROM students WHERE entryStatus = 'P' OR hallStatus = 'A' OR hallStatus = 'P'")
     List<StudentModel> filterResources();
 
-
-
     @Query("DELETE FROM students")
     void deleteAll();
 
