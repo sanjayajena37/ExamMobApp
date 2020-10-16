@@ -2,23 +2,18 @@ package com.nirmalya.irms.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.databinding.ActivityCandidatelistBinding;
 import com.nirmalya.irms.model.CandidateListModel;
 import com.nirmalya.irms.adapter.CandidatelisAdapter;
-import com.nirmalya.irms.model.request.SignInRequest;
 import com.nirmalya.irms.repository.APIRepo;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
@@ -30,8 +25,6 @@ public class CandidateListActivity extends AppCompatActivity {
     private ActivityCandidatelistBinding binding;
     private ArrayList<CandidateListModel> candidateListModels;
     private CandidatelisAdapter candidatelisAdapter;
-    private Toolbar toolbar;
-    private ImageView imgArrow, reload;
     private Context context;
     private APIRepo repo;
 
@@ -43,21 +36,11 @@ public class CandidateListActivity extends AppCompatActivity {
         context = this;
         repo = new APIRepo();
 
-        reload = findViewById(R.id.reload);
-        imgArrow = findViewById(R.id.imgArrow);
-        imgArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        ImageView reload = findViewById(R.id.reload);
+        ImageView imgArrow = findViewById(R.id.imgArrow);
+        imgArrow.setOnClickListener(v -> onBackPressed());
 
-        reload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callCandidateList();
-            }
-        });
+        reload.setOnClickListener(v -> callCandidateList());
 
         setData();
 

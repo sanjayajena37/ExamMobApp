@@ -31,7 +31,6 @@ public class ScannedListActivity extends AppCompatActivity {
     private Context context;
     private APIRepo repo;
     List<CandidateAttendanceList> lists;
-    private Bundle extras;
     private String DataShowType = "";
 
     @SuppressLint("SetTextI18n")
@@ -44,7 +43,7 @@ public class ScannedListActivity extends AppCompatActivity {
         repo = new APIRepo();
 
         if (getIntent() != null) {
-            extras = getIntent().getExtras();
+            Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 DataShowType = extras.getString("screen");
             }
@@ -54,6 +53,9 @@ public class ScannedListActivity extends AppCompatActivity {
         TextView txtTitle = findViewById(R.id.txtTitle);
         txtTitle.setText("Scanned List");
         imgArrow.setOnClickListener(v -> onBackPressed());
+
+        ImageView reload = findViewById(R.id.reload);
+        reload.setOnClickListener(v -> callCandidateList());
 
         candidateListModels = new ArrayList<>();
 
@@ -77,10 +79,6 @@ public class ScannedListActivity extends AppCompatActivity {
                         MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
                         binding.distCodeTxt.setText(candidateAttendanceResponse.getDistrictName());
                         binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
-
-                        if (lists.size() < 0) {
-                            lists.clear();
-                        }
 
                         if (DataShowType.equalsIgnoreCase("gateScannedList")) {
                             lists.addAll(candidateAttendanceResponse.getCandidateEntryList());
