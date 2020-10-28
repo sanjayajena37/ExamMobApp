@@ -30,27 +30,92 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtExamDate"
-            style="@style/BigTextViewLabel"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="Exam Date"
-            tools:ignore="HardcodedText" />
+        <RelativeLayout
+            android:id="@+id/centerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/examDate"
-            style="@style/BigTextViewLabel"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="00-00-00"
-            tools:ignore="HardcodedText"
-            android:layout_below="@+id/txtExamDate"/>
+            <TextView
+                android:id="@+id/txtCenterName"
+                android:layout_width="@dimen/_100sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Center Name :"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/centerName"
+                style="@style/BigTextViewLabel"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                tools:text="Exam Date"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtCenterName"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/testLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@+id/centerLayout">
+
+            <TextView
+                android:id="@+id/txtTestName"
+                android:layout_width="@dimen/_100sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Test Name :"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/testName"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00-00-00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtTestName"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/DateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@+id/testLayout">
+
+            <TextView
+                android:id="@+id/txtExamDate"
+                android:layout_width="@dimen/_100sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Exam Date :"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/examDate"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00-00-00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtExamDate"/>
+
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout"
@@ -59,7 +124,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_below="@+id/examDate">
+            android:layout_below="@+id/DateLayout">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/totalCandidateCard"
@@ -188,7 +253,7 @@
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:src="@drawable/ic_barcode_scanner"
+                        android:src="@drawable/ic_student_exam"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -227,8 +292,7 @@
             android:id="@+id/txtScanType"
             style="@style/DashboardLabel"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="Select Type"
-            android:textAllCaps="true"
+            android:text="Select The Point Attendance"
             android:layout_below="@+id/layout"
             tools:ignore="HardcodedText" />
 
@@ -368,7 +432,7 @@
                 android:layout_width="@dimen/_32sdp"
                 android:layout_height="@dimen/_32sdp"
                 android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_website_login_icon"
+                android:src="@drawable/ic_send"
                 tools:ignore="ContentDescription" />
 
             <TextView

@@ -250,11 +250,18 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String examDate = jObj.getString("Exam_Date");
                             String examShift = jObj.getString("Exam_Shift");
 
+                            String[] dateTime = examDate.split(",");
+
+                            String date = dateTime[0];
+                            String time = dateTime[1];
+
+                            String statusDateTime = examShift + " "+ date + " (" + time + " )";
+
                             Osssc.getPrefs().setExamDateTime(examDate);
                             Osssc.getPrefs().setExamShift(examShift);
 
                             binding.txtTotalCandidateNo.setText(totalCandidate);
-                            binding.examDate.setText(examDate);
+                            binding.examDate.setText(statusDateTime);
 
                             callCandidateList();
 
@@ -384,9 +391,18 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String totalCandidateHallList = jObj.getString("TotalCandidateHallList");
                             String centreName = jObj.getString("CentreName");
                             String districtName = jObj.getString("DistrictName");
+                            String subjectName = jObj.getString("Subject_Name");
+                            String postName = jObj.getString("PostName");
+                            String testName = jObj.getString("TestName");
 
                             Osssc.getPrefs().setExamCenter(centreName);
                             centerCode.setText(centreName);
+                            String centName = centreName + ", " + districtName;
+                            String examName = testName + " (" + subjectName + ") "
+                                    + "for the post of " + postName;
+
+                            binding.centerName.setText(centName);
+                            binding.testName.setText(examName);
 
                             binding.txtTotalCandidateNo.setText(totalCandidate);
 

@@ -70,7 +70,7 @@
     <style name="BigTextViewLabel">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:lineSpacingExtra">@dimen/_3ssp</item>
     </style>
@@ -84,7 +84,6 @@
         <item name="android:textSize">@dimen/_9ssp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="RadioGroupStyle">
