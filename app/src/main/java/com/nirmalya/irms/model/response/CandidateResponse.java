@@ -23,6 +23,18 @@ public class CandidateResponse {
     @Expose
     private String centreName;
 
+    @SerializedName("Subject_Name")
+    @Expose
+    private String subjectName;
+
+    @SerializedName("PostName")
+    @Expose
+    private String postName;
+
+    @SerializedName("TestName")
+    @Expose
+    private String testName;
+
     @SerializedName("DistrictName")
     @Expose
     private String districtName;
@@ -125,5 +137,29 @@ public class CandidateResponse {
 
     public void setDistrictName(String districtName) {
         this.districtName = districtName;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public String getPostName() {
+        return postName;
+    }
+
+    public void setPostName(String postName) {
+        this.postName = postName;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
     }
 }

@@ -63,10 +63,20 @@ public class CandidateListActivity extends AppCompatActivity {
                 .observe(this, candidateResponse -> {
                     if (candidateResponse != null && candidateResponse.getSuccess()) {
                         MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
-                        binding.strExamDateTime.setText(candidateResponse.getExamDate());
+
+                        String[] dateTime = candidateResponse.getExamDate().split(",");
+
+                        String date = dateTime[0];
+                        String time = dateTime[1];
+
+                        String statusDateTime = date + " (" + time + " )";
+                        String examName = candidateResponse.getTestName() + " (" + candidateResponse.getSubjectName() + ")";
+
+                        binding.strExamDateTime.setText(statusDateTime);
                         binding.strExamShift.setText(candidateResponse.getExamShift());
                         binding.distCodeTxt.setText(candidateResponse.getDistrictName());
                         binding.centerCode.setText(candidateResponse.getCentreName());
+                        binding.strTestName.setText(examName);
                         int j = 1;
                         candidateListModels.clear();
                         for(int i = 0; i < candidateResponse.getCandidateList().size(); i++) {
@@ -82,6 +92,7 @@ public class CandidateListActivity extends AppCompatActivity {
                         binding.recyclerView.setLayoutManager(mLayoutManager);
                         candidatelisAdapter = new CandidatelisAdapter(candidateListModels, CandidateListActivity.this);
                         binding.recyclerView.setAdapter(candidatelisAdapter);
+                        binding.recyclerView.setNestedScrollingEnabled(false);
                     }
                     pd.dismiss();
                 });
