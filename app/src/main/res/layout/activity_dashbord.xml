@@ -43,17 +43,19 @@
                 android:layout_marginStart="@dimen/_25sdp"
                 android:textStyle="normal"
                 android:text="Center Name :"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/centerName"
                 style="@style/BigTextViewLabel"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:textStyle="bold"
-                tools:text="Exam Date"
+                tools:text=""
                 android:textAllCaps="false"
+                android:textAlignment="center"
                 tools:ignore="HardcodedText"
                 android:layout_toEndOf="@+id/txtCenterName"/>
 
@@ -73,16 +75,18 @@
                 android:layout_marginStart="@dimen/_25sdp"
                 android:textStyle="normal"
                 android:text="Test Name :"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/testName"
                 style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:textStyle="bold"
-                android:text="00-00-00"
+                android:text=""
                 android:textAllCaps="false"
+                android:textAlignment="center"
                 tools:ignore="HardcodedText"
                 android:layout_toEndOf="@+id/txtTestName"/>
 
@@ -102,15 +106,17 @@
                 android:layout_marginStart="@dimen/_25sdp"
                 android:textStyle="normal"
                 android:text="Exam Date :"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/examDate"
                 style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:textStyle="bold"
-                android:text="00-00-00"
+                android:text=""
+                android:textAlignment="center"
                 android:textAllCaps="false"
                 tools:ignore="HardcodedText"
                 android:layout_toEndOf="@+id/txtExamDate"/>
@@ -209,7 +215,7 @@
                     <TextView
                         android:id="@+id/txtTotalGateScan"
                         style="@style/DocumentTextStyle"
-                        android:text="Scanned In \nEntry Gate"
+                        android:text="Total Scanned In Entry Gate"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -262,7 +268,7 @@
                     <TextView
                         android:id="@+id/txtTotalHallScan"
                         style="@style/DocumentTextStyle"
-                        android:text="Scanned In \nExam Hall"
+                        android:text="Total Scanned In Exam Hall"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -288,12 +294,111 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <RelativeLayout
+            android:id="@+id/nowScanLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_below="@+id/layout">
+
+            <TextView
+                android:id="@+id/txtNowScan"
+                android:layout_width="@dimen/_130sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Now Scan :"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/nowScanGateCount"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtNowScan"/>
+
+            <TextView
+                android:id="@+id/nowScanHallCount"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/txtNowScan"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/scannerGateScanLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@+id/nowScanLayout">
+
+            <TextView
+                android:id="@+id/txtScannerGate"
+                android:layout_width="@dimen/_130sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Scanner Entry Gate Scan : "
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/scannerGateCount"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtScannerGate"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/scannerHallScanLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@+id/scannerGateScanLayout">
+
+            <TextView
+                android:id="@+id/txtScannerHall"
+                android:layout_width="@dimen/_130sdp"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textStyle="normal"
+                android:text="Scanner Hall Scan : "
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/scannerHallCount"
+                style="@style/BigTextViewLabel"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="00"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                android:layout_toEndOf="@+id/txtScannerHall"/>
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/txtScanType"
             style="@style/DashboardLabel"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="Select The Point Attendance"
-            android:layout_below="@+id/layout"
+            android:text="Select the Point of Attendance"
+            android:layout_below="@+id/scannerHallScanLayout"
             tools:ignore="HardcodedText" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -385,7 +490,7 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:buttonTint="@color/white"
                     android:checked="true"
-                    android:text="Candidate Present"
+                    android:text="Candidates Present"
                     android:textColor="@color/white"
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
@@ -395,7 +500,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:buttonTint="@color/white"
-                    android:text="Candidate Absent"
+                    android:text="Candidates Absent"
                     android:textColor="@color/white"
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
@@ -441,7 +546,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_12sdp"
                 android:letterSpacing="0.03"
-                android:text="Send Scan Data"
+                android:text="Send Scanned Data"
                 android:textAllCaps="false"
                 android:textColor="@color/blackFaded"
                 android:textSize="17sp"
@@ -461,7 +566,8 @@
         android:fitsSystemWindows="true"
         android:layout_gravity="start|left"
         app:headerLayout="@layout/header"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        tools:ignore="RtlHardcoded" />
 </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

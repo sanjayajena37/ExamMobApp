@@ -130,15 +130,19 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         }
 
         if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
-            binding.txtTotalGateScanNo.setText("00");
+            binding.nowScanGateCount.setText("00");
         } else {
-            binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
+            binding.nowScanGateCount.setText(Osssc.getPrefs().getGateScanCount());
+            binding.nowScanGateCount.setVisibility(View.VISIBLE);
+            binding.nowScanHallCount.setVisibility(View.GONE);
         }
 
         if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
-            binding.txtTotalHallScanNo.setText("00");
+            binding.nowScanHallCount.setText("00");
         } else {
-            binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
+            binding.nowScanHallCount.setText(Osssc.getPrefs().getHallScanCount());
+            binding.nowScanGateCount.setVisibility(View.GONE);
+            binding.nowScanHallCount.setVisibility(View.VISIBLE);
         }
 
         binding.scanner.setOnClickListener(view -> {
@@ -182,20 +186,25 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
-            binding.txtTotalGateScanNo.setText("00");
+            binding.nowScanGateCount.setText("00");
         } else {
-            binding.txtTotalGateScanNo.setText(Osssc.getPrefs().getGateScanCount());
+            binding.nowScanGateCount.setText(Osssc.getPrefs().getGateScanCount());
+            binding.nowScanGateCount.setVisibility(View.VISIBLE);
+            binding.nowScanHallCount.setVisibility(View.GONE);
         }
 
         if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
-            binding.txtTotalHallScanNo.setText("00");
+            binding.nowScanHallCount.setText("00");
         } else {
-            binding.txtTotalHallScanNo.setText(Osssc.getPrefs().getHallScanCount());
+            binding.nowScanHallCount.setText(Osssc.getPrefs().getHallScanCount());
+            binding.nowScanGateCount.setVisibility(View.GONE);
+            binding.nowScanHallCount.setVisibility(View.VISIBLE);
         }
     }
 
@@ -255,7 +264,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String date = dateTime[0];
                             String time = dateTime[1];
 
-                            String statusDateTime = examShift + " "+ date + " (" + time + " )";
+                            String statusDateTime = examShift + " on "+ date + " (" + time + " )";
 
                             Osssc.getPrefs().setExamDateTime(examDate);
                             Osssc.getPrefs().setExamShift(examShift);
@@ -394,6 +403,9 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String subjectName = jObj.getString("Subject_Name");
                             String postName = jObj.getString("PostName");
                             String testName = jObj.getString("TestName");
+
+                            binding.txtTotalGateScanNo.setText(totalCandidateGateList);
+                            binding.txtTotalHallScanNo.setText(totalCandidateHallList);
 
                             Osssc.getPrefs().setExamCenter(centreName);
                             centerCode.setText(centreName);
