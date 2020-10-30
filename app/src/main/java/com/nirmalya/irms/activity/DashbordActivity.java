@@ -352,7 +352,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.logout:
 
-                if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("") ||
+                if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("") &&
                         Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
                     deleteDb();
                 } else {
@@ -398,6 +398,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String totalCandidate = jObj.getString("TotalCandidate");
                             String totalCandidateGateList = jObj.getString("TotalCandidateGateList");
                             String totalCandidateHallList = jObj.getString("TotalCandidateHallList");
+                            String hallAttendScannerwiseCount = jObj.getString("HallAttendScannerwiseCount");
+                            String gateAttendScannerwiseCount = jObj.getString("GateAttendScannerwiseCount");
                             String centreName = jObj.getString("CentreName");
                             String districtName = jObj.getString("DistrictName");
                             String subjectName = jObj.getString("Subject_Name");
@@ -406,6 +408,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
 
                             binding.txtTotalGateScanNo.setText(totalCandidateGateList);
                             binding.txtTotalHallScanNo.setText(totalCandidateHallList);
+                            binding.scannerHallCount.setText(hallAttendScannerwiseCount);
+                            binding.scannerGateCount.setText(gateAttendScannerwiseCount);
 
                             Osssc.getPrefs().setExamCenter(centreName);
                             centerCode.setText(centreName);
