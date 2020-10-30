@@ -26,4 +26,9 @@
     <color name="menu_light_blue_grey">#cfd3f0</color>
     <color name="transparent">#00000000</color>
 
+    <color name="navBottomView">#999ba4ab</color>
+    <color name="checkoutViewColor">#d9d9d9</color>
+    <color name="medium_black">#313131</color>
+    <color name="darkGreen">#4CAF50</color>
+
 </resources>

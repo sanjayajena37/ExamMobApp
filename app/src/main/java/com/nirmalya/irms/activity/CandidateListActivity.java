@@ -64,15 +64,15 @@ public class CandidateListActivity extends AppCompatActivity {
                     if (candidateResponse != null && candidateResponse.getSuccess()) {
                         MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
 
-                        String[] dateTime = candidateResponse.getExamDate().split(",");
+                        /*String[] dateTime = candidateResponse.getExamDate().split(",");
 
                         String date = dateTime[0];
                         String time = dateTime[1];
 
-                        String statusDateTime = date + " (" + time + " )";
+                        String statusDateTime = date + " (" + time + " )";*/
                         String examName = candidateResponse.getTestName() + " (" + candidateResponse.getSubjectName() + ")";
 
-                        binding.strExamDateTime.setText(statusDateTime);
+                        binding.strExamDateTime.setText(candidateResponse.getExamDate());
                         binding.strExamShift.setText(candidateResponse.getExamShift());
                         binding.distCodeTxt.setText(candidateResponse.getDistrictName());
                         binding.centerCode.setText(candidateResponse.getCentreName());

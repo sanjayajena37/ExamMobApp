@@ -9,13 +9,20 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.media.MediaBrowserServiceCompat;
 import androidx.room.Database;
 
@@ -23,7 +30,9 @@ import com.google.zxing.Result;
 import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.RoomDB.AppDatabase;
+import com.nirmalya.irms.RoomDB.AppExecutors;
 import com.nirmalya.irms.RoomDB.StudentModel;
+import com.nirmalya.irms.databinding.DialogVerifyAttBinding;
 import com.nirmalya.irms.model.response.CandidateAttendanceList;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
@@ -111,7 +120,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
     }
 
 
-    private class UpdateDatabase extends AsyncTask<String, String, String> {
+    private class UpdateDatabase extends AsyncTask<String, String, StudentModel> {
 
         String barcode;
         AppDatabase db;
@@ -123,69 +132,184 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
         @SuppressLint("WrongConstant")
         @Override
-        protected String doInBackground(String... strings) {
-            StudentModel selectModel = db.studentDao().selectData(barcode);
+        protected StudentModel doInBackground(String... strings) {
+            return db.studentDao().selectData(barcode);
+
+        }
+
+        @Override
+        protected void onPostExecute(StudentModel selectModel) {
+            super.onPostExecute(selectModel);
+            // Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            /*Intent intent = new Intent();
+            //intent.putExtra("Contents",position);
+            intent.putExtra("Format", formt);
+            setResult(RESULT_OK, intent);
+            finish();*/
+
             if (selectModel != null) {
                 String time = Utils.getCurrentTime();
                 if (Osssc.getPrefs().getSelectEntryStatus()) {
                     int gateCount;
-                    if(Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
+                    if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
                         gateCount = 1;
                     } else {
                         gateCount = Integer.parseInt(Osssc.getPrefs().getGateScanCount()) + 1;
                     }
-                    if(selectModel.getEntryStatus().equalsIgnoreCase("P")) {
-                        return "Barcode Already Scan";
+                    if (selectModel.getEntryStatus().equalsIgnoreCase("P")) {
+                        //return "Barcode Already Scan";
+                        MessageUtils.showFailureMessage(context, "Barcode Already Scan");
+                        finishScanner();
+
                     } else {
                         Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
                         selectModel.setEntryStatus("P");
                         selectModel.setEntryScanTime(time);
+                        MessageUtils.showSuccessMessage(context, "Scan Successful");
+                        finishScanner();
                     }
                 } else {
                     int hallCount;
 
-                    if(Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
+                    if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
                         hallCount = 1;
                     } else {
                         hallCount = Integer.parseInt(Osssc.getPrefs().getHallScanCount()) + 1;
                     }
 
-                    if(selectModel.getHallStatus().equalsIgnoreCase("P") ||
+                    if (selectModel.getHallStatus().equalsIgnoreCase("P") ||
                             selectModel.getHallStatus().equalsIgnoreCase("A")) {
-                        return "Barcode Already Scan";
+                        MessageUtils.showFailureMessage(context, "Barcode Already Scan");
+                        finishScanner();
                     } else {
 
-                        if(selectModel.getEntryStatus().equalsIgnoreCase("P")) {
+                        if (selectModel.getEntryStatus().equalsIgnoreCase("P")) {
                             Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
-                            selectModel.setHallScanTime(time);
                             if (Osssc.getPrefs().getSelectHallAttendance()) {
                                 selectModel.setHallStatus("P");
+                                MessageUtils.showSuccessMessage(context, "Scan Successful");
+                                finishScanner();
                             } else {
-                                selectModel.setHallStatus("A");
-                                db.studentDao().updateResource(selectModel);
-                                return "Attendance status of the candidate marked as present in entry gate. Please verify.\nBut candidate exam hall attendance set as absent.";
+                                showDialog(selectModel,
+                                        "Attendance status of the candidate marked as present in entry gate. Please re verify",
+                                        false, db);
+                                /*selectModel.setHallStatus("A");
+                                db.studentDao().updateResource(selectModel);*/
+                                //return "Attendance status of the candidate marked as present in entry gate. Please re verify.\nBut candidate exam hall attendance set as absent.";
                             }
                         } else {
-                            return "This candidate attendance marked as absent in entry gate. Please verify..";
+                            Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+                            showDialog(selectModel,
+                                    "Marked as absent in entry gate. Please re verify.",
+                                    true, db);
+                            //return "This candidate attendance marked as absent in entry gate. Please verify..";
                         }
                     }
                 }
-                db.studentDao().updateResource(selectModel);
-                return "Scan Successful";
+                AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.studentDao().updateResource(selectModel);
+                    }
+                });
+
             } else {
-                return "Invalid Barcode";
+                MessageUtils.showFailureMessage(context, "Invalid Barcode");
+                finishScanner();
             }
         }
+    }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent();
-            //intent.putExtra("Contents",position);
-            intent.putExtra("Format", formt);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
+    @SuppressLint("SetTextI18n")
+    private void showDialog(StudentModel selectModel, String message, boolean attendanceType, AppDatabase db) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog alertDialog = builder.create();
+        DialogVerifyAttBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.dialog_verify_att, null, false);
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = alertDialog.getWindow();
+        assert window != null;
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        window.setAttributes(wlp);
+
+        dialogBinding.titleDialog.setText("Verify It");
+
+        String strMessage = selectModel.getStRollNo() + " " + message;
+
+        dialogBinding.txtDetails.setText(strMessage);
+
+        dialogBinding.btnCancel.setOnClickListener(v -> {
+            alertDialog.dismiss();
+            finishScanner();
+        });
+
+        dialogBinding.btnIAgree.setOnClickListener(v -> {
+            String msg = "";
+            if (attendanceType) {
+                msg = "Still want to be " + selectModel.getStRollNo() + " to be Present.";
+            } else {
+                msg = "Still want to be " + selectModel.getStRollNo() + " to be Absent.";
+            }
+            showAttendanceDialog(selectModel, msg, attendanceType, db);
+            alertDialog.dismiss();
+        });
+
+        alertDialog.setView(dialogBinding.getRoot());
+        alertDialog.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showAttendanceDialog(StudentModel selectModel, String message, boolean attType, AppDatabase db) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog alertDialog = builder.create();
+        DialogVerifyAttBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.dialog_verify_att, null, false);
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = alertDialog.getWindow();
+        assert window != null;
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        window.setAttributes(wlp);
+
+        dialogBinding.titleDialog.setText("Attendance");
+
+        dialogBinding.txtDetails.setText(message);
+
+        dialogBinding.btnCancel.setOnClickListener(v -> {
+            alertDialog.dismiss();
+            finishScanner();
+        });
+
+        dialogBinding.btnIAgree.setOnClickListener(v -> {
+            if (attType) {
+                selectModel.setHallStatus("P");
+                MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
+            } else {
+                selectModel.setHallStatus("A");
+                MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Absent.");
+            }
+            selectModel.setHallScanTime(Utils.getCurrentTime());
+            AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.studentDao().updateResource(selectModel);
+                    finishScanner();
+                }
+            });
+        });
+
+        alertDialog.setView(dialogBinding.getRoot());
+        alertDialog.show();
+    }
+
+    private void finishScanner() {
+        Intent intent = new Intent();
+        //intent.putExtra("Contents",position);
+        intent.putExtra("Format", formt);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

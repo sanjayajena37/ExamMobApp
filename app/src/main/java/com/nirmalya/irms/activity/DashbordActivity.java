@@ -259,18 +259,18 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                             String examDate = jObj.getString("Exam_Date");
                             String examShift = jObj.getString("Exam_Shift");
 
-                            String[] dateTime = examDate.split(",");
+                            /*String[] dateTime = examDate.split(",");
 
                             String date = dateTime[0];
                             String time = dateTime[1];
 
-                            String statusDateTime = examShift + " on "+ date + " (" + time + " )";
+                            String statusDateTime = examShift + " on "+ date + " (" + time + " )";*/
 
                             Osssc.getPrefs().setExamDateTime(examDate);
                             Osssc.getPrefs().setExamShift(examShift);
 
                             binding.txtTotalCandidateNo.setText(totalCandidate);
-                            binding.examDate.setText(statusDateTime);
+                            binding.examDate.setText(examDate);
 
                             callCandidateList();
 

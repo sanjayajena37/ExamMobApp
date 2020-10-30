@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    app:ignore="NamespaceTypo">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/rollNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="Roll No."
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/_15ssp"
+                    app:ignore="HardcodedText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:id="@+id/view1"
+                    android:background="@color/navBottomView"
+                    app:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/paymentReceivedOrNotMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="Message"
+                    android:textColor="@color/gradiantpurpel"
+                    android:textColorLink="@color/lightgrya"
+                    android:textSize="@dimen/_13ssp"
+                    app:ignore="HardcodedText,ObsoleteLayoutParam" />
+
+
+
+                   <!-- <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/centerText"
+                        android:layout_centerInParent="true"
+                        android:background="@color/navBottomView"
+                        android:visibility="invisible"
+                        android:text=""/>
+
+                    <Button
+                        android:id="@+id/noButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/centerText"
+                        android:text="@string/paymentReceivedNo"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/light_black"
+                        android:padding="10dp"
+                        android:textSize="@dimen/dialog_button_text_size"
+                        android:layout_alignParentStart="true"/>
+
+                    <Button
+                        android:id="@+id/yesButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/centerText"
+                        android:text="@string/paymentReceivedYes"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/darkGreen"
+                        android:padding="10dp"
+                        android:textSize="@dimen/dialog_button_text_size"
+                        android:layout_alignParentEnd="true"/>
+-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:id="@+id/view"
+                        android:background="@color/checkoutViewColor"
+                        android:layout_marginTop="30dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/buttonLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/noButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/transparent"
+                            android:text="No"
+                            android:padding="10dp"
+                            android:textSize="@dimen/_12ssp"
+                            android:layout_marginEnd="0.2dp"
+                            android:textColor="@color/medium_black"
+                            app:ignore="HardcodedText" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/viewLine"
+                            android:background="@color/checkoutViewColor"/>
+
+                        <Button
+                            android:id="@+id/yesButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="0.2dp"
+                            android:padding="10dp"
+                            android:textSize="@dimen/_12ssp"
+                            android:background="@color/transparent"
+                            android:text="Yes"
+                            android:textColor="@color/darkGreen"
+                            app:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="@dimen/_0sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
+
+            <TextView
+                android:id="@+id/titleDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textStyle="bold"
+                android:textColor="#de000000"
+                android:letterSpacing="0.01"
+                android:textSize="@dimen/_15ssp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/txtDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:lineSpacingExtra="@dimen/_8ssp"
+                android:letterSpacing="0.01"
+                android:text="Message"
+                android:textColor="@color/grey2"
+                android:textColorLink="@color/gradiantpurpel"
+                android:textSize="@dimen/_12ssp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:gravity="right"
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:letterSpacing="0.09"
+                    android:text="No"
+                    android:lineSpacingExtra="2sp"
+                    android:textAllCaps="true"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="visible"
+                    tools:ignore="AllCaps,ButtonStyle,HardcodedText,UnusedAttribute" />
+
+                <Button
+                    android:id="@+id/btnIAgree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:letterSpacing="0.09"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Yes"
+                    android:textAllCaps="true"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="visible"
+                    tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
