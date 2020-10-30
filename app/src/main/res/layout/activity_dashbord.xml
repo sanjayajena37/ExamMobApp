@@ -302,15 +302,56 @@
             android:layout_below="@+id/layout">
 
             <TextView
-                android:id="@+id/txtNowScan"
-                android:layout_width="@dimen/_130sdp"
+                android:id="@+id/txtScannerScann"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:textStyle="normal"
-                android:text="Now Scan :"
+                android:text="Scanner Scan Count :"
                 tools:ignore="HardcodedText"/>
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/scannerEntryLayout"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:background="@drawable/circular_bg"
+                android:layout_toEndOf="@+id/txtScannerScann">
+
+                <TextView
+                    android:id="@+id/scannerGateCount"
+                    style="@style/BigTextViewLabel"
+                    android:textStyle="bold"
+                    android:text="00"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    tools:ignore="HardcodedText"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/scannerHallLayout"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_55sdp"
+                android:background="@drawable/circular_bg"
+                android:layout_toEndOf="@+id/scannerEntryLayout">
+
+                <TextView
+                    android:id="@+id/scannerHallCount"
+                    style="@style/BigTextViewLabel"
+                    android:textStyle="bold"
+                    android:text="00"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    tools:ignore="HardcodedText"/>
+
+            </RelativeLayout>
+
+            <!--<TextView
                 android:id="@+id/nowScanGateCount"
                 style="@style/BigTextViewLabel"
                 android:layout_marginStart="@dimen/_2sdp"
@@ -319,9 +360,9 @@
                 android:text="00"
                 android:textAllCaps="false"
                 tools:ignore="HardcodedText"
-                android:layout_toEndOf="@+id/txtNowScan"/>
+                android:layout_toEndOf="@+id/txtNowScan"/>-->
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/nowScanHallCount"
                 style="@style/BigTextViewLabel"
                 android:layout_marginStart="@dimen/_2sdp"
@@ -331,65 +372,7 @@
                 android:textAllCaps="false"
                 tools:ignore="HardcodedText"
                 android:visibility="gone"
-                android:layout_toEndOf="@+id/txtNowScan"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/scannerGateScanLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_below="@+id/nowScanLayout">
-
-            <TextView
-                android:id="@+id/txtScannerGate"
-                android:layout_width="@dimen/_130sdp"
-                style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_25sdp"
-                android:textStyle="normal"
-                android:text="Scanner Entry Gate Scan : "
-                tools:ignore="HardcodedText"/>
-
-            <TextView
-                android:id="@+id/scannerGateCount"
-                style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_25sdp"
-                android:textStyle="bold"
-                android:text="00"
-                android:textAllCaps="false"
-                tools:ignore="HardcodedText"
-                android:layout_toEndOf="@+id/txtScannerGate"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/scannerHallScanLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_below="@+id/scannerGateScanLayout">
-
-            <TextView
-                android:id="@+id/txtScannerHall"
-                android:layout_width="@dimen/_130sdp"
-                style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_25sdp"
-                android:textStyle="normal"
-                android:text="Scanner Hall Scan : "
-                tools:ignore="HardcodedText"/>
-
-            <TextView
-                android:id="@+id/scannerHallCount"
-                style="@style/BigTextViewLabel"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_25sdp"
-                android:textStyle="bold"
-                android:text="00"
-                android:textAllCaps="false"
-                tools:ignore="HardcodedText"
-                android:layout_toEndOf="@+id/txtScannerHall"/>
+                android:layout_toEndOf="@+id/txtNowScan"/>-->
 
         </RelativeLayout>
 
@@ -398,7 +381,7 @@
             style="@style/DashboardLabel"
             android:layout_marginTop="@dimen/_15sdp"
             android:text="Select the Point of Attendance"
-            android:layout_below="@+id/scannerHallScanLayout"
+            android:layout_below="@+id/nowScanLayout"
             tools:ignore="HardcodedText" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -508,13 +491,46 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <RelativeLayout
+            android:id="@+id/nowScannerLayout"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@drawable/circular_bg"
+            android:layout_below="@+id/chooseAttendanceLayout"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/nowScanHallCount"
+                style="@style/BigTextViewLabel"
+                android:textStyle="bold"
+                android:text="00"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/nowScanGateCount"
+                style="@style/BigTextViewLabel"
+                android:textStyle="bold"
+                android:text="00"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/scanner"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/chooseAttendanceLayout"
+            android:layout_below="@+id/nowScannerLayout"
             android:src="@drawable/ic_scaner"
             android:contentDescription="@string/app_name" />
 

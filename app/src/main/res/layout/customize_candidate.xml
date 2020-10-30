@@ -32,83 +32,100 @@
 
                     <TextView
                         android:id="@+id/candidateIDtext"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:text="Candidate ID"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         />
 
                     <TextView
                         android:id="@+id/rollNoumbertext"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
                         android:text="Roll Noumber"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"/>
 
                     <TextView
-                        android:id="@+id/barcodetext"
-                        android:layout_width="80dp"
+                        android:id="@+id/entryStatustext"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
-                        android:text="barcode"
-                        android:layout_marginStart="@dimen/_4sdp"
+                        android:text="Entry Status"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         />
 
                     <TextView
-                        android:id="@+id/entryStatustext"
-                        android:layout_width="80dp"
+                        android:id="@+id/hallStatustext"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
-                        android:text="Entry Status"
+                        android:text="Hall Status"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/entryScanTime"
-                        android:layout_width="80dp"
+                        android:id="@+id/barcodetext"
+                        android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
-                        android:text="ExamStart Time"
+                        android:text="barcode"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"/>
 
                     <TextView
-                        android:id="@+id/hallStatustext"
-                        android:layout_width="80dp"
+                        android:id="@+id/entryScanTime"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
-                        android:text="Hall Status"
+                        android:text="ExamStart Time"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/hallScanTime"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:text="ExamEnd Time"
+                        android:layout_marginStart="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/examDatetext"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:text="Exam Date"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/examShifttext"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:text="Exam Shift"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
                     <TextView
                         android:id="@+id/candidateMobileNotext"
-                        android:layout_width="80dp"
+                        android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:text="Candidate MobileNo"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:visibility="gone"/>

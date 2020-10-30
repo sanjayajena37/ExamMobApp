@@ -363,85 +363,102 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="@dimen/_60sdp"
                                 android:layout_height="wrap_content"
                                 android:text="Sl. No."
+                                android:layout_marginEnd="@dimen/_3sdp"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
                                 tools:ignore="HardcodedText" />
 
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="@dimen/_70sdp"
                                 android:layout_height="wrap_content"
                                 android:text="Roll No."
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
                                 tools:ignore="HardcodedText" />
 
                             <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="Barcode"
-                                android:layout_marginStart="@dimen/_4sdp"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                tools:ignore="HardcodedText" />
-
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="Exam Date"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                android:visibility="gone"
-                                tools:ignore="HardcodedText" />
-
-                            <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="@dimen/_60sdp"
                                 android:layout_height="wrap_content"
                                 android:text="Entry Attendance"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
                                 tools:ignore="HardcodedText" />
 
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="@dimen/_60sdp"
                                 android:layout_height="wrap_content"
-                                android:text="Entry Time"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                tools:ignore="HardcodedText" />
-
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="Hall Attendance"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                tools:ignore="HardcodedText" />
-
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="Hall Time"
-                                android:textAlignment="center"
-                                android:textColor="#ffffff"
-                                tools:ignore="HardcodedText" />
-
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="Exam Shift"
+                                android:text="Exam Date"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff"
                                 android:visibility="gone"
                                 tools:ignore="HardcodedText" />
 
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Hall Attendance"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="wrap_content"
+                                android:text="BarCode"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Entry Time"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Hall Time"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Exam Shift"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="@dimen/_60sdp"
                                 android:layout_height="wrap_content"
                                 android:text="Candidate MobileNo"
                                 android:textAlignment="center"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
                                 android:textColor="#ffffff"
                                 android:visibility="gone"
                                 tools:ignore="HardcodedText" />
