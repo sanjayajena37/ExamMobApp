@@ -415,7 +415,6 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         JSONObject jObj = new JSONObject(response);
 
                         if (jObj.has("Success")) {
-
                             boolean success = jObj.getBoolean("Success");
                             int code = jObj.getInt("Code");
                             String message = jObj.getString("Message");

@@ -54,6 +54,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
     ImageView imgFlashLight, imgBack;
     private boolean isFlashlightOn = false;
     private Context context;
+    private int gateCount, hallCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,7 +151,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
             if (selectModel != null) {
                 String time = Utils.getCurrentTime();
                 if (Osssc.getPrefs().getSelectEntryStatus()) {
-                    int gateCount;
+
                     if (Osssc.getPrefs().getGateScanCount().equalsIgnoreCase("")) {
                         gateCount = 1;
                     } else {
@@ -162,15 +163,13 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                         finishScanner();
 
                     } else {
-                        Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
-                        String msg = selectModel.getStRollNo() + " Marked as present.";
+                        String msg = "Roll No. : " + selectModel.getStRollNo() + " Scanned \nClick to " + "\"Save\" or \"Cancel\".";
                         showEntryAttendanceDialog(selectModel, msg, db);
                         //selectModel.setEntryStatus("P");
                         //selectModel.setEntryScanTime(time);
                         MessageUtils.showSuccessMessage(context, "Scan Successful");
                     }
                 } else {
-                    int hallCount;
 
                     if (Osssc.getPrefs().getHallScanCount().equalsIgnoreCase("")) {
                         hallCount = 1;
@@ -185,10 +184,9 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                     } else {
 
                         if (selectModel.getEntryStatus().equalsIgnoreCase("P")) {
-                            Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
                             if (Osssc.getPrefs().getSelectHallAttendance()) {
-                                String msg = selectModel.getStRollNo() + " Marked as present.";
-                                showAttendanceDialog(selectModel, msg, true, db);
+                                String msg = "Roll No. : " + selectModel.getStRollNo() + " Scanned \nClick to " + "\"Save\" or \"Cancel\".";
+                                showAttendanceDialog(selectModel, msg, true, db, true);
                                 //selectModel.setHallScanTime(time);
                                 //selectModel.setHallStatus("P");
                                 MessageUtils.showSuccessMessage(context, "Scan Successful");
@@ -252,7 +250,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
             } else {
                 msg = "Still want to be " + selectModel.getStRollNo() + " to be Absent.";
             }
-            showAttendanceDialog(selectModel, msg, attendanceType, db);
+            showAttendanceDialog(selectModel, msg, attendanceType, db, false);
             alertDialog.dismiss();
         });
 
@@ -261,7 +259,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
     }
 
     @SuppressLint("SetTextI18n")
-    private void showAttendanceDialog(StudentModel selectModel, String message, boolean attType, AppDatabase db) {
+    private void showAttendanceDialog(StudentModel selectModel, String message, boolean attType, AppDatabase db, Boolean start) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         final AlertDialog alertDialog = builder.create();
         DialogVerifyAttBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
@@ -276,6 +274,11 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
         dialogBinding.titleDialog.setText("Attendance");
 
+        if (start) {
+            dialogBinding.btnIAgree.setText("Save");
+            dialogBinding.btnCancel.setText("Cancel");
+        }
+
         dialogBinding.txtDetails.setText(message);
 
         dialogBinding.btnCancel.setOnClickListener(v -> {
@@ -284,6 +287,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         });
 
         dialogBinding.btnIAgree.setOnClickListener(v -> {
+            Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
             if (attType) {
                 selectModel.setHallStatus("P");
                 MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
@@ -320,6 +324,9 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         wlp.gravity = Gravity.CENTER;
         window.setAttributes(wlp);
 
+        dialogBinding.btnCancel.setText("Cancel");
+        dialogBinding.btnIAgree.setText("Save");
+
         dialogBinding.titleDialog.setText("Attendance");
 
         dialogBinding.txtDetails.setText(message);
@@ -330,6 +337,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         });
 
         dialogBinding.btnIAgree.setOnClickListener(v -> {
+            Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
             selectModel.setEntryStatus("P");
             selectModel.setScannerId(Osssc.getPrefs().getScannerData().getScannerId());
             selectModel.setEntryScanTime(Utils.getCurrentTime());
