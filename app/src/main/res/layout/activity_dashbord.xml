@@ -316,7 +316,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:background="@drawable/circular_bg"
+                android:background="@drawable/circular_bg_green"
                 android:layout_toEndOf="@+id/txtScannerScann">
 
                 <TextView
@@ -336,7 +336,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_55sdp"
-                android:background="@drawable/circular_bg"
+                android:background="@drawable/circular_bg_orange"
                 android:layout_toEndOf="@+id/scannerEntryLayout">
 
                 <TextView
@@ -491,11 +491,21 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/scanner"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/chooseAttendanceLayout"
+            android:src="@drawable/ic_scaner"
+            android:contentDescription="@string/app_name" />
+
         <RelativeLayout
             android:id="@+id/nowScannerLayout"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:background="@drawable/circular_bg"
             android:layout_below="@+id/chooseAttendanceLayout"
@@ -523,16 +533,6 @@
                 tools:ignore="HardcodedText"/>
 
         </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/scanner"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/nowScannerLayout"
-            android:src="@drawable/ic_scaner"
-            android:contentDescription="@string/app_name" />
 
         <LinearLayout
             android:id="@+id/sendScanData"
