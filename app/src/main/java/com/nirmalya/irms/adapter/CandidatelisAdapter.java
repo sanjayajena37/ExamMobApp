@@ -1,5 +1,7 @@
 package com.nirmalya.irms.adapter;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import java.util.List;
 
 public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapter.MyHolder>{
 
+    //private final ClickListner clickListner;
     private List<CandidateListModel> lists;
     Context context;
 
@@ -47,10 +50,17 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
         }
     }
 
+/*    public interface ClickListner
+    {
+        void click();
+    }*/
+ProgressDialog dialog;
 
-    public CandidatelisAdapter(List<CandidateListModel> lists, Context context) {
+    public CandidatelisAdapter(List<CandidateListModel> lists, Context context/*,ClickListner clickListner*/, ProgressDialog dialog) {
         this.lists = lists;
         this.context = context;
+        this.dialog = dialog;
+      //  this.clickListner=clickListner;
     }
 
     @Override
@@ -71,6 +81,7 @@ public class CandidatelisAdapter extends RecyclerView.Adapter <CandidatelisAdapt
         holder.entryScanTime.setText(lists.get(listPosition).getEntryScanTime());
         holder.hallStatustext.setText(lists.get(listPosition).getHallStatus());
         holder.hallScanTime.setText(lists.get(listPosition).getHallScanTime());
+        if(lists.size()==(listPosition+1)){dialog.dismiss();}
     }
 
 

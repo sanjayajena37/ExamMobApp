@@ -57,7 +57,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="F0001"
+                    tools:text="F0001"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="000"
+                    tools:text="000"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -175,7 +175,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="XXXXXX"
+                    tools:text="XXXXXX"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -214,7 +214,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="8908401363"
+                    tools:text="8908401363"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -253,7 +253,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text=""
+                    tools:text=""
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -292,7 +292,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="18-10-20,8:00AM to 1:00AM"
+                    tools:text="18-10-20,8:00AM to 1:00AM"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -331,7 +331,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="1st shift"
+                    tools:text="1st shift"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>

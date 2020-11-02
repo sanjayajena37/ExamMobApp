@@ -52,7 +52,8 @@ public class ScannedListActivity extends AppCompatActivity {
         ImageView imgArrow = findViewById(R.id.imgArrow);
         TextView txtTitle = findViewById(R.id.txtTitle);
 
-        if(DataShowType.equalsIgnoreCase("gateScannedList")) {
+        if(DataShowType.equalsIgnoreCase("gateScannedList") ||
+                DataShowType.equalsIgnoreCase("scannerGateScannedList")) {
             txtTitle.setText("Gate Scanned List");
         } else {
             txtTitle.setText("Hall Scanned List");
@@ -93,8 +94,12 @@ public class ScannedListActivity extends AppCompatActivity {
 
                         if (DataShowType.equalsIgnoreCase("gateScannedList")) {
                             lists.addAll(candidateAttendanceResponse.getCandidateEntryList());
-                        } else {
+                        } else if (DataShowType.equalsIgnoreCase("hallScannedList")) {
                             lists.addAll(candidateAttendanceResponse.getCandidateHallList());
+                        } else if (DataShowType.equalsIgnoreCase("scannerHallScannedList")) {
+                            lists.addAll(candidateAttendanceResponse.getScannerScanHallList());
+                        } else if (DataShowType.equalsIgnoreCase("scannerGateScannedList")) {
+                            lists.addAll(candidateAttendanceResponse.getScannerScanGateList());
                         }
 
                         candidateListModels.clear();

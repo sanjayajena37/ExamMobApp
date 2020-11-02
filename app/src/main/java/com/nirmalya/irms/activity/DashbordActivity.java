@@ -166,6 +166,30 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             startActivity(intent);
         });
 
+        binding.scanInGateCard.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, ScannedListActivity.class);
+            intent.putExtra("screen", "gateScannedList");
+            startActivity(intent);
+        });
+
+        binding.scanInHallCard.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, ScannedListActivity.class);
+            intent.putExtra("screen", "hallScannedList");
+            startActivity(intent);
+        });
+
+        binding.scannerEntryLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, ScannedListActivity.class);
+            intent.putExtra("screen", "scannerGateScannedList");
+            startActivity(intent);
+        });
+
+        binding.scannerHallLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(DashbordActivity.this, ScannedListActivity.class);
+            intent.putExtra("screen", "scannerHallScannedList");
+            startActivity(intent);
+        });
+
         binding.rbScanHall.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 setItemsVisibility(View.VISIBLE);

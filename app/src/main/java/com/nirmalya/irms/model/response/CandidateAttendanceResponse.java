@@ -39,6 +39,14 @@ public class CandidateAttendanceResponse {
     @Expose
     private List<CandidateAttendanceList> candidateHallList = null;
 
+    @SerializedName("HallAttendScannerwiseList")
+    @Expose
+    private List<CandidateAttendanceList> scannerScanHallList = null;
+
+    @SerializedName("GateAttendScannerwiseList")
+    @Expose
+    private List<CandidateAttendanceList> scannerScanGateList = null;
+
     @SerializedName("Success")
     @Expose
     private Boolean success;
@@ -149,5 +157,21 @@ public class CandidateAttendanceResponse {
 
     public void setCandidateHallList(List<CandidateAttendanceList> candidateHallList) {
         this.candidateHallList = candidateHallList;
+    }
+
+    public List<CandidateAttendanceList> getScannerScanHallList() {
+        return scannerScanHallList;
+    }
+
+    public void setScannerScanHallList(List<CandidateAttendanceList> scannerScanHallList) {
+        this.scannerScanHallList = scannerScanHallList;
+    }
+
+    public List<CandidateAttendanceList> getScannerScanGateList() {
+        return scannerScanGateList;
+    }
+
+    public void setScannerScanGateList(List<CandidateAttendanceList> scannerScanGateList) {
+        this.scannerScanGateList = scannerScanGateList;
     }
 }

@@ -28,6 +28,7 @@ public class CandidateListActivity extends AppCompatActivity {
     private Context context;
     private APIRepo repo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +42,6 @@ public class CandidateListActivity extends AppCompatActivity {
         imgArrow.setOnClickListener(v -> onBackPressed());
 
         reload.setOnClickListener(v -> callCandidateList());
-
-        setData();
 
         candidateListModels = new ArrayList<>();
 
@@ -63,13 +62,6 @@ public class CandidateListActivity extends AppCompatActivity {
                 .observe(this, candidateResponse -> {
                     if (candidateResponse != null && candidateResponse.getSuccess()) {
                         MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
-
-                        /*String[] dateTime = candidateResponse.getExamDate().split(",");
-
-                        String date = dateTime[0];
-                        String time = dateTime[1];
-
-                        String statusDateTime = date + " (" + time + " )";*/
                         String examName = candidateResponse.getTestName() + " (" + candidateResponse.getSubjectName() + ")";
 
                         binding.strExamDateTime.setText(candidateResponse.getExamDate());
@@ -90,11 +82,12 @@ public class CandidateListActivity extends AppCompatActivity {
 
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         binding.recyclerView.setLayoutManager(mLayoutManager);
-                        candidatelisAdapter = new CandidatelisAdapter(candidateListModels, CandidateListActivity.this);
+                        candidatelisAdapter = new CandidatelisAdapter(candidateListModels, CandidateListActivity.this,pd);
                         binding.recyclerView.setAdapter(candidatelisAdapter);
                         binding.recyclerView.setNestedScrollingEnabled(false);
+                        setData();
                     }
-                    pd.dismiss();
+                    //pd.dismiss();
                 });
     }
 }
