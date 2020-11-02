@@ -163,10 +163,11 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
                     } else {
                         Osssc.getPrefs().setGateScanCount(String.valueOf(gateCount));
-                        selectModel.setEntryStatus("P");
-                        selectModel.setEntryScanTime(time);
+                        String msg = selectModel.getStRollNo() + " Marked as present.";
+                        showEntryAttendanceDialog(selectModel, msg, db);
+                        //selectModel.setEntryStatus("P");
+                        //selectModel.setEntryScanTime(time);
                         MessageUtils.showSuccessMessage(context, "Scan Successful");
-                        finishScanner();
                     }
                 } else {
                     int hallCount;
@@ -186,10 +187,11 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                         if (selectModel.getEntryStatus().equalsIgnoreCase("P")) {
                             Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
                             if (Osssc.getPrefs().getSelectHallAttendance()) {
-                                selectModel.setHallScanTime(time);
-                                selectModel.setHallStatus("P");
+                                String msg = selectModel.getStRollNo() + " Marked as present.";
+                                showAttendanceDialog(selectModel, msg, true, db);
+                                //selectModel.setHallScanTime(time);
+                                //selectModel.setHallStatus("P");
                                 MessageUtils.showSuccessMessage(context, "Scan Successful");
-                                finishScanner();
                             } else {
                                 showDialog(selectModel,
                                         "Attendance status of the candidate marked as present in entry gate. Please re verify",
@@ -290,6 +292,47 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                 MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Absent.");
             }
             selectModel.setHallScanTime(Utils.getCurrentTime());
+            AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.studentDao().updateResource(selectModel);
+                    finishScanner();
+                }
+            });
+        });
+
+        alertDialog.setView(dialogBinding.getRoot());
+        alertDialog.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showEntryAttendanceDialog(StudentModel selectModel, String message, AppDatabase db) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog alertDialog = builder.create();
+        DialogVerifyAttBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.dialog_verify_att, null, false);
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = alertDialog.getWindow();
+        assert window != null;
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        window.setAttributes(wlp);
+
+        dialogBinding.titleDialog.setText("Attendance");
+
+        dialogBinding.txtDetails.setText(message);
+
+        dialogBinding.btnCancel.setOnClickListener(v -> {
+            alertDialog.dismiss();
+            finishScanner();
+        });
+
+        dialogBinding.btnIAgree.setOnClickListener(v -> {
+            selectModel.setEntryStatus("P");
+            selectModel.setEntryScanTime(Utils.getCurrentTime());
+            MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
+
             AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
                 @Override
                 public void run() {
