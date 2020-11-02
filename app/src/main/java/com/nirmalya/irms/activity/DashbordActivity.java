@@ -414,51 +414,58 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         // fetch Response as JSONObject
                         JSONObject jObj = new JSONObject(response);
 
-                        boolean success = jObj.getBoolean("Success");
-                        int code = jObj.getInt("Code");
-                        String message = jObj.getString("Message");
+                        if (jObj.has("Success")) {
 
-                        if (success) {
-                            String totalCandidate = jObj.getString("TotalCandidate");
-                            String totalCandidateGateList = jObj.getString("TotalCandidateGateList");
-                            String totalCandidateHallList = jObj.getString("TotalCandidateHallList");
-                            String hallAttendScannerwiseCount = jObj.getString("HallAttendScannerwiseCount");
-                            String gateAttendScannerwiseCount = jObj.getString("GateAttendScannerwiseCount");
-                            String centreName = jObj.getString("CentreName");
-                            String districtName = jObj.getString("DistrictName");
-                            String subjectName = jObj.getString("Subject_Name");
-                            String postName = jObj.getString("PostName");
-                            String testName = jObj.getString("TestName");
+                            boolean success = jObj.getBoolean("Success");
+                            int code = jObj.getInt("Code");
+                            String message = jObj.getString("Message");
 
-                            binding.txtTotalGateScanNo.setText(totalCandidateGateList);
-                            binding.txtTotalHallScanNo.setText(totalCandidateHallList);
-                            binding.scannerHallCount.setText(hallAttendScannerwiseCount);
-                            binding.scannerGateCount.setText(gateAttendScannerwiseCount);
+                            if (success) {
+                                String totalCandidate = jObj.getString("TotalCandidate");
+                                String totalCandidateGateList = jObj.getString("TotalCandidateGateList");
+                                String totalCandidateHallList = jObj.getString("TotalCandidateHallList");
+                                String hallAttendScannerwiseCount = jObj.getString("HallAttendScannerwiseCount");
+                                String gateAttendScannerwiseCount = jObj.getString("GateAttendScannerwiseCount");
+                                String centreName = jObj.getString("CentreName");
+                                String districtName = jObj.getString("DistrictName");
+                                String subjectName = jObj.getString("Subject_Name");
+                                String postName = jObj.getString("PostName");
+                                String testName = jObj.getString("TestName");
 
-                            Osssc.getPrefs().setExamCenter(centreName);
-                            centerCode.setText(centreName);
-                            String centName = centreName + ", " + districtName;
-                            String examName = testName + " (" + subjectName + ") "
-                                    + "for the post of " + postName;
+                                binding.txtTotalGateScanNo.setText(totalCandidateGateList);
+                                binding.txtTotalHallScanNo.setText(totalCandidateHallList);
+                                binding.scannerHallCount.setText(hallAttendScannerwiseCount);
+                                binding.scannerGateCount.setText(gateAttendScannerwiseCount);
 
-                            binding.centerName.setText(centName);
-                            binding.testName.setText(examName);
+                                Osssc.getPrefs().setExamCenter(centreName);
+                                centerCode.setText(centreName);
+                                String centName = centreName + ", " + districtName;
+                                String examName = testName + " (" + subjectName + ") "
+                                        + "for the post of " + postName;
 
-                            binding.txtTotalCandidateNo.setText(totalCandidate);
+                                binding.centerName.setText(centName);
+                                binding.testName.setText(examName);
 
-                            final JSONArray student_array = jObj.getJSONArray("CandidateList");
+                                binding.txtTotalCandidateNo.setText(totalCandidate);
 
-                            if (student_array.length() != 0) {
-                                totalLength = student_array.length();
-                                new InsertDatabase(student_array).execute();
-                                Toast.makeText(context, message,
-                                        Toast.LENGTH_SHORT).show();
+                                final JSONArray student_array = jObj.getJSONArray("CandidateList");
+
+                                if (student_array.length() != 0) {
+                                    totalLength = student_array.length();
+                                    new InsertDatabase(student_array).execute();
+                                    Toast.makeText(context, message,
+                                            Toast.LENGTH_SHORT).show();
+                                    pd.dismiss();
+                                }
+
+                            } else {
+                                MessageUtils.showFailureMessage(context, message);
                                 pd.dismiss();
                             }
 
                         } else {
+                            String message = jObj.getString("Message");
                             MessageUtils.showFailureMessage(context, message);
-                            pd.dismiss();
                         }
 
                     } catch (JSONException e) {
@@ -520,7 +527,8 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         String hallScanTime = content.getString("HallScanTime");
                         String entryStatus = content.getString("EntryStatus");
                         String hallStatus = content.getString("HallStatus");
-                        mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, entryStatus, entryScanTime, hallStatus, hallScanTime));
+                        int scannerId = content.getInt("ScannerId");
+                        mDb.studentDao().insertResource(new StudentModel(rollNoumber, barcode, entryStatus, entryScanTime, hallStatus, hallScanTime, scannerId));
                         Log.println(i, "Student List" + i, mDb.studentDao().allResorces().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -581,7 +589,7 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
                         CandidateRequestData candidateRequestData = new CandidateRequestData(num.getStRollNo(),
                                 num.getStBarcode(), num.getEntryScanTime(),
                                 num.getHallScanTime(), num.getEntryStatus(), num.getHallStatus(),
-                                Osssc.getPrefs().getScannerData().getScannerId());
+                                num.getScannerId());
                         lists.add(candidateRequestData);
                     }
                     String type = "";

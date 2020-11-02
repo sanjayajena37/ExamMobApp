@@ -27,6 +27,26 @@ public class CandidateAttendanceResponse {
     @Expose
     private String districtName;
 
+    @SerializedName("Subject_Name")
+    @Expose
+    private String subjectName;
+
+    @SerializedName("TestName")
+    @Expose
+    private String testName;
+
+    @SerializedName("PostName")
+    @Expose
+    private String postName;
+
+    @SerializedName("Exam_Date")
+    @Expose
+    private String examDate;
+
+    @SerializedName("Exam_Shift")
+    @Expose
+    private String examShift;
+
     @SerializedName("CandidateList")
     @Expose
     private List<CandidateAttendanceList> candidateList = null;
@@ -173,5 +193,45 @@ public class CandidateAttendanceResponse {
 
     public void setScannerScanGateList(List<CandidateAttendanceList> scannerScanGateList) {
         this.scannerScanGateList = scannerScanGateList;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    public String getPostName() {
+        return postName;
+    }
+
+    public void setPostName(String postName) {
+        this.postName = postName;
+    }
+
+    public String getExamDate() {
+        return examDate;
+    }
+
+    public void setExamDate(String examDate) {
+        this.examDate = examDate;
+    }
+
+    public String getExamShift() {
+        return examShift;
+    }
+
+    public void setExamShift(String examShift) {
+        this.examShift = examShift;
     }
 }

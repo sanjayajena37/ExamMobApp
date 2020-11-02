@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,11 +53,22 @@ public class ScannedListActivity extends AppCompatActivity {
         ImageView imgArrow = findViewById(R.id.imgArrow);
         TextView txtTitle = findViewById(R.id.txtTitle);
 
-        if(DataShowType.equalsIgnoreCase("gateScannedList") ||
-                DataShowType.equalsIgnoreCase("scannerGateScannedList")) {
+        if (DataShowType.equalsIgnoreCase("gateScannedList")) {
             txtTitle.setText("Gate Scanned List");
-        } else {
+            binding.scannerNameLayout.setVisibility(View.GONE);
+            binding.scannerMobileLayout.setVisibility(View.GONE);
+        } else if (DataShowType.equalsIgnoreCase("hallScannedList")){
             txtTitle.setText("Hall Scanned List");
+            binding.scannerNameLayout.setVisibility(View.GONE);
+            binding.scannerMobileLayout.setVisibility(View.GONE);
+        } else if (DataShowType.equalsIgnoreCase("scannerGateScannedList")){
+            txtTitle.setText("Gate Scanned List");
+            binding.scannerNameLayout.setVisibility(View.VISIBLE);
+            binding.scannerMobileLayout.setVisibility(View.VISIBLE);
+        } else if (DataShowType.equalsIgnoreCase("scannerHallScannedList")){
+            txtTitle.setText("Hall Scanned List");
+            binding.scannerNameLayout.setVisibility(View.VISIBLE);
+            binding.scannerMobileLayout.setVisibility(View.VISIBLE);
         }
         imgArrow.setOnClickListener(v -> onBackPressed());
 
@@ -65,13 +77,14 @@ public class ScannedListActivity extends AppCompatActivity {
 
         candidateListModels = new ArrayList<>();
 
-        setData();
         callCandidateList();
 
     }
 
     private void setData() {
         binding.strExamDateTime.setText(Osssc.getPrefs().getExamDateTime());
+        binding.txtScannerName.setText(Osssc.getPrefs().getScannerData().getScannerName());
+        binding.txtScannerMobile.setText(Osssc.getPrefs().getScannerData().getScannerMobileNo());
     }
 
     private void callCandidateList() {
@@ -84,9 +97,10 @@ public class ScannedListActivity extends AppCompatActivity {
                     if (candidateAttendanceResponse != null && candidateAttendanceResponse.getSuccess()) {
                         binding.distCodeTxt.setText(candidateAttendanceResponse.getDistrictName());
                         binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
+                        binding.shiftTextview.setText(candidateAttendanceResponse.getExamShift());
 
-                        if(candidateAttendanceResponse.getTotalCandidateGateList() == 0 ||
-                        candidateAttendanceResponse.getTotalCandidateHallList() == 0) {
+                        if (candidateAttendanceResponse.getTotalCandidateGateList() == 0 ||
+                                candidateAttendanceResponse.getTotalCandidateHallList() == 0) {
                             MessageUtils.showFailureMessage(context, "No Scan Data Found");
                         } else {
                             MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
@@ -117,6 +131,7 @@ public class ScannedListActivity extends AppCompatActivity {
                         binding.recyclerView.setLayoutManager(mLayoutManager);
                         scannedlisAdapter = new ScannedlisAdapter(candidateListModels, ScannedListActivity.this);
                         binding.recyclerView.setAdapter(scannedlisAdapter);
+                        setData();
                     }
                     pd.dismiss();
                 });

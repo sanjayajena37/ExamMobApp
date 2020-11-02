@@ -58,25 +58,28 @@ public class CandidateListActivity extends AppCompatActivity {
         final ProgressDialog pd = Utils.createProgressDialog(context);
         pd.show();
 
-        repo.getCandidateList(context)
-                .observe(this, candidateResponse -> {
-                    if (candidateResponse != null && candidateResponse.getSuccess()) {
-                        MessageUtils.showSuccessMessage(context, candidateResponse.getMessage());
-                        String examName = candidateResponse.getTestName() + " (" + candidateResponse.getSubjectName() + ")";
+        repo.getCandidateAttendanceList(context)
+                .observe(this, candidateAttendanceResponse -> {
+                    if (candidateAttendanceResponse != null && candidateAttendanceResponse.getSuccess()) {
+                        MessageUtils.showSuccessMessage(context, candidateAttendanceResponse.getMessage());
+                        String examName = candidateAttendanceResponse.getTestName() + " (" + candidateAttendanceResponse.getSubjectName() + ")";
 
-                        binding.strExamDateTime.setText(candidateResponse.getExamDate());
-                        binding.strExamShift.setText(candidateResponse.getExamShift());
-                        binding.distCodeTxt.setText(candidateResponse.getDistrictName());
-                        binding.centerCode.setText(candidateResponse.getCentreName());
+                        binding.strExamDateTime.setText(candidateAttendanceResponse.getExamDate());
+                        binding.strExamShift.setText(candidateAttendanceResponse.getExamShift());
+                        binding.distCodeTxt.setText(candidateAttendanceResponse.getDistrictName());
+                        binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
                         binding.strTestName.setText(examName);
                         int j = 1;
                         candidateListModels.clear();
-                        for(int i = 0; i < candidateResponse.getCandidateList().size(); i++) {
+                        for(int i = 0; i < candidateAttendanceResponse.getCandidateList().size(); i++) {
 
                             candidateListModels.add(new CandidateListModel(j,
-                                    candidateResponse.getCandidateList().get(i).getRollNumber(),
-                                    candidateResponse.getCandidateList().get(i).getBarCode(),
-                                    "", "", "", ""));
+                                    candidateAttendanceResponse.getCandidateList().get(i).getRollNumber(),
+                                    candidateAttendanceResponse.getCandidateList().get(i).getBarCode(),
+                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryStatus(),
+                                    candidateAttendanceResponse.getCandidateList().get(i).getEntryScanTime(),
+                                    candidateAttendanceResponse.getCandidateList().get(i).getHallStatus(),
+                                    candidateAttendanceResponse.getCandidateList().get(i).getHallScanTime()));
                             j++;
                         }
 
@@ -86,8 +89,9 @@ public class CandidateListActivity extends AppCompatActivity {
                         binding.recyclerView.setAdapter(candidatelisAdapter);
                         binding.recyclerView.setNestedScrollingEnabled(false);
                         setData();
+                    } else {
+                        pd.dismiss();
                     }
-                    //pd.dismiss();
                 });
     }
 }

@@ -18,8 +18,9 @@ public class StudentModel {
     String entryScanTime;
     String hallStatus;
     String hallScanTime;
+    Integer scannerId;
 
-    public StudentModel(String stRollNo, String stBarcode, String entryStatus, String entryScanTime, String hallStatus, String hallScanTime) {
+    public StudentModel(String stRollNo, String stBarcode, String entryStatus, String entryScanTime, String hallStatus, String hallScanTime, int scannerId) {
         this.id = id;
         this.stRollNo = stRollNo;
         this.stBarcode = stBarcode;
@@ -27,6 +28,7 @@ public class StudentModel {
         this.entryScanTime = entryScanTime;
         this.hallStatus = hallStatus;
         this.hallScanTime = hallScanTime;
+        this.scannerId = scannerId;
     }
 
 
@@ -40,6 +42,7 @@ public class StudentModel {
                 ", entryScanTime=" + entryScanTime +
                 ", hallStatus=" + hallStatus +
                 ", hallScanTime=" + hallScanTime +
+                ", scannerId=" + scannerId +
                 '}';
     }
 
@@ -99,6 +102,13 @@ public class StudentModel {
         this.hallScanTime = hallScanTime;
     }
 
+    public Integer getScannerId() {
+        return scannerId;
+    }
+
+    public void setScannerId(Integer scannerId) {
+        this.scannerId = scannerId;
+    }
 
     public String theString() {
         return "StudentModel{" +
@@ -109,6 +119,7 @@ public class StudentModel {
                 ", entryScanTime='" + entryScanTime + '\'' +
                 ", hallStatus='" + hallStatus + '\'' +
                 ", hallScanTime='" + hallScanTime + '\'' +
+                ", scannerId='" + scannerId + '\'' +
                 '}';
     }
 }

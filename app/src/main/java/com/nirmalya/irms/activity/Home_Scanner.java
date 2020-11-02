@@ -291,6 +291,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                 selectModel.setHallStatus("A");
                 MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Absent.");
             }
+            selectModel.setScannerId(Osssc.getPrefs().getScannerData().getScannerId());
             selectModel.setHallScanTime(Utils.getCurrentTime());
             AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
                 @Override
@@ -330,6 +331,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
         dialogBinding.btnIAgree.setOnClickListener(v -> {
             selectModel.setEntryStatus("P");
+            selectModel.setScannerId(Osssc.getPrefs().getScannerData().getScannerId());
             selectModel.setEntryScanTime(Utils.getCurrentTime());
             MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
 
