@@ -109,7 +109,7 @@
             android:background="@drawable/shape_button"
             android:elevation="@dimen/cardview_default_elevation"
             android:textSize="@dimen/_15sdp"
-            android:text="Submit"
+            android:text="Verify"
             android:textColor="@color/white"
             tools:ignore="HardcodedText,PrivateResource" />
 

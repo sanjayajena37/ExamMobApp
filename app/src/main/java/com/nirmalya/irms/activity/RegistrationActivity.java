@@ -9,13 +9,11 @@ import com.nirmalya.irms.Osssc;
 import com.nirmalya.irms.R;
 import com.nirmalya.irms.databinding.ActivityRegistrationBinding;
 import com.nirmalya.irms.model.request.SetPinRequest;
-import com.nirmalya.irms.model.request.SignupSendMobileRequest;
 import com.nirmalya.irms.repository.APIRepo;
 import com.nirmalya.irms.utility.MessageUtils;
 import com.nirmalya.irms.utility.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 public class RegistrationActivity extends AppCompatActivity {
