@@ -192,13 +192,13 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                                 MessageUtils.showSuccessMessage(context, "Scan Successful");
                             } else {
                                 showDialog(selectModel,
-                                        "Attendance status of the candidate marked as present in entry gate. Please re verify",
+                                        "Attendance status of the candidate marked as Present in Entry Gate. If re verify",
                                         false, db);
                             }
                         } else {
-                            Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
+
                             showDialog(selectModel,
-                                    "Marked as absent in entry gate. Please re verify.",
+                                    "Marked as Absent in Entry Gate. If re verify.",
                                     true, db);
                             //return "This candidate attendance marked as absent in entry gate. Please verify..";
                         }
@@ -290,10 +290,10 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
             Osssc.getPrefs().setHallScanCount(String.valueOf(hallCount));
             if (attType) {
                 selectModel.setHallStatus("P");
-                MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
+                MessageUtils.showSuccessMessage(context, "Roll No. : " + selectModel.getStRollNo() + " Set as Present.");
             } else {
                 selectModel.setHallStatus("A");
-                MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Absent.");
+                MessageUtils.showSuccessMessage(context, "Roll No. : " + selectModel.getStRollNo() + " Set as Absent.");
             }
             selectModel.setScannerId(Osssc.getPrefs().getScannerData().getScannerId());
             selectModel.setHallScanTime(Utils.getCurrentTime());

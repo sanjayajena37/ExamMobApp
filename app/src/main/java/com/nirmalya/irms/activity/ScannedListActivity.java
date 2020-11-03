@@ -99,6 +99,10 @@ public class ScannedListActivity extends AppCompatActivity {
                         binding.centerCode.setText(candidateAttendanceResponse.getCentreName());
                         binding.shiftTextview.setText(candidateAttendanceResponse.getExamShift());
 
+                        String examName = candidateAttendanceResponse.getTestName() + " (" + candidateAttendanceResponse.getSubjectName() + ")";
+                        binding.testName.setText(examName);
+
+
                         if (candidateAttendanceResponse.getTotalCandidateGateList() == 0 ||
                                 candidateAttendanceResponse.getTotalCandidateHallList() == 0) {
                             MessageUtils.showFailureMessage(context, "No Scan Data Found");
