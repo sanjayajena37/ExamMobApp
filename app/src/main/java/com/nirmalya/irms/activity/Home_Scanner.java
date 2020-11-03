@@ -163,7 +163,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
                         finishScanner();
 
                     } else {
-                        String msg = "Roll No. : " + selectModel.getStRollNo() + " Scanned \nClick to " + "\"Save\" or \"Cancel\".";
+                        String msg = "Roll No. : " + selectModel.getStRollNo() + " is successfully scanned.\nClick to " + "\"Save\" or \"Cancel\".";
                         showEntryAttendanceDialog(selectModel, msg, db);
                         //selectModel.setEntryStatus("P");
                         //selectModel.setEntryScanTime(time);
@@ -185,21 +185,28 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
                         if (selectModel.getEntryStatus().equalsIgnoreCase("P")) {
                             if (Osssc.getPrefs().getSelectHallAttendance()) {
-                                String msg = "Roll No. : " + selectModel.getStRollNo() + " Scanned \nClick to " + "\"Save\" or \"Cancel\".";
-                                showAttendanceDialog(selectModel, msg, true, db, true);
+                                String msg = "Roll No. : " + selectModel.getStRollNo() + " is successfully scanned.\nClick to " + "\"Save\" or \"Cancel\".";
+                                showAttendanceDialog(selectModel, msg, true, db);
                                 //selectModel.setHallScanTime(time);
                                 //selectModel.setHallStatus("P");
                                 MessageUtils.showSuccessMessage(context, "Scan Successful");
                             } else {
                                 showDialog(selectModel,
-                                        "Attendance status of the candidate marked as Present in Entry Gate. If re verify",
+                                        " is marked as \"Present\" in Entry Gate.\nClick to " + "\"Proceed\" or \"Cancel\".",
                                         false, db);
                             }
                         } else {
-
-                            showDialog(selectModel,
-                                    "Marked as Absent in Entry Gate. If re verify.",
-                                    true, db);
+                            if (Osssc.getPrefs().getSelectHallAttendance()) {
+                                showDialog(selectModel,
+                                        " is marked as \"Absent\" in Entry Gate.\nClick to " + "\"Proceed\" or \"Cancel\".",
+                                        true, db);
+                            } else {
+                                String msg = "Roll No. : " + selectModel.getStRollNo() + " is successfully scanned.\nClick to " + "\"Save\" or \"Cancel\".";
+                                showAttendanceDialog(selectModel, msg, false, db);
+                                //selectModel.setHallScanTime(time);
+                                //selectModel.setHallStatus("P");
+                                MessageUtils.showSuccessMessage(context, "Scan Successful");
+                            }
                             //return "This candidate attendance marked as absent in entry gate. Please verify..";
                         }
                     }
@@ -232,11 +239,13 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         wlp.gravity = Gravity.CENTER;
         window.setAttributes(wlp);
 
-        dialogBinding.titleDialog.setText("Verify It");
+        dialogBinding.titleDialog.setText("Validation Failed");
 
-        String strMessage = selectModel.getStRollNo() + " " + message;
+        String strMessage = "Reverify Roll No. : " + selectModel.getStRollNo() + message;
 
         dialogBinding.txtDetails.setText(strMessage);
+        dialogBinding.btnCancel.setText("Cancel");
+        dialogBinding.btnIAgree.setText("Proceed");
 
         dialogBinding.btnCancel.setOnClickListener(v -> {
             alertDialog.dismiss();
@@ -246,11 +255,13 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
         dialogBinding.btnIAgree.setOnClickListener(v -> {
             String msg = "";
             if (attendanceType) {
-                msg = "Still want to be " + selectModel.getStRollNo() + " to be Present.";
+                msg = "Still want to mark Roll No. : " + selectModel.getStRollNo() + " as \"Present\" in Exam Hall." +
+                        "\nClick to \"Save\" or \"Cancel\".";
             } else {
-                msg = "Still want to be " + selectModel.getStRollNo() + " to be Absent.";
+                msg = "Still want to mark Roll No. : " + selectModel.getStRollNo() + " as \"Absent\" in Exam Hall." +
+                        "\nClick to \"Save\" or \"Cancel\".";
             }
-            showAttendanceDialog(selectModel, msg, attendanceType, db, false);
+            showAttendanceDialog(selectModel, msg, attendanceType, db);
             alertDialog.dismiss();
         });
 
@@ -259,7 +270,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
     }
 
     @SuppressLint("SetTextI18n")
-    private void showAttendanceDialog(StudentModel selectModel, String message, boolean attType, AppDatabase db, Boolean start) {
+    private void showAttendanceDialog(StudentModel selectModel, String message, boolean attType, AppDatabase db) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         final AlertDialog alertDialog = builder.create();
         DialogVerifyAttBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
@@ -274,10 +285,8 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
 
         dialogBinding.titleDialog.setText("Attendance");
 
-        if (start) {
             dialogBinding.btnIAgree.setText("Save");
             dialogBinding.btnCancel.setText("Cancel");
-        }
 
         dialogBinding.txtDetails.setText(message);
 
