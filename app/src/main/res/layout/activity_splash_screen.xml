@@ -34,7 +34,9 @@
             tools:ignore="HardcodedText"
             />
     </LinearLayout>
+
     <TextView
+        android:id="@+id/txtIRMS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="IRMS"
@@ -43,8 +45,19 @@
         android:textAlignment="center"
         android:textStyle="bold"
         tools:ignore="HardcodedText"
-       android:layout_below="@+id/osssclayout"
-        />
+       android:layout_below="@+id/osssclayout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(Candidate Attendance Management System)"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/txtIRMS"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

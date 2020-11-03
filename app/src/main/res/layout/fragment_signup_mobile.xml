@@ -42,12 +42,13 @@
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:lineSpacingExtra="@dimen/_1sdp"
-            android:text="IRMS"
+            android:text="IRMS (CAMS)"
             android:textStyle="bold"
             android:textSize="@dimen/_15sdp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
