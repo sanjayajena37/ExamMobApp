@@ -145,6 +145,15 @@ public class DashbordActivity extends AppCompatActivity implements NavigationVie
             binding.nowScanHallCount.setVisibility(View.VISIBLE);
         }
 
+        binding.radAbsent.setChecked(true);
+
+        binding.radPresent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.radAbsent.setChecked(true);
+            }
+        });
+
         binding.scanner.setOnClickListener(view -> {
             if (binding.rbScanGate.isChecked()) {
                 Osssc.getPrefs().setSelectEntryStatus(true);

@@ -350,7 +350,7 @@ public class Home_Scanner extends AppCompatActivity implements ZXingScannerView.
             selectModel.setEntryStatus("P");
             selectModel.setScannerId(Osssc.getPrefs().getScannerData().getScannerId());
             selectModel.setEntryScanTime(Utils.getCurrentTime());
-            MessageUtils.showSuccessMessage(context, selectModel.getStRollNo() + " Set as Present.");
+            MessageUtils.showSuccessMessage(context, "Roll No.: " + selectModel.getStRollNo() + " Set as Present.");
 
             AppExecutors.getsInstance().databaseIO().execute(new Runnable() {
                 @Override
