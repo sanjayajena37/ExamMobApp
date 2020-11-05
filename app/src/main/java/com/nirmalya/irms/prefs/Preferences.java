@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nirmalya.irms.model.DistList;
 import com.nirmalya.irms.model.response.CandidateAttendanceList;
 import com.nirmalya.irms.model.response.ScannerData;
 import com.nirmalya.irms.utility.Constant;
@@ -25,6 +26,7 @@ public class Preferences {
     private static final String KEY_HALL_COUNT = "hall_scan_count";
     private static final String KEY_GATE_COUNT = "gate_scan_count";
     private static final String KEY_CANDIDATE_ATTENDANCE = "candidate_attendance";
+    private static final String KEY_DIST_LIST = "dist_list";
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -141,24 +143,16 @@ public class Preferences {
         editor.apply();
     }
 
-   /* public void setCandidateAttendanceData(CandidateAttendanceList candidateAttendanceList) {
-        editor = preferences.edit();
-        editor.putString(KEY_CANDIDATE_ATTENDANCE, new Gson().toJson(candidateAttendanceList));
-        editor.apply();
-    }*/
-
-    public List<CandidateAttendanceList> getAttendanceListData() {
-        String userScannerDataJsonAsString = preferences.getString(KEY_CANDIDATE_ATTENDANCE, Constant.STRING_EMPTY);
-        List<CandidateAttendanceList> blank=new ArrayList<>();
-        return !userScannerDataJsonAsString.equalsIgnoreCase(Constant.STRING_EMPTY) ?
-                (List<CandidateAttendanceList>) new Gson().fromJson(userScannerDataJsonAsString, new TypeToken<CandidateAttendanceList>() {
-                }.getType()) : blank;
-
+    public ArrayList<DistList> getDistList() {
+        String provinceListJsonAsString = preferences.getString(KEY_DIST_LIST, Constant.STRING_EMPTY);
+        return !provinceListJsonAsString.equalsIgnoreCase(Constant.STRING_EMPTY) ?
+                (ArrayList<DistList>) new Gson()
+                        .fromJson(provinceListJsonAsString, new TypeToken<ArrayList<DistList>>() {
+                        }.getType()) : new ArrayList<>();
     }
 
-    public void setAttendanceListData(List<CandidateAttendanceList> candidateAttendanceList) {
+    public void setDistList(ArrayList<DistList> provinceList) {
         editor = preferences.edit();
-        editor.putString(KEY_CANDIDATE_ATTENDANCE, new Gson().toJson(candidateAttendanceList));
-        editor.apply();
+        editor.putString(KEY_DIST_LIST, new Gson().toJson(provinceList)).apply();
     }
 }

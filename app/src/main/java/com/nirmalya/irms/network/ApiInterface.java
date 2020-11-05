@@ -1,5 +1,6 @@
 package com.nirmalya.irms.network;
 
+
 import com.nirmalya.irms.model.request.ScanDataRequest;
 import com.nirmalya.irms.model.request.SetPinRequest;
 import com.nirmalya.irms.model.request.SignInRequest;
@@ -8,8 +9,8 @@ import com.nirmalya.irms.model.request.ValidateOTPRequest;
 import com.nirmalya.irms.model.response.CandidateAttendanceResponse;
 import com.nirmalya.irms.model.response.CandidateResponse;
 import com.nirmalya.irms.model.response.CommonResponse;
+import com.nirmalya.irms.model.response.DistResponse;
 import com.nirmalya.irms.model.response.SignInResponse;
-import com.nirmalya.irms.model.response.StudentResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -48,4 +49,7 @@ public interface ApiInterface {
 
     @GET(SUB_DATA_URL + "GetCandidateAttendance")
     Call<CandidateAttendanceResponse> getCandidateAttendanceList();
+
+    @GET("http://www.json-generator.com/api/json/get/celPELsWUO?indent=2")
+    Call<DistResponse> getDistList();
 }

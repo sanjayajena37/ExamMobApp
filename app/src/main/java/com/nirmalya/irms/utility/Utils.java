@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.nirmalya.irms.R;
+import com.nirmalya.irms.activity.AdminDashboardActivity;
 import com.nirmalya.irms.activity.DashbordActivity;
 import com.nirmalya.irms.activity.LoginActivity;
 import com.nirmalya.irms.activity.NumberVerifActivity;
@@ -71,6 +72,16 @@ public class Utils {
     public static void startHomeActivity(Context context) {
         try {
             Intent intent = new Intent(context, DashbordActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void startAdminHomeActivity(Context context) {
+        try {
+            Intent intent = new Intent(context, AdminDashboardActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         } catch (Exception e) {

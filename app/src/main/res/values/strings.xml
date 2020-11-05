@@ -11,4 +11,9 @@
     <string name="str_location_permission_denied_msg">Permission Denied! Enable Location permission from your App settings.</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
+    <string name="str_irms_cams">IRMS (CAMS)</string>
+    <string name="str_choose_dist">Choose Dist</string>
+    <string name="str_select_dist">Select Dist</string>
+    <string name="str_select_center">Select Center</string>
+    <string name="str_choose_center">Choose Center</string>
 </resources>

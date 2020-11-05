@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_item"
+        style="@style/EditTextStyleSignUp"
+        android:layout_margin="@dimen/_0sdp"
+        android:background="@color/transparent"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        tools:ignore="Autofill,TextViewEdits" />
+</layout>

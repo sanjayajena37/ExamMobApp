@@ -31,4 +31,15 @@
     <color name="medium_black">#313131</color>
     <color name="darkGreen">#4CAF50</color>
 
+    <color name="white_opacity_50">#50FFFFFF</color>
+    <color name="white_opacity_30">#30FFFFFF</color>
+    <color name="white_opacity_80">#80FFFFFF</color>
+
+    <color name="edit_text_activated">#571A5A</color>
+    <color name="aubergine">#43073d</color>
+
+    <color name="edit_text_sign_up_bg">#4c873500</color>
+    <color name="edit_text_border">#571a5a</color>
+
+
 </resources>

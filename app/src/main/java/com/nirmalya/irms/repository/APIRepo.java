@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.nirmalya.irms.Osssc;
+import com.nirmalya.irms.model.DistList;
 import com.nirmalya.irms.model.request.ScanDataRequest;
 import com.nirmalya.irms.model.request.SetPinRequest;
 import com.nirmalya.irms.model.request.SignInRequest;
@@ -13,6 +14,7 @@ import com.nirmalya.irms.model.request.ValidateOTPRequest;
 import com.nirmalya.irms.model.response.CandidateAttendanceResponse;
 import com.nirmalya.irms.model.response.CandidateResponse;
 import com.nirmalya.irms.model.response.CommonResponse;
+import com.nirmalya.irms.model.response.DistResponse;
 import com.nirmalya.irms.model.response.SignInResponse;
 import com.nirmalya.irms.model.response.StudentResponse;
 import com.nirmalya.irms.network.ApiInterface;
@@ -371,5 +373,43 @@ public class APIRepo {
                 });
 
         return liveDataCandidateAttendanceList;
+    }
+
+    // Get Candidate Attendance List Api Network call
+    public LiveData<DistResponse> getDistList(final Context context) {
+
+        final MutableLiveData<DistResponse> liveDataDistList = new MutableLiveData<>();
+
+        getApiInterface(Utils.getTokenHeaderMap(Osssc.getPrefs().getScannerData().getAssessToken()))
+                .getDistList()
+                .enqueue(new Callback<DistResponse>() {
+                    @Override
+                    public void onResponse(@NotNull Call<DistResponse> call, @NotNull Response<DistResponse> response) {
+                        DistResponse responseBody = response.body();
+                        if (responseBody != null) {
+                            liveDataDistList.setValue(responseBody);
+
+                            if (!responseBody.getSuccess()) {
+                                MessageUtils.showFailureMessage(context, responseBody.getMessage());
+                            }
+                        } else {
+                            if (response.code() == 400) {
+                                MessageUtils.showFailureMessage(context, "Data not found");
+                            } else if (response.code() == 502) {
+                                MessageUtils.showFailureMessage(context, "Bad get way");
+                            } else {
+                                MessageUtils.showFailureMessage(context, "Some error occurred!");
+                            }
+                            liveDataDistList.setValue(null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<DistResponse> call, @NotNull Throwable t) {
+                        liveDataDistList.setValue(null);
+                    }
+                });
+
+        return liveDataDistList;
     }
 }
